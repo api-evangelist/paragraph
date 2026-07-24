@@ -1,0 +1,240 @@
+openapi: 3.1.0
+info:
+  title: Paragraph analytics me API
+  version: 1.0.0
+  description: 'Public API for interacting with Paragraph publications, posts, users, and coined writing.
+
+
+    ## Rate Limiting
+
+    API requests are rate-limited to ensure fair usage. Contact support@paragraph.com for higher limits.
+
+
+    ## Pagination
+
+    List endpoints support cursor-based pagination using `cursor` and `limit` parameters.'
+  contact:
+    name: Paragraph Support
+    email: support@paragraph.com
+    url: https://paragraph.com/support
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+servers:
+- url: https://public.api.paragraph.com/api
+  description: Production server
+security:
+- {}
+tags:
+- name: me
+paths:
+  /v1/me:
+    get:
+      description: Returns the publication associated with the API key used in the request. Useful for verifying your API key and retrieving your publication details.
+      summary: Get authenticated publication
+      tags:
+      - me
+      parameters: []
+      responses:
+        '200':
+          description: Authenticated publication details retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: Unique identifier for the publication
+                  name:
+                    type: string
+                    description: Display name of the publication
+                  ownerUserId:
+                    type: string
+                    description: ID of the user who owns this publication
+                  slug:
+                    type: string
+                    minLength: 1
+                    maxLength: 256
+                    description: URL-friendly identifier for the publication; accessible at paragraph.com/@[slug]
+                  customDomain:
+                    type: string
+                    format: uri
+                    description: Custom domain configured for this publication
+                  summary:
+                    type: string
+                    maxLength: 500
+                    description: Brief description of the publication (max 500 characters)
+                  logoUrl:
+                    type: string
+                    format: uri
+                    description: URL to the publication's logo image
+                  postListType:
+                    type: string
+                    enum:
+                    - feed
+                    - grid
+                    - full-post
+                    description: Homepage layout. 'feed' is a single-column list of cards, 'grid' is a 3-column grid, 'full-post' shows full posts in a single column.
+                  themeColor:
+                    type: string
+                    enum:
+                    - default
+                    - orange-500
+                    - rose-600
+                    - pink-500
+                    - fuchsia-600
+                    - purple-600
+                    - violet-600
+                    - indigo-600
+                    - blue-600
+                    - sky-600
+                    - cyan-600
+                    - teal-600
+                    - emerald-600
+                    - green-600
+                    - lime-600
+                    - yellow-700
+                    - amber-600
+                    - orange-600
+                    - stone-800
+                    - rose-900
+                    - indigo-950
+                    - teal-950
+                    - lime-950
+                    - orange-950
+                    description: Theme accent color for the publication
+                  headerFont:
+                    type: string
+                    enum:
+                    - default
+                    - serif
+                    - mono
+                    description: Font family used for headers
+                  bodyFont:
+                    type: string
+                    enum:
+                    - default
+                    - serif
+                    - mono
+                    description: Font family used for body text
+                  showMostPopular:
+                    type: boolean
+                    description: Whether the 'most popular posts' widget is shown
+                  hideStats:
+                    type: boolean
+                    description: Whether to hide stats like subscriber count, post count, and collects
+                  featuredPost:
+                    type: string
+                    minLength: 1
+                    description: Featured post selector. Use 'latest' for the most recent post, 'popular' for the most-viewed post, 'disabled' to hide the featured slot, or the ID of a specific post in this publication.
+                  disableComments:
+                    oneOf:
+                    - type: boolean
+                    - type: string
+                      enum:
+                      - on-platform
+                    description: Comment visibility. true disables all comments, false enables them, 'on-platform' hides on-Paragraph comments while keeping Farcaster comments.
+                  disableHighlights:
+                    type: boolean
+                    description: Whether to disable highlights on this publication's posts
+                  enableTableOfContents:
+                    type: boolean
+                    description: Whether the table of contents is enabled on posts
+                  enableSubscribePopup:
+                    type: boolean
+                    description: Whether to show the subscribe popup to first-time visitors arriving from external links
+                  enableSubscribeScroll:
+                    type: boolean
+                    description: Whether to show the subscribe popup when first-time visitors scroll a post
+                  pinnedPostIds:
+                    type: array
+                    items:
+                      type: string
+                    description: Ordered list of post IDs pinned to the top of the publication's homepage. Pinned posts render in their own section above the regular feed.
+                  emailNotifications:
+                    type: object
+                    properties:
+                      newComment:
+                        type: boolean
+                        description: Email the writer when someone comments on a post
+                      newSubscriber:
+                        type: boolean
+                        description: Email the writer when a new free subscriber signs up
+                      newPaidSubscriber:
+                        type: boolean
+                        description: Email the writer when a new paid subscriber signs up
+                      newContentCollected:
+                        type: boolean
+                        description: Email the writer when someone collects their content
+                    description: Owner-side email notification toggles
+                required:
+                - id
+                - name
+                - ownerUserId
+                - slug
+        '401':
+          description: Invalid or missing API key
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                    - false
+                    description: Always false for error responses
+                  msg:
+                    type: string
+                    description: Human-readable error message
+                required:
+                - success
+                - msg
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                    - false
+                    description: Always false for error responses
+                  msg:
+                    type: string
+                    description: Human-readable error message
+                required:
+                - success
+                - msg
+      operationId: getMe
+      x-mint:
+        mcp:
+          enabled: true
+          name: get-me
+          description: Get the publication associated with the authenticated API key
+      x-codeSamples:
+      - lang: typescript
+        label: Get authenticated publication
+        source: 'import { ParagraphAPI } from "@paragraph-com/sdk"
+
+
+          const api = new ParagraphAPI({ apiKey: "your-api-key" })
+
+          const publication = await api.me.get()'
+      - lang: bash
+        label: Get authenticated publication using curl
+        source: "curl \"https://public.api.paragraph.com/api/v1/me\" \\\n  -H \"Authorization: Bearer your-api-key\""
+      security:
+      - apiKey: []
+components:
+  securitySchemes:
+    apiKey:
+      type: http
+      scheme: bearer
+      description: API key for authenticating protected endpoints. Pass as Bearer token in Authorization header.
+x-mint:
+  mcp:
+    enabled: true

@@ -1,0 +1,602 @@
+openapi: 3.1.0
+info:
+  title: Paragraph analytics subscribers API
+  version: 1.0.0
+  description: 'Public API for interacting with Paragraph publications, posts, users, and coined writing.
+
+
+    ## Rate Limiting
+
+    API requests are rate-limited to ensure fair usage. Contact support@paragraph.com for higher limits.
+
+
+    ## Pagination
+
+    List endpoints support cursor-based pagination using `cursor` and `limit` parameters.'
+  contact:
+    name: Paragraph Support
+    email: support@paragraph.com
+    url: https://paragraph.com/support
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+servers:
+- url: https://public.api.paragraph.com/api
+  description: Production server
+security:
+- {}
+tags:
+- name: subscribers
+  description: Operations related to subscriber management (requires API key)
+paths:
+  /v1/subscribers/import:
+    post:
+      description: 'Import subscribers from a CSV file into your publication. The publication is identified by the API key provided in the Authorization header.
+
+
+        **File Requirements:**
+
+        - Maximum file size: 10MB
+
+        - Content type: text/csv
+
+
+        **Supported CSV Columns:**
+
+        - Email: `email` or `subscriberEmail` (case-insensitive)
+
+        - Wallet: `wallet_address` (case-insensitive)
+
+        - Created date: `created_at`, `subscription date`, `created`, or `createdAt` (case-insensitive, optional)
+
+
+        At least one of email or wallet_address must be present for each row. Rows with neither valid email nor valid wallet address will be skipped.'
+      summary: Import subscribers from CSV
+      tags:
+      - subscribers
+      parameters: []
+      requestBody:
+        description: Body
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  description: CSV file containing subscriber data (max 10MB)
+      responses:
+        '200':
+          description: Import started successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                    - true
+                    description: Whether the import was started
+                required:
+                - success
+        '400':
+          description: Invalid request or CSV format
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                    - false
+                    description: Always false for error responses
+                  msg:
+                    type: string
+                    description: Human-readable error message
+                required:
+                - success
+                - msg
+        '401':
+          description: Invalid or missing API key
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                    - false
+                    description: Always false for error responses
+                  msg:
+                    type: string
+                    description: Human-readable error message
+                required:
+                - success
+                - msg
+        '404':
+          description: Publication not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                    - false
+                    description: Always false for error responses
+                  msg:
+                    type: string
+                    description: Human-readable error message
+                required:
+                - success
+                - msg
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                    - false
+                    description: Always false for error responses
+                  msg:
+                    type: string
+                    description: Human-readable error message
+                required:
+                - success
+                - msg
+      operationId: importSubscribers
+      x-mint:
+        mcp:
+          enabled: false
+          name: import-subscribers
+          description: Import subscribers from a CSV file into a publication
+      x-codeSamples:
+      - lang: typescript
+        label: Import subscribers from CSV
+        source: 'import { ParagraphAPI } from "@paragraph-com/sdk"
+
+
+          const api = new ParagraphAPI({ apiKey: "your-api-key" })
+
+          const result = await api.subscribers.import(csvFile)'
+      - lang: bash
+        label: Import subscribers using curl
+        source: "curl -X POST \"https://public.api.paragraph.com/api/v1/subscribers/import\" \\\n  -H \"Authorization: Bearer your-api-key\" \\\n  -F \"file=@subscribers.csv;type=text/csv\""
+      security:
+      - apiKey: []
+  /v1/subscribers:
+    post:
+      description: 'Add a new subscriber to your publication. The publication is identified by the API key provided in the Authorization header.
+
+
+        **Requirements:**
+
+        - At least one of `email` or `wallet` must be provided
+
+        - If both are provided, the subscriber will be associated with both credentials
+
+
+        **Behavior:**
+
+        - If the subscriber already exists (by email or wallet), they will not be duplicated'
+      summary: Add a new subscriber
+      tags:
+      - subscribers
+      parameters: []
+      requestBody:
+        description: Body
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  format: email
+                  description: Email address of the subscriber
+                wallet:
+                  type: string
+                  pattern: ^0x[a-fA-F0-9]{40}$
+                  description: Wallet address of the subscriber (0x format)
+                createdAt:
+                  type: number
+                  description: Timestamp (in milliseconds) when the subscription was created. Defaults to current time.
+      responses:
+        '200':
+          description: Subscriber added successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                    - true
+                    description: Whether the subscriber was added
+                required:
+                - success
+        '400':
+          description: Invalid request - must provide email or wallet
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                    - false
+                    description: Always false for error responses
+                  msg:
+                    type: string
+                    description: Human-readable error message
+                required:
+                - success
+                - msg
+        '401':
+          description: Invalid or missing API key
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                    - false
+                    description: Always false for error responses
+                  msg:
+                    type: string
+                    description: Human-readable error message
+                required:
+                - success
+                - msg
+        '404':
+          description: Publication not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                    - false
+                    description: Always false for error responses
+                  msg:
+                    type: string
+                    description: Human-readable error message
+                required:
+                - success
+                - msg
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                    - false
+                    description: Always false for error responses
+                  msg:
+                    type: string
+                    description: Human-readable error message
+                required:
+                - success
+                - msg
+      operationId: addSubscriber
+      x-mint:
+        mcp:
+          enabled: true
+          name: add-subscriber
+          description: Add a new subscriber to a publication
+      x-codeSamples:
+      - lang: typescript
+        label: Add subscriber with email
+        source: 'import { ParagraphAPI } from "@paragraph-com/sdk"
+
+
+          const api = new ParagraphAPI({ apiKey: "your-api-key" })
+
+          await api.subscribers.create({ email: "reader@example.com" })'
+      - lang: typescript
+        label: Add subscriber with wallet
+        source: 'import { ParagraphAPI } from "@paragraph-com/sdk"
+
+
+          const api = new ParagraphAPI({ apiKey: "your-api-key" })
+
+          await api.subscribers.create({ wallet: "0x1234...abcd" })'
+      - lang: bash
+        label: Add subscriber using curl
+        source: "curl -X POST \"https://public.api.paragraph.com/api/v1/subscribers\" \\\n  -H \"Authorization: Bearer your-api-key\" \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\"email\": \"reader@example.com\"}'"
+      security:
+      - apiKey: []
+    delete:
+      description: 'Remove a subscriber from your publication. The publication is identified by the API key provided in the Authorization header. Identify the subscriber by email, wallet, or both.
+
+
+        **Requirements:**
+
+        - At least one of `email` or `wallet` must be provided
+
+        - If both are provided, they must resolve to the same subscriber
+
+
+        **Behavior:**
+
+        - The subscription is hard-deleted, mirroring the dashboard''s "remove subscriber" action'
+      summary: Remove a subscriber
+      tags:
+      - subscribers
+      parameters: []
+      requestBody:
+        description: Body
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  format: email
+                  description: Email address of the subscriber to remove
+                wallet:
+                  type: string
+                  pattern: ^0x[a-fA-F0-9]{40}$
+                  description: Wallet address of the subscriber to remove (0x format)
+      responses:
+        '200':
+          description: Subscriber removed successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                    - true
+                    description: Whether the subscriber was removed
+                required:
+                - success
+        '400':
+          description: Invalid request — must provide email or wallet, and both (if given) must resolve to the same subscriber
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                    - false
+                    description: Always false for error responses
+                  msg:
+                    type: string
+                    description: Human-readable error message
+                required:
+                - success
+                - msg
+        '401':
+          description: Invalid or missing API key
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                    - false
+                    description: Always false for error responses
+                  msg:
+                    type: string
+                    description: Human-readable error message
+                required:
+                - success
+                - msg
+        '404':
+          description: Subscriber not found in this publication
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                    - false
+                    description: Always false for error responses
+                  msg:
+                    type: string
+                    description: Human-readable error message
+                required:
+                - success
+                - msg
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                    - false
+                    description: Always false for error responses
+                  msg:
+                    type: string
+                    description: Human-readable error message
+                required:
+                - success
+                - msg
+      operationId: removeSubscriber
+      x-mint:
+        mcp:
+          enabled: true
+          name: remove-subscriber
+          description: Remove a subscriber from a publication
+      x-codeSamples:
+      - lang: typescript
+        label: Remove subscriber by email
+        source: 'import { ParagraphAPI } from "@paragraph-com/sdk"
+
+
+          const api = new ParagraphAPI({ apiKey: "your-api-key" })
+
+          await api.subscribers.remove({ email: "reader@example.com" })'
+      - lang: bash
+        label: Remove subscriber using curl
+        source: "curl -X DELETE \"https://public.api.paragraph.com/api/v1/subscribers\" \\\n  -H \"Authorization: Bearer your-api-key\" \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\"email\": \"reader@example.com\"}'"
+      security:
+      - apiKey: []
+    get:
+      description: 'Retrieve a paginated list of subscribers for your publication. The publication is identified by the API key provided in the Authorization header.
+
+
+        **Response:**
+
+        - Returns subscriber email and/or wallet address
+
+        - Only active subscribers are returned
+
+        - Results are ordered by subscription date (newest first)'
+      summary: List subscribers
+      tags:
+      - subscribers
+      parameters:
+      - name: cursor
+        in: query
+        description: Cursor for pagination
+        schema:
+          type: string
+      - name: limit
+        in: query
+        description: 'Maximum number of items to return (1-100, default: 10)'
+        schema:
+          default: 10
+          type: integer
+          minimum: 1
+          maximum: 100
+      responses:
+        '200':
+          description: Subscribers retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        email:
+                          type: string
+                          format: email
+                          description: Email address of the subscriber
+                        walletAddress:
+                          type: string
+                          pattern: ^0x[a-fA-F0-9]{40}$
+                          description: Wallet address of the subscriber
+                        createdAt:
+                          type: number
+                          description: Timestamp when the subscription was created
+                      required:
+                      - createdAt
+                    description: Array of items in this page
+                  pagination:
+                    type: object
+                    properties:
+                      cursor:
+                        type: string
+                        description: Cursor for fetching the next page of results
+                      hasMore:
+                        type: boolean
+                        description: Whether more results are available
+                      total:
+                        type: number
+                        description: Total number of items available
+                    required:
+                    - hasMore
+                required:
+                - items
+                - pagination
+        '401':
+          description: Invalid or missing API key
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                    - false
+                    description: Always false for error responses
+                  msg:
+                    type: string
+                    description: Human-readable error message
+                required:
+                - success
+                - msg
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                    - false
+                    description: Always false for error responses
+                  msg:
+                    type: string
+                    description: Human-readable error message
+                required:
+                - success
+                - msg
+      operationId: listSubscribers
+      x-mint:
+        mcp:
+          enabled: true
+          name: list-subscribers
+          description: List subscribers for a publication
+      x-codeSamples:
+      - lang: typescript
+        label: List subscribers with pagination
+        source: 'import { ParagraphAPI } from "@paragraph-com/sdk"
+
+
+          const api = new ParagraphAPI({ apiKey: "your-api-key" })
+
+          const { items: subscribers, pagination } = await api.subscribers.get({ limit: 50 })'
+      - lang: bash
+        label: List subscribers using curl
+        source: "curl -X GET \"https://public.api.paragraph.com/api/v1/subscribers?limit=50\" \\\n  -H \"Authorization: Bearer your-api-key\""
+      security:
+      - apiKey: []
+components:
+  securitySchemes:
+    apiKey:
+      type: http
+      scheme: bearer
+      description: API key for authenticating protected endpoints. Pass as Bearer token in Authorization header.
+x-mint:
+  mcp:
+    enabled: true

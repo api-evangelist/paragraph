@@ -1,0 +1,1371 @@
+openapi: 3.1.0
+info:
+  title: Paragraph analytics coins API
+  version: 1.0.0
+  description: 'Public API for interacting with Paragraph publications, posts, users, and coined writing.
+
+
+    ## Rate Limiting
+
+    API requests are rate-limited to ensure fair usage. Contact support@paragraph.com for higher limits.
+
+
+    ## Pagination
+
+    List endpoints support cursor-based pagination using `cursor` and `limit` parameters.'
+  contact:
+    name: Paragraph Support
+    email: support@paragraph.com
+    url: https://paragraph.com/support
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+servers:
+- url: https://public.api.paragraph.com/api
+  description: Production server
+security:
+- {}
+tags:
+- name: coins
+  description: Operations related to tokenized content
+paths:
+  /v1/coins/{id}:
+    get:
+      description: Retrieve information about a tokenized post using its unique ID
+      summary: Get coin by ID
+      tags:
+      - coins
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Paragraph-internal unique identifier for the coin
+      responses:
+        '200':
+          description: Coin details retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: Unique identifier for the coin
+                  contractAddress:
+                    type: string
+                    pattern: ^0x[a-fA-F0-9]{40}$
+                    description: Base contract address for the coin
+                  metadata:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        description: Name of the coin
+                      symbol:
+                        type: string
+                        description: Symbol of the coin
+                      decimals:
+                        type: number
+                        description: Number of decimals of the coin
+                      description:
+                        type: string
+                        description: Description of the coin
+                      image:
+                        type: string
+                        description: Image url of the logo associated with the coin
+                      logoURI:
+                        type: string
+                        description: Image url of the logo associated with the coin
+                      chainId:
+                        type: number
+                        description: Chain id number of the coin
+                      external_url:
+                        type: string
+                        description: External url associated with the coin
+                      links:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                              description: Name of the link
+                            url:
+                              type: string
+                              description: URL of the link
+                          required:
+                          - name
+                          - url
+                      tags:
+                        type: array
+                        items:
+                          type: string
+                        description: Tags associated with the coin
+                      extensions:
+                        type: object
+                        properties:
+                          coinType:
+                            type: string
+                            description: Type of the coin
+                          paragraph:
+                            type: object
+                            properties:
+                              blogId:
+                                type: string
+                                description: ID of the blog associated with this coin
+                              blogUrl:
+                                type: string
+                                description: URL of the blog associated with this coin
+                              authorName:
+                                type: string
+                                description: Name of the author associated with this coin
+                              noteId:
+                                type: string
+                                description: ID of the note associated with this coin
+                              postSlug:
+                                type: string
+                                description: Slug of the post associated with this coin
+                            required:
+                            - blogId
+                            - blogUrl
+                        required:
+                        - coinType
+                        - paragraph
+                      attributes:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            trait_type:
+                              type: string
+                            value:
+                              type: string
+                          required:
+                          - trait_type
+                          - value
+                    required:
+                    - name
+                    - symbol
+                    - decimals
+                    - description
+                    - chainId
+                    - external_url
+                    - links
+                    - tags
+                    - extensions
+                    - attributes
+                required:
+                - id
+                - contractAddress
+                - metadata
+        '404':
+          description: Coin not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                    - false
+                    description: Always false for error responses
+                  msg:
+                    type: string
+                    description: Human-readable error message
+                required:
+                - success
+                - msg
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                    - false
+                    description: Always false for error responses
+                  msg:
+                    type: string
+                    description: Human-readable error message
+                required:
+                - success
+                - msg
+      operationId: getCoin
+      x-mint:
+        mcp:
+          enabled: true
+          name: get-coin-by-id
+          description: Get information about a coin by its ID
+      x-codeSamples:
+      - lang: typescript
+        label: Get coin by ID
+        source: 'import { ParagraphAPI } from "@paragraph-com/sdk"
+
+
+          const api = new ParagraphAPI()
+
+          const coin = await api.coins.get({ id: "S2AlaNG5Hw0NdNptmLTw" }).single()'
+  /v1/coins/contract/{contractAddress}:
+    get:
+      description: Retrieve information about a tokenized post using its contract address
+      summary: Get coin by contract address
+      tags:
+      - coins
+      parameters:
+      - name: contractAddress
+        in: path
+        required: true
+        schema:
+          type: string
+          pattern: ^0x[a-fA-F0-9]{40}$
+        description: Contract address
+      responses:
+        '200':
+          description: Coin details retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: Unique identifier for the coin
+                  contractAddress:
+                    type: string
+                    pattern: ^0x[a-fA-F0-9]{40}$
+                    description: Base contract address for the coin
+                  metadata:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        description: Name of the coin
+                      symbol:
+                        type: string
+                        description: Symbol of the coin
+                      decimals:
+                        type: number
+                        description: Number of decimals of the coin
+                      description:
+                        type: string
+                        description: Description of the coin
+                      image:
+                        type: string
+                        description: Image url of the logo associated with the coin
+                      logoURI:
+                        type: string
+                        description: Image url of the logo associated with the coin
+                      chainId:
+                        type: number
+                        description: Chain id number of the coin
+                      external_url:
+                        type: string
+                        description: External url associated with the coin
+                      links:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                              description: Name of the link
+                            url:
+                              type: string
+                              description: URL of the link
+                          required:
+                          - name
+                          - url
+                      tags:
+                        type: array
+                        items:
+                          type: string
+                        description: Tags associated with the coin
+                      extensions:
+                        type: object
+                        properties:
+                          coinType:
+                            type: string
+                            description: Type of the coin
+                          paragraph:
+                            type: object
+                            properties:
+                              blogId:
+                                type: string
+                                description: ID of the blog associated with this coin
+                              blogUrl:
+                                type: string
+                                description: URL of the blog associated with this coin
+                              authorName:
+                                type: string
+                                description: Name of the author associated with this coin
+                              noteId:
+                                type: string
+                                description: ID of the note associated with this coin
+                              postSlug:
+                                type: string
+                                description: Slug of the post associated with this coin
+                            required:
+                            - blogId
+                            - blogUrl
+                        required:
+                        - coinType
+                        - paragraph
+                      attributes:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            trait_type:
+                              type: string
+                            value:
+                              type: string
+                          required:
+                          - trait_type
+                          - value
+                    required:
+                    - name
+                    - symbol
+                    - decimals
+                    - description
+                    - chainId
+                    - external_url
+                    - links
+                    - tags
+                    - extensions
+                    - attributes
+                required:
+                - id
+                - contractAddress
+                - metadata
+        '404':
+          description: Coin not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                    - false
+                    description: Always false for error responses
+                  msg:
+                    type: string
+                    description: Human-readable error message
+                required:
+                - success
+                - msg
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                    - false
+                    description: Always false for error responses
+                  msg:
+                    type: string
+                    description: Human-readable error message
+                required:
+                - success
+                - msg
+      operationId: getCoinByContract
+      x-mint:
+        mcp:
+          enabled: true
+          name: get-coin-by-contract
+          description: Get information about a coin by contract address
+      x-codeSamples:
+      - lang: typescript
+        label: Get coin by contract address
+        source: 'import { ParagraphAPI } from "@paragraph-com/sdk"
+
+
+          const api = new ParagraphAPI()
+
+          const coin = await api.coins.get({ contract: "0xe9bb3166ff5f96381e257d509a801303b68e5d34" }).single()'
+  /v1/coins/{id}/holders:
+    get:
+      description: Retrieve a paginated list of holders for a coined post
+      summary: List coin holders by ID
+      tags:
+      - coins
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Unique ID of the coin
+      - name: cursor
+        in: query
+        description: Cursor for pagination
+        schema:
+          type: string
+      - name: limit
+        in: query
+        description: 'Maximum number of items to return (1-100, default: 10)'
+        schema:
+          default: 10
+          type: integer
+          minimum: 1
+          maximum: 100
+      responses:
+        '200':
+          description: Holders retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        walletAddress:
+                          type: string
+                          pattern: ^0x[a-fA-F0-9]{40}$
+                          description: Wallet address of the holder
+                        userId:
+                          type: string
+                          description: Paragraph user ID if the holder is a registered user
+                        balance:
+                          type: string
+                          pattern: ^[0-9]+$
+                          description: Token balance held (in wei)
+                        avatarUrl:
+                          type: string
+                          format: uri
+                          description: URL to the user's avatar image, if available
+                      required:
+                      - walletAddress
+                      - balance
+                    description: Array of items in this page
+                  pagination:
+                    type: object
+                    properties:
+                      cursor:
+                        type: string
+                        description: Cursor for fetching the next page of results
+                      hasMore:
+                        type: boolean
+                        description: Whether more results are available
+                      total:
+                        type: number
+                        description: Total number of items available
+                    required:
+                    - hasMore
+                required:
+                - items
+                - pagination
+        '404':
+          description: Coin not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                    - false
+                    description: Always false for error responses
+                  msg:
+                    type: string
+                    description: Human-readable error message
+                required:
+                - success
+                - msg
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                    - false
+                    description: Always false for error responses
+                  msg:
+                    type: string
+                    description: Human-readable error message
+                required:
+                - success
+                - msg
+      operationId: getCoinHoldersById
+      x-mint:
+        mcp:
+          enabled: true
+          name: list-coin-holders-by-id
+          description: List holders of a coined post by coin ID
+      x-codeSamples:
+      - lang: typescript
+        label: List coin holders (with pagination)
+        source: 'import { ParagraphAPI } from "@paragraph-com/sdk"
+
+
+          const api = new ParagraphAPI()
+
+          const { items: holders, pagination } = await api.coins.getHolders({ id: "S2AlaNG5Hw0NdNptmLTw", limit: 25 })'
+  /v1/coins/contract/{contractAddress}/holders:
+    get:
+      description: Retrieve a paginated list of holders for a tokenized post
+      summary: List coin holders by contract address
+      tags:
+      - coins
+      parameters:
+      - name: contractAddress
+        in: path
+        required: true
+        schema:
+          type: string
+          pattern: ^0x[a-fA-F0-9]{40}$
+        description: Contract address
+      - name: cursor
+        in: query
+        description: Cursor for pagination
+        schema:
+          type: string
+      - name: limit
+        in: query
+        description: 'Maximum number of items to return (1-100, default: 10)'
+        schema:
+          default: 10
+          type: integer
+          minimum: 1
+          maximum: 100
+      responses:
+        '200':
+          description: Holders retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        walletAddress:
+                          type: string
+                          pattern: ^0x[a-fA-F0-9]{40}$
+                          description: Wallet address of the holder
+                        userId:
+                          type: string
+                          description: Paragraph user ID if the holder is a registered user
+                        balance:
+                          type: string
+                          pattern: ^[0-9]+$
+                          description: Token balance held (in wei)
+                        avatarUrl:
+                          type: string
+                          format: uri
+                          description: URL to the user's avatar image, if available
+                      required:
+                      - walletAddress
+                      - balance
+                    description: Array of items in this page
+                  pagination:
+                    type: object
+                    properties:
+                      cursor:
+                        type: string
+                        description: Cursor for fetching the next page of results
+                      hasMore:
+                        type: boolean
+                        description: Whether more results are available
+                      total:
+                        type: number
+                        description: Total number of items available
+                    required:
+                    - hasMore
+                required:
+                - items
+                - pagination
+        '404':
+          description: Coin not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                    - false
+                    description: Always false for error responses
+                  msg:
+                    type: string
+                    description: Human-readable error message
+                required:
+                - success
+                - msg
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                    - false
+                    description: Always false for error responses
+                  msg:
+                    type: string
+                    description: Human-readable error message
+                required:
+                - success
+                - msg
+      operationId: getCoinHoldersByContract
+      x-mint:
+        mcp:
+          enabled: true
+          name: list-coin-holders-by-contract
+          description: List holders of a coined post by contract address
+      x-codeSamples:
+      - lang: typescript
+        label: List coin holders (with pagination)
+        source: 'import { ParagraphAPI } from "@paragraph-com/sdk"
+
+
+          const api = new ParagraphAPI()
+
+          const { items: holders, pagination } = await api.coins.getHolders({ contract: "0xe9bb3166ff5f96381e257d509a801303b68e5d34", limit: 50 })'
+  /v1/coins/buy/{id}:
+    get:
+      description: Retrieve the args needed to buy a coin using a wallet
+      summary: Get coin's buy args by ID
+      tags:
+      - coins
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Id of the coin
+      - name: walletAddress
+        in: query
+        description: Address of the wallet that is going to buy the coin
+        required: true
+        schema:
+          type: string
+          pattern: ^0x[a-fA-F0-9]{40}$
+      - name: amount
+        in: query
+        description: Amount of Base ETH in wei that is going to be swapped for the coin
+        required: true
+        schema:
+          type: string
+          pattern: '[0-9]+'
+      responses:
+        '200':
+          description: Buy args retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  commands:
+                    type: string
+                    pattern: ^0x[a-fA-F0-9]*
+                    description: Commands needed to do a token swap
+                  inputs:
+                    type: array
+                    items:
+                      type: string
+                      pattern: ^0x[a-fA-F0-9]*
+                    description: Inputs needed to do a token swap
+                required:
+                - commands
+                - inputs
+        '404':
+          description: Buy args not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                    - false
+                    description: Always false for error responses
+                  msg:
+                    type: string
+                    description: Human-readable error message
+                required:
+                - success
+                - msg
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                    - false
+                    description: Always false for error responses
+                  msg:
+                    type: string
+                    description: Human-readable error message
+                required:
+                - success
+                - msg
+      operationId: getBuyArgsById
+      x-mint:
+        mcp:
+          enabled: true
+          name: get-buy-args-by-id
+          description: Get the args needed to buy a coin by its id
+  /v1/coins/buy/contract/{contractAddress}:
+    get:
+      description: Retrieve the args needed to buy a coin using a wallet
+      summary: Get coin's buy args by contract address
+      tags:
+      - coins
+      parameters:
+      - name: contractAddress
+        in: path
+        required: true
+        schema:
+          type: string
+          pattern: ^0x[a-fA-F0-9]{40}$
+        description: Contract address of the coin
+      - name: walletAddress
+        in: query
+        description: Address of the wallet that is going to buy the coin
+        required: true
+        schema:
+          type: string
+          pattern: ^0x[a-fA-F0-9]{40}$
+      - name: amount
+        in: query
+        description: Amount of Base ETH in wei that is going to be swapped for the coin
+        required: true
+        schema:
+          type: string
+          pattern: '[0-9]+'
+      responses:
+        '200':
+          description: Buy args retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  commands:
+                    type: string
+                    pattern: ^0x[a-fA-F0-9]*
+                    description: Commands needed to do a token swap
+                  inputs:
+                    type: array
+                    items:
+                      type: string
+                      pattern: ^0x[a-fA-F0-9]*
+                    description: Inputs needed to do a token swap
+                required:
+                - commands
+                - inputs
+        '404':
+          description: Buy args not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                    - false
+                    description: Always false for error responses
+                  msg:
+                    type: string
+                    description: Human-readable error message
+                required:
+                - success
+                - msg
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                    - false
+                    description: Always false for error responses
+                  msg:
+                    type: string
+                    description: Human-readable error message
+                required:
+                - success
+                - msg
+      operationId: getBuyArgsByContract
+      x-mint:
+        mcp:
+          enabled: true
+          name: get-buy-args-by-contract
+          description: Get the args needed to buy a coin by its contract address
+  /v1/coins/sell/{id}:
+    get:
+      description: Retrieve the args needed to sell a coin using a wallet that has it
+      summary: Get coin's sell args by ID
+      tags:
+      - coins
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Id of the coin
+      - name: walletAddress
+        in: query
+        description: Address of the wallet that is going to sell the coin
+        required: true
+        schema:
+          type: string
+          pattern: ^0x[a-fA-F0-9]{40}$
+      - name: amount
+        in: query
+        description: Amount of coin in wei that is going to be swapped to WETH
+        required: true
+        schema:
+          type: string
+          pattern: '[0-9]+'
+      responses:
+        '200':
+          description: Sell args retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  commands:
+                    type: string
+                    pattern: ^0x[a-fA-F0-9]*
+                    description: Commands needed to do a token swap
+                  inputs:
+                    type: array
+                    items:
+                      type: string
+                      pattern: ^0x[a-fA-F0-9]*
+                    description: Inputs needed to do a token swap
+                required:
+                - commands
+                - inputs
+        '404':
+          description: Sell args not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                    - false
+                    description: Always false for error responses
+                  msg:
+                    type: string
+                    description: Human-readable error message
+                required:
+                - success
+                - msg
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                    - false
+                    description: Always false for error responses
+                  msg:
+                    type: string
+                    description: Human-readable error message
+                required:
+                - success
+                - msg
+      operationId: getSellArgsById
+      x-mint:
+        mcp:
+          enabled: true
+          name: get-sell-args-by-id
+          description: Get the args needed to sell a coin by its id
+  /v1/coins/sell/contract/{contractAddress}:
+    get:
+      description: Retrieve the args needed to sell a coin using a wallet that has it
+      summary: Get coin's sell args by contract address
+      tags:
+      - coins
+      parameters:
+      - name: contractAddress
+        in: path
+        required: true
+        schema:
+          type: string
+          pattern: ^0x[a-fA-F0-9]{40}$
+        description: Contract address of the coin
+      - name: walletAddress
+        in: query
+        description: Address of the wallet that is going to sell the coin
+        required: true
+        schema:
+          type: string
+          pattern: ^0x[a-fA-F0-9]{40}$
+      - name: amount
+        in: query
+        description: Amount of coin in wei that is going to be swapped to WETH
+        required: true
+        schema:
+          type: string
+          pattern: '[0-9]+'
+      responses:
+        '200':
+          description: Sell args retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  commands:
+                    type: string
+                    pattern: ^0x[a-fA-F0-9]*
+                    description: Commands needed to do a token swap
+                  inputs:
+                    type: array
+                    items:
+                      type: string
+                      pattern: ^0x[a-fA-F0-9]*
+                    description: Inputs needed to do a token swap
+                required:
+                - commands
+                - inputs
+        '404':
+          description: Sell args not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                    - false
+                    description: Always false for error responses
+                  msg:
+                    type: string
+                    description: Human-readable error message
+                required:
+                - success
+                - msg
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                    - false
+                    description: Always false for error responses
+                  msg:
+                    type: string
+                    description: Human-readable error message
+                required:
+                - success
+                - msg
+      operationId: getSellArgsByContract
+      x-mint:
+        mcp:
+          enabled: true
+          name: get-sell-args-by-contract
+          description: Get the args needed to sell a coin by its contract address
+  /v1/coins/quote/{id}:
+    get:
+      description: Retrieve a quote for the amount of coin in exchange of ETH
+      summary: Get coin quote by ID
+      tags:
+      - coins
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Paragraph-internal unique identifier for the coin
+      - name: amount
+        in: query
+        description: Amount of Base ETH in wei that is going to be swapped for the coin
+        required: true
+        schema:
+          type: string
+          pattern: '[0-9]+'
+      responses:
+        '200':
+          description: Coin quote retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  quote:
+                    type: string
+                    description: Approximate number of coins that could be received in exchange of the amount of ETH entered
+                required:
+                - quote
+        '404':
+          description: Coin quote not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                    - false
+                    description: Always false for error responses
+                  msg:
+                    type: string
+                    description: Human-readable error message
+                required:
+                - success
+                - msg
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                    - false
+                    description: Always false for error responses
+                  msg:
+                    type: string
+                    description: Human-readable error message
+                required:
+                - success
+                - msg
+      operationId: getQuoteById
+      x-mint:
+        mcp:
+          enabled: true
+          name: get-quote-by-id
+          description: Get a quote of a coin by its ID
+      x-codeSamples:
+      - lang: typescript
+        label: Get coin quote by ID
+        source: 'import { ParagraphAPI } from "@paragraph-com/sdk"
+
+
+          const api = new ParagraphAPI()
+
+          const quote = await api.coins.getQuote({ id: "S2AlaNG5Hw0NdNptmLTw", amount: "1000000000000000000" })'
+  /v1/coins/quote/contract/{contractAddress}:
+    get:
+      description: Retrieve a quote for the amount of the coin in exchange of ETH
+      summary: Get coin quote by contract address
+      tags:
+      - coins
+      parameters:
+      - name: contractAddress
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Contract address of the coin
+      - name: amount
+        in: query
+        description: Amount of Base ETH in wei that is going to be swapped for the coin
+        required: true
+        schema:
+          type: string
+          pattern: '[0-9]+'
+      responses:
+        '200':
+          description: Coin quote retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  quote:
+                    type: string
+                    description: Approximate number of coins that could be received in exchange of the amount of ETH entered
+                required:
+                - quote
+        '404':
+          description: Coin quote not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                    - false
+                    description: Always false for error responses
+                  msg:
+                    type: string
+                    description: Human-readable error message
+                required:
+                - success
+                - msg
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                    - false
+                    description: Always false for error responses
+                  msg:
+                    type: string
+                    description: Human-readable error message
+                required:
+                - success
+                - msg
+      operationId: getQuoteByContract
+      x-mint:
+        mcp:
+          enabled: true
+          name: get-quote-by-contract
+          description: Get a quote of a coin by its contract address
+      x-codeSamples:
+      - lang: typescript
+        label: Get coin quote by contract address
+        source: 'import { ParagraphAPI } from "@paragraph-com/sdk"
+
+
+          const api = new ParagraphAPI()
+
+          const quote = await api.coins.getQuote({ contract: "0xe9bb3166ff5f96381e257d509a801303b68e5d34", amount: "1000000000000000000" })'
+  /v1/coins/list/popular:
+    get:
+      description: Retrieve popular coins
+      summary: Get popular coins
+      tags:
+      - coins
+      parameters: []
+      responses:
+        '200':
+          description: Popular coins retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  coins:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          description: Unique identifier for the coin
+                        contractAddress:
+                          type: string
+                          pattern: ^0x[a-fA-F0-9]{40}$
+                          description: Base contract address for the coin
+                        metadata:
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                              description: Name of the coin
+                            symbol:
+                              type: string
+                              description: Symbol of the coin
+                            decimals:
+                              type: number
+                              description: Number of decimals of the coin
+                            description:
+                              type: string
+                              description: Description of the coin
+                            image:
+                              type: string
+                              description: Image url of the logo associated with the coin
+                            logoURI:
+                              type: string
+                              description: Image url of the logo associated with the coin
+                            chainId:
+                              type: number
+                              description: Chain id number of the coin
+                            external_url:
+                              type: string
+                              description: External url associated with the coin
+                            links:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  name:
+                                    type: string
+                                    description: Name of the link
+                                  url:
+                                    type: string
+                                    description: URL of the link
+                                required:
+                                - name
+                                - url
+                            tags:
+                              type: array
+                              items:
+                                type: string
+                              description: Tags associated with the coin
+                            extensions:
+                              type: object
+                              properties:
+                                coinType:
+                                  type: string
+                                  description: Type of the coin
+                                paragraph:
+                                  type: object
+                                  properties:
+                                    blogId:
+                                      type: string
+                                      description: ID of the blog associated with this coin
+                                    blogUrl:
+                                      type: string
+                                      description: URL of the blog associated with this coin
+                                    authorName:
+                                      type: string
+                                      description: Name of the author associated with this coin
+                                    noteId:
+                                      type: string
+                                      description: ID of the note associated with this coin
+                                    postSlug:
+                                      type: string
+                                      description: Slug of the post associated with this coin
+                                  required:
+                                  - blogId
+                                  - blogUrl
+                              required:
+                              - coinType
+                              - paragraph
+                            attributes:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  trait_type:
+                                    type: string
+                                  value:
+                                    type: string
+                                required:
+                                - trait_type
+                                - value
+                          required:
+                          - name
+                          - symbol
+                          - decimals
+                          - description
+                          - chainId
+                          - external_url
+                          - links
+                          - tags
+                          - extensions
+                          - attributes
+                      required:
+                      - id
+                      - contractAddress
+                      - metadata
+                required:
+                - coins
+        '404':
+          description: Popular coins not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                    - false
+                    description: Always false for error responses
+                  msg:
+                    type: string
+                    description: Human-readable error message
+                required:
+                - success
+                - msg
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                    - false
+                    description: Always false for error responses
+                  msg:
+                    type: string
+                    description: Human-readable error message
+                required:
+                - success
+                - msg
+      operationId: getPopularCoins
+      x-mint:
+        mcp:
+          enabled: true
+          name: get-popular-coins
+          description: Get popular coins
+      x-codeSamples:
+      - lang: typescript
+        label: Get popular coins
+        source: 'import { ParagraphAPI } from "@paragraph-com/sdk"
+
+
+          const api = new ParagraphAPI()
+
+          const { items: coins } = await api.coins.get({ sortBy: "popular" })'
+components:
+  securitySchemes:
+    apiKey:
+      type: http
+      scheme: bearer
+      description: API key for authenticating protected endpoints. Pass as Bearer token in Authorization header.
+x-mint:
+  mcp:
+    enabled: true

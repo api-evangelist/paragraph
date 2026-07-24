@@ -1,0 +1,2700 @@
+openapi: 3.1.0
+info:
+  title: Paragraph analytics posts API
+  version: 1.0.0
+  description: 'Public API for interacting with Paragraph publications, posts, users, and coined writing.
+
+
+    ## Rate Limiting
+
+    API requests are rate-limited to ensure fair usage. Contact support@paragraph.com for higher limits.
+
+
+    ## Pagination
+
+    List endpoints support cursor-based pagination using `cursor` and `limit` parameters.'
+  contact:
+    name: Paragraph Support
+    email: support@paragraph.com
+    url: https://paragraph.com/support
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+servers:
+- url: https://public.api.paragraph.com/api
+  description: Production server
+security:
+- {}
+tags:
+- name: posts
+  description: Operations related to posts and content
+paths:
+  /v1/posts/feed:
+    get:
+      description: Retrieve a curated, paginated list of posts.
+      summary: Get posts feed
+      tags:
+      - posts
+      parameters:
+      - name: cursor
+        in: query
+        description: Cursor for pagination
+        schema:
+          type: string
+      - name: limit
+        in: query
+        description: 'Maximum number of items to return (1-60, default: 20)'
+        schema:
+          default: 20
+          type: integer
+          minimum: 1
+          maximum: 60
+      - name: includeContent
+        in: query
+        description: 'Include full content fields (json, staticHtml, markdown) in the post. Default: false'
+        schema:
+          oneOf:
+          - type: boolean
+          - type: string
+      responses:
+        '200':
+          description: Feed items retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        post:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              description: Unique identifier for the post
+                            title:
+                              type: string
+                              maxLength: 200
+                              description: Title of the post
+                            imageUrl:
+                              type: string
+                              format: uri
+                              description: Optional URL to the post's main image
+                            publishedAt:
+                              type: string
+                              description: Epoch timestamp when the post was published
+                            updatedAt:
+                              type: string
+                              description: Epoch timestamp when the post was last updated
+                            subtitle:
+                              type: string
+                              maxLength: 300
+                              description: Optional subtitle or brief summary
+                            slug:
+                              type: string
+                              minLength: 1
+                              maxLength: 256
+                              description: URL-friendly identifier for the post; accessible at paragraph.com/@[publicationSlug]/[slug]
+                            staticHtml:
+                              type: string
+                              description: Rendered HTML content of the post
+                            json:
+                              type: string
+                              description: TipTap JSON representation of the post content structure. This is the source of truth that the staticHtml and markdown is generated from
+                            markdown:
+                              type: string
+                              description: Markdown source of the post content
+                            coinId:
+                              type: string
+                              description: ID of the associated coin, if the post is coined
+                            categories:
+                              type: array
+                              items:
+                                type: string
+                              description: Categories/tags associated with this post
+                            authors:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  id:
+                                    type: string
+                                    description: Unique identifier for the user
+                                  walletAddress:
+                                    type: string
+                                    pattern: ^0x[a-fA-F0-9]{40}$
+                                    description: Wallet address of the user
+                                  avatarUrl:
+                                    type: string
+                                    format: uri
+                                    description: URL to the user's avatar image
+                                  publicationId:
+                                    type: string
+                                    description: ID of the publication this user belongs to
+                                  name:
+                                    type: string
+                                    description: Display name of the user
+                                  bio:
+                                    type: string
+                                    maxLength: 500
+                                    description: Brief biography of the user (max 500 characters)
+                                  farcaster:
+                                    type: object
+                                    properties:
+                                      username:
+                                        type: string
+                                        description: Farcaster username
+                                      displayName:
+                                        type: string
+                                        description: Farcaster display name
+                                      fid:
+                                        type: number
+                                        description: Farcaster fid
+                                    required:
+                                    - username
+                                    - displayName
+                                    - fid
+                                    description: Farcaster profile information, if linked
+                                required:
+                                - id
+                                - publicationId
+                              description: Authors of this post
+                            authorIds:
+                              type: array
+                              items:
+                                type: string
+                              description: IDs of the authors of this post
+                            views:
+                              type: number
+                              description: Total views. Only included when fetching your own posts via GET /v1/posts
+                            status:
+                              type: string
+                              enum:
+                              - published
+                              - draft
+                              - scheduled
+                              - archived
+                              description: Current publish status. Only set on authenticated endpoints (listOwn, getById for your own post). Use this instead of publishedAt to determine publish state — publishedAt is preserved across unpublishing.
+                          required:
+                          - id
+                          - title
+                          - slug
+                          description: The post content
+                        publication:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              description: Unique identifier for the publication
+                            name:
+                              type: string
+                              description: Display name of the publication
+                            ownerUserId:
+                              type: string
+                              description: ID of the user who owns this publication
+                            slug:
+                              type: string
+                              minLength: 1
+                              maxLength: 256
+                              description: URL-friendly identifier for the publication; accessible at paragraph.com/@[slug]
+                            customDomain:
+                              type: string
+                              format: uri
+                              description: Custom domain configured for this publication
+                            summary:
+                              type: string
+                              maxLength: 500
+                              description: Brief description of the publication (max 500 characters)
+                            logoUrl:
+                              type: string
+                              format: uri
+                              description: URL to the publication's logo image
+                            postListType:
+                              type: string
+                              enum:
+                              - feed
+                              - grid
+                              - full-post
+                              description: Homepage layout. 'feed' is a single-column list of cards, 'grid' is a 3-column grid, 'full-post' shows full posts in a single column.
+                            themeColor:
+                              type: string
+                              enum:
+                              - default
+                              - orange-500
+                              - rose-600
+                              - pink-500
+                              - fuchsia-600
+                              - purple-600
+                              - violet-600
+                              - indigo-600
+                              - blue-600
+                              - sky-600
+                              - cyan-600
+                              - teal-600
+                              - emerald-600
+                              - green-600
+                              - lime-600
+                              - yellow-700
+                              - amber-600
+                              - orange-600
+                              - stone-800
+                              - rose-900
+                              - indigo-950
+                              - teal-950
+                              - lime-950
+                              - orange-950
+                              description: Theme accent color for the publication
+                            headerFont:
+                              type: string
+                              enum:
+                              - default
+                              - serif
+                              - mono
+                              description: Font family used for headers
+                            bodyFont:
+                              type: string
+                              enum:
+                              - default
+                              - serif
+                              - mono
+                              description: Font family used for body text
+                            showMostPopular:
+                              type: boolean
+                              description: Whether the 'most popular posts' widget is shown
+                            hideStats:
+                              type: boolean
+                              description: Whether to hide stats like subscriber count, post count, and collects
+                            featuredPost:
+                              type: string
+                              minLength: 1
+                              description: Featured post selector. Use 'latest' for the most recent post, 'popular' for the most-viewed post, 'disabled' to hide the featured slot, or the ID of a specific post in this publication.
+                            disableComments:
+                              oneOf:
+                              - type: boolean
+                              - type: string
+                                enum:
+                                - on-platform
+                              description: Comment visibility. true disables all comments, false enables them, 'on-platform' hides on-Paragraph comments while keeping Farcaster comments.
+                            disableHighlights:
+                              type: boolean
+                              description: Whether to disable highlights on this publication's posts
+                            enableTableOfContents:
+                              type: boolean
+                              description: Whether the table of contents is enabled on posts
+                            enableSubscribePopup:
+                              type: boolean
+                              description: Whether to show the subscribe popup to first-time visitors arriving from external links
+                            enableSubscribeScroll:
+                              type: boolean
+                              description: Whether to show the subscribe popup when first-time visitors scroll a post
+                            pinnedPostIds:
+                              type: array
+                              items:
+                                type: string
+                              description: Ordered list of post IDs pinned to the top of the publication's homepage. Pinned posts render in their own section above the regular feed.
+                            emailNotifications:
+                              type: object
+                              properties:
+                                newComment:
+                                  type: boolean
+                                  description: Email the writer when someone comments on a post
+                                newSubscriber:
+                                  type: boolean
+                                  description: Email the writer when a new free subscriber signs up
+                                newPaidSubscriber:
+                                  type: boolean
+                                  description: Email the writer when a new paid subscriber signs up
+                                newContentCollected:
+                                  type: boolean
+                                  description: Email the writer when someone collects their content
+                              description: Owner-side email notification toggles
+                          required:
+                          - id
+                          - name
+                          - ownerUserId
+                          - slug
+                          description: The publication this post belongs to
+                        user:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              description: Unique identifier for the user
+                            walletAddress:
+                              type: string
+                              pattern: ^0x[a-fA-F0-9]{40}$
+                              description: Wallet address of the user
+                            avatarUrl:
+                              type: string
+                              format: uri
+                              description: URL to the user's avatar image
+                            publicationId:
+                              type: string
+                              description: ID of the publication this user belongs to
+                            name:
+                              type: string
+                              description: Display name of the user
+                            bio:
+                              type: string
+                              maxLength: 500
+                              description: Brief biography of the user (max 500 characters)
+                            farcaster:
+                              type: object
+                              properties:
+                                username:
+                                  type: string
+                                  description: Farcaster username
+                                displayName:
+                                  type: string
+                                  description: Farcaster display name
+                                fid:
+                                  type: number
+                                  description: Farcaster fid
+                              required:
+                              - username
+                              - displayName
+                              - fid
+                              description: Farcaster profile information, if linked
+                          required:
+                          - id
+                          - publicationId
+                          description: The user who owns the publication this post belongs to
+                      required:
+                      - post
+                      - publication
+                      - user
+                    description: Array of items in this page
+                  pagination:
+                    type: object
+                    properties:
+                      cursor:
+                        type: string
+                        description: Cursor for fetching the next page of results
+                      hasMore:
+                        type: boolean
+                        description: Whether more results are available
+                      total:
+                        type: number
+                        description: Total number of items available
+                    required:
+                    - hasMore
+                required:
+                - items
+                - pagination
+        '400':
+          description: Invalid request parameters
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                    - false
+                    description: Always false for error responses
+                  msg:
+                    type: string
+                    description: Human-readable error message
+                required:
+                - success
+                - msg
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                    - false
+                    description: Always false for error responses
+                  msg:
+                    type: string
+                    description: Human-readable error message
+                required:
+                - success
+                - msg
+      operationId: getPostsFeed
+      x-mint:
+        mcp:
+          enabled: true
+          name: get-posts-feed
+          description: Get curated home feed posts
+      x-codeSamples:
+      - lang: typescript
+        label: Get feed posts with pagination
+        source: 'import { ParagraphAPI } from "@paragraph-com/sdk"
+
+
+          const api = new ParagraphAPI()
+
+          const { items, pagination } = await api.feed.get({ limit: 20 })'
+  /v1/posts/tag/{tag}:
+    get:
+      description: Retrieve a paginated list of posts with a specific tag, sorted by publish date (newest first)
+      summary: Get posts by tag
+      tags:
+      - posts
+      parameters:
+      - name: tag
+        in: path
+        required: true
+        schema:
+          type: string
+          minLength: 1
+        description: Tag to filter posts by
+      - name: cursor
+        in: query
+        description: Cursor for pagination
+        schema:
+          type: string
+      - name: limit
+        in: query
+        description: 'Maximum number of items to return (1-100, default: 10)'
+        schema:
+          default: 10
+          type: integer
+          minimum: 1
+          maximum: 100
+      - name: includeContent
+        in: query
+        description: 'Include full content fields (json, staticHtml, markdown) in the post. Default: false'
+        schema:
+          oneOf:
+          - type: boolean
+          - type: string
+      responses:
+        '200':
+          description: Posts retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          description: Unique identifier for the post
+                        title:
+                          type: string
+                          maxLength: 200
+                          description: Title of the post
+                        imageUrl:
+                          type: string
+                          format: uri
+                          description: Optional URL to the post's main image
+                        publishedAt:
+                          type: string
+                          description: Epoch timestamp when the post was published
+                        updatedAt:
+                          type: string
+                          description: Epoch timestamp when the post was last updated
+                        subtitle:
+                          type: string
+                          maxLength: 300
+                          description: Optional subtitle or brief summary
+                        slug:
+                          type: string
+                          minLength: 1
+                          maxLength: 256
+                          description: URL-friendly identifier for the post; accessible at paragraph.com/@[publicationSlug]/[slug]
+                        staticHtml:
+                          type: string
+                          description: Rendered HTML content of the post
+                        json:
+                          type: string
+                          description: TipTap JSON representation of the post content structure. This is the source of truth that the staticHtml and markdown is generated from
+                        markdown:
+                          type: string
+                          description: Markdown source of the post content
+                        coinId:
+                          type: string
+                          description: ID of the associated coin, if the post is coined
+                        categories:
+                          type: array
+                          items:
+                            type: string
+                          description: Categories/tags associated with this post
+                        authors:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: string
+                                description: Unique identifier for the user
+                              walletAddress:
+                                type: string
+                                pattern: ^0x[a-fA-F0-9]{40}$
+                                description: Wallet address of the user
+                              avatarUrl:
+                                type: string
+                                format: uri
+                                description: URL to the user's avatar image
+                              publicationId:
+                                type: string
+                                description: ID of the publication this user belongs to
+                              name:
+                                type: string
+                                description: Display name of the user
+                              bio:
+                                type: string
+                                maxLength: 500
+                                description: Brief biography of the user (max 500 characters)
+                              farcaster:
+                                type: object
+                                properties:
+                                  username:
+                                    type: string
+                                    description: Farcaster username
+                                  displayName:
+                                    type: string
+                                    description: Farcaster display name
+                                  fid:
+                                    type: number
+                                    description: Farcaster fid
+                                required:
+                                - username
+                                - displayName
+                                - fid
+                                description: Farcaster profile information, if linked
+                            required:
+                            - id
+                            - publicationId
+                          description: Authors of this post
+                        authorIds:
+                          type: array
+                          items:
+                            type: string
+                          description: IDs of the authors of this post
+                        views:
+                          type: number
+                          description: Total views. Only included when fetching your own posts via GET /v1/posts
+                        status:
+                          type: string
+                          enum:
+                          - published
+                          - draft
+                          - scheduled
+                          - archived
+                          description: Current publish status. Only set on authenticated endpoints (listOwn, getById for your own post). Use this instead of publishedAt to determine publish state — publishedAt is preserved across unpublishing.
+                      required:
+                      - id
+                      - title
+                      - slug
+                    description: Array of items in this page
+                  pagination:
+                    type: object
+                    properties:
+                      cursor:
+                        type: string
+                        description: Cursor for fetching the next page of results
+                      hasMore:
+                        type: boolean
+                        description: Whether more results are available
+                      total:
+                        type: number
+                        description: Total number of items available
+                    required:
+                    - hasMore
+                required:
+                - items
+                - pagination
+        '400':
+          description: Invalid request parameters
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                    - false
+                    description: Always false for error responses
+                  msg:
+                    type: string
+                    description: Human-readable error message
+                required:
+                - success
+                - msg
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                    - false
+                    description: Always false for error responses
+                  msg:
+                    type: string
+                    description: Human-readable error message
+                required:
+                - success
+                - msg
+      operationId: getPostsByTag
+      x-mint:
+        mcp:
+          enabled: true
+          name: list-posts-by-tag
+          description: Get posts with a specific tag
+      x-codeSamples:
+      - lang: typescript
+        label: Get posts by tag with pagination
+        source: 'import { ParagraphAPI } from "@paragraph-com/sdk"
+
+
+          const api = new ParagraphAPI()
+
+          const { items, pagination } = await api.posts.get({ tag: "crypto", limit: 20 })'
+  /v1/publications/{publicationId}/posts:
+    get:
+      description: Retrieve a paginated list of published posts from a publication
+      summary: Get posts in a publication
+      tags:
+      - posts
+      parameters:
+      - name: publicationId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Unique identifier of the publication
+      - name: cursor
+        in: query
+        description: Cursor for pagination
+        schema:
+          type: string
+      - name: limit
+        in: query
+        description: 'Maximum number of items to return (1-100, default: 10)'
+        schema:
+          default: 10
+          type: integer
+          minimum: 1
+          maximum: 100
+      - name: includeContent
+        in: query
+        description: 'Include full content fields (markdown, json, staticHtml). Default: false'
+        schema:
+          oneOf:
+          - type: boolean
+          - type: string
+      responses:
+        '200':
+          description: Posts retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          description: Unique identifier for the post
+                        title:
+                          type: string
+                          maxLength: 200
+                          description: Title of the post
+                        imageUrl:
+                          type: string
+                          format: uri
+                          description: Optional URL to the post's main image
+                        publishedAt:
+                          type: string
+                          description: Epoch timestamp when the post was published
+                        updatedAt:
+                          type: string
+                          description: Epoch timestamp when the post was last updated
+                        subtitle:
+                          type: string
+                          maxLength: 300
+                          description: Optional subtitle or brief summary
+                        slug:
+                          type: string
+                          minLength: 1
+                          maxLength: 256
+                          description: URL-friendly identifier for the post; accessible at paragraph.com/@[publicationSlug]/[slug]
+                        staticHtml:
+                          type: string
+                          description: Rendered HTML content of the post
+                        json:
+                          type: string
+                          description: TipTap JSON representation of the post content structure. This is the source of truth that the staticHtml and markdown is generated from
+                        markdown:
+                          type: string
+                          description: Markdown source of the post content
+                        coinId:
+                          type: string
+                          description: ID of the associated coin, if the post is coined
+                        categories:
+                          type: array
+                          items:
+                            type: string
+                          description: Categories/tags associated with this post
+                        authors:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: string
+                                description: Unique identifier for the user
+                              walletAddress:
+                                type: string
+                                pattern: ^0x[a-fA-F0-9]{40}$
+                                description: Wallet address of the user
+                              avatarUrl:
+                                type: string
+                                format: uri
+                                description: URL to the user's avatar image
+                              publicationId:
+                                type: string
+                                description: ID of the publication this user belongs to
+                              name:
+                                type: string
+                                description: Display name of the user
+                              bio:
+                                type: string
+                                maxLength: 500
+                                description: Brief biography of the user (max 500 characters)
+                              farcaster:
+                                type: object
+                                properties:
+                                  username:
+                                    type: string
+                                    description: Farcaster username
+                                  displayName:
+                                    type: string
+                                    description: Farcaster display name
+                                  fid:
+                                    type: number
+                                    description: Farcaster fid
+                                required:
+                                - username
+                                - displayName
+                                - fid
+                                description: Farcaster profile information, if linked
+                            required:
+                            - id
+                            - publicationId
+                          description: Authors of this post
+                        authorIds:
+                          type: array
+                          items:
+                            type: string
+                          description: IDs of the authors of this post
+                        views:
+                          type: number
+                          description: Total views. Only included when fetching your own posts via GET /v1/posts
+                        status:
+                          type: string
+                          enum:
+                          - published
+                          - draft
+                          - scheduled
+                          - archived
+                          description: Current publish status. Only set on authenticated endpoints (listOwn, getById for your own post). Use this instead of publishedAt to determine publish state — publishedAt is preserved across unpublishing.
+                      required:
+                      - id
+                      - title
+                      - slug
+                    description: Array of items in this page
+                  pagination:
+                    type: object
+                    properties:
+                      cursor:
+                        type: string
+                        description: Cursor for fetching the next page of results
+                      hasMore:
+                        type: boolean
+                        description: Whether more results are available
+                      total:
+                        type: number
+                        description: Total number of items available
+                    required:
+                    - hasMore
+                required:
+                - items
+                - pagination
+        '400':
+          description: Invalid request parameters
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                    - false
+                    description: Always false for error responses
+                  msg:
+                    type: string
+                    description: Human-readable error message
+                required:
+                - success
+                - msg
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                    - false
+                    description: Always false for error responses
+                  msg:
+                    type: string
+                    description: Human-readable error message
+                required:
+                - success
+                - msg
+      operationId: getPosts
+      x-mint:
+        mcp:
+          enabled: true
+          name: list-publication-posts
+          description: Get posts from a publication with pagination
+      x-codeSamples:
+      - lang: typescript
+        label: Get posts from a publication with pagination
+        source: 'import { ParagraphAPI } from "@paragraph-com/sdk"
+
+
+          const api = new ParagraphAPI()
+
+          const { items: posts, pagination } = await api.posts.get({ publicationId: "BMV6abfvCSUl51ErCVzd" })'
+  /v1/posts/{postId}:
+    get:
+      description: Retrieve detailed information about a specific post
+      summary: Get post by ID
+      tags:
+      - posts
+      parameters:
+      - name: postId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Unique identifier of the post
+      - name: includeContent
+        in: query
+        description: 'Include full content fields (markdown, json, staticHtml). Default: false'
+        schema:
+          oneOf:
+          - type: boolean
+          - type: string
+      responses:
+        '200':
+          description: Post details retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: Unique identifier for the post
+                  title:
+                    type: string
+                    maxLength: 200
+                    description: Title of the post
+                  imageUrl:
+                    type: string
+                    format: uri
+                    description: Optional URL to the post's main image
+                  publishedAt:
+                    type: string
+                    description: Epoch timestamp when the post was published
+                  updatedAt:
+                    type: string
+                    description: Epoch timestamp when the post was last updated
+                  subtitle:
+                    type: string
+                    maxLength: 300
+                    description: Optional subtitle or brief summary
+                  slug:
+                    type: string
+                    minLength: 1
+                    maxLength: 256
+                    description: URL-friendly identifier for the post; accessible at paragraph.com/@[publicationSlug]/[slug]
+                  staticHtml:
+                    type: string
+                    description: Rendered HTML content of the post
+                  json:
+                    type: string
+                    description: TipTap JSON representation of the post content structure. This is the source of truth that the staticHtml and markdown is generated from
+                  markdown:
+                    type: string
+                    description: Markdown source of the post content
+                  coinId:
+                    type: string
+                    description: ID of the associated coin, if the post is coined
+                  categories:
+                    type: array
+                    items:
+                      type: string
+                    description: Categories/tags associated with this post
+                  authors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          description: Unique identifier for the user
+                        walletAddress:
+                          type: string
+                          pattern: ^0x[a-fA-F0-9]{40}$
+                          description: Wallet address of the user
+                        avatarUrl:
+                          type: string
+                          format: uri
+                          description: URL to the user's avatar image
+                        publicationId:
+                          type: string
+                          description: ID of the publication this user belongs to
+                        name:
+                          type: string
+                          description: Display name of the user
+                        bio:
+                          type: string
+                          maxLength: 500
+                          description: Brief biography of the user (max 500 characters)
+                        farcaster:
+                          type: object
+                          properties:
+                            username:
+                              type: string
+                              description: Farcaster username
+                            displayName:
+                              type: string
+                              description: Farcaster display name
+                            fid:
+                              type: number
+                              description: Farcaster fid
+                          required:
+                          - username
+                          - displayName
+                          - fid
+                          description: Farcaster profile information, if linked
+                      required:
+                      - id
+                      - publicationId
+                    description: Authors of this post
+                  authorIds:
+                    type: array
+                    items:
+                      type: string
+                    description: IDs of the authors of this post
+                  views:
+                    type: number
+                    description: Total views. Only included when fetching your own posts via GET /v1/posts
+                  status:
+                    type: string
+                    enum:
+                    - published
+                    - draft
+                    - scheduled
+                    - archived
+                    description: Current publish status. Only set on authenticated endpoints (listOwn, getById for your own post). Use this instead of publishedAt to determine publish state — publishedAt is preserved across unpublishing.
+                required:
+                - id
+                - title
+                - slug
+        '404':
+          description: Post not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                    - false
+                    description: Always false for error responses
+                  msg:
+                    type: string
+                    description: Human-readable error message
+                required:
+                - success
+                - msg
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                    - false
+                    description: Always false for error responses
+                  msg:
+                    type: string
+                    description: Human-readable error message
+                required:
+                - success
+                - msg
+      operationId: getPostById
+      x-mint:
+        mcp:
+          enabled: true
+          name: get-post-by-id
+          description: Get detailed information about a specific post by its ID
+      x-codeSamples:
+      - lang: typescript
+        label: Get post by ID
+        source: 'import { ParagraphAPI } from "@paragraph-com/sdk"
+
+
+          const api = new ParagraphAPI()
+
+          const post = await api.posts.get({ id: "3T2PQZlsdQtigUp4fhlb" }).single()'
+    put:
+      description: 'Update an existing post in your publication. The publication is identified by the API key provided in the Authorization header.
+
+
+        **Behavior:**
+
+        - Only provided fields are updated; omitted fields remain unchanged
+
+        - When `markdown` is provided, it replaces the full content. Rich blocks (embeds, buttons, callouts) created in the editor will be lost — the markdown to editor conversion is lossy for blocks without a markdown equivalent
+
+        - Set `status` to `"published"` to publish a draft, `"draft"` to unpublish, or `"archived"` to archive
+
+        - When editing an already-live post that should remain live, include `status: "published"` in the update and verify the returned post status before telling the writer it is live
+
+        - Set `scheduledAt` (Unix timestamp in milliseconds) to schedule a draft''s first-publish for a future time. Must be in the future and at most 30 days out. Only valid for posts that haven''t been published or already scheduled. Pass `scheduledAt: null` to cancel a previously scheduled publish (or to reschedule: cancel first, then schedule again with the new time). Set `sendNewsletter: true` alongside `scheduledAt` to email subscribers when the post publishes.
+
+        - Set `imageUrl` to update the post''s cover/hero image; the URL is fetched, re-hosted, and a placeholder is generated. Pass `clearImage: true` to remove the existing cover.'
+      summary: Update a post by ID
+      tags:
+      - posts
+      parameters:
+      - name: postId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Unique identifier of the post to update
+      requestBody:
+        description: Body
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                markdown:
+                  type: string
+                  description: Post content in Markdown format. Replaces the FULL body. Markdown cannot represent buttons, linked images, or embedded media (videos, tweets, link cards) — replacing a post that has any of those with `markdown` drops them. Use `bodyJson` (round-tripped from get-post) to edit an existing post so nothing is lost. Provide `markdown` OR `bodyJson`, not both.
+                bodyJson:
+                  type: string
+                  description: Post content as a Tiptap document, JSON-stringified (e.g. '{"type":"doc","content":[...]}'). This accepts ANY Tiptap node the editor supports — including videos, tweets, link cards, callouts, and buttons — so editing a post by round-tripping the `json` returned by get-post preserves everything markdown would drop. Replaces the FULL body; node-type validity is checked by the renderer and an unusable document is rejected. Provide `markdown` OR `bodyJson`, not both.
+                title:
+                  type: string
+                  maxLength: 200
+                  description: Title of the post
+                subtitle:
+                  type: string
+                  maxLength: 300
+                  description: Optional subtitle or brief summary
+                slug:
+                  type: string
+                  minLength: 1
+                  maxLength: 256
+                  description: URL-friendly identifier for the post
+                postPreview:
+                  type: string
+                  maxLength: 500
+                  description: Preview text for the post
+                categories:
+                  oneOf:
+                  - type: array
+                    items:
+                      type: string
+                  - type: string
+                  description: Category tags for the post. Can also be a comma-separated string.
+                status:
+                  type: string
+                  enum:
+                  - draft
+                  - published
+                  - archived
+                  description: Set to 'published' to publish a draft or keep an already-live post published after edits, 'draft' to unpublish, or 'archived' to archive
+                scheduledAt:
+                  description: 'Unix timestamp (milliseconds) to schedule the post''s first publish at a future time. Must be in the future and at most 30 days out. Only valid for draft posts that haven''t been published or already scheduled. Cannot be combined with status: ''draft'' or ''archived''. Pass null to cancel a previously scheduled publish. The value 0 is treated the same as omitting the field (no scheduling request); note that on an already-scheduled post, omitting `scheduledAt` while changing `status` cancels the schedule.'
+                  type:
+                  - integer
+                  - 'null'
+                  minimum: 0
+                sendNewsletter:
+                  oneOf:
+                  - type: boolean
+                  - type: string
+                    enum:
+                    - 'true'
+                    - 'false'
+                    - '1'
+                    - '0'
+                  description: 'Whether to send an email newsletter to subscribers when the post publishes. Only meaningful when publishing (status: ''published'') or scheduling (scheduledAt set). Default: false'
+                publishedAt:
+                  type: integer
+                  minimum: 0
+                  exclusiveMinimum: 0
+                  description: Unix timestamp (milliseconds) to set as the post's publish date. Once set, the date is preserved across re-publishes.
+                imageUrl:
+                  type: string
+                  format: uri
+                  description: 'URL of an image to set as the post''s cover/hero image. The image is fetched, re-hosted on Paragraph''s CDN, and a placeholder is generated. Pass clearImage: true instead to remove the existing cover.'
+                clearImage:
+                  type: boolean
+                  description: When true, removes the post's existing cover/hero image. Ignored if imageUrl is also provided.
+      responses:
+        '200':
+          description: Post updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                    - true
+                    description: Whether the update succeeded
+                required:
+                - success
+        '400':
+          description: Invalid request - check field values
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                    - false
+                    description: Always false for error responses
+                  msg:
+                    type: string
+                    description: Human-readable error message
+                required:
+                - success
+                - msg
+        '401':
+          description: Invalid or missing API key
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                    - false
+                    description: Always false for error responses
+                  msg:
+                    type: string
+                    description: Human-readable error message
+                required:
+                - success
+                - msg
+        '404':
+          description: Post not found in your publication
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                    - false
+                    description: Always false for error responses
+                  msg:
+                    type: string
+                    description: Human-readable error message
+                required:
+                - success
+                - msg
+        '409':
+          description: 'Conflict - the body change was refused because you weren''t working from the post''s current content: either you didn''t call get-post before replacing the body, or the writer edited the post in the editor since you read it. Call get-post to read the current version, re-apply your change on it, and retry.'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                    - false
+                    description: Always false for error responses
+                  msg:
+                    type: string
+                    description: Human-readable error message
+                required:
+                - success
+                - msg
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                    - false
+                    description: Always false for error responses
+                  msg:
+                    type: string
+                    description: Human-readable error message
+                required:
+                - success
+                - msg
+      operationId: updatePost
+      x-mint:
+        mcp:
+          enabled: true
+          name: update-post
+          description: Update an existing post by its ID
+      x-codeSamples:
+      - lang: typescript
+        label: Update a post
+        source: "import { ParagraphAPI } from \"@paragraph-com/sdk\"\n\nconst api = new ParagraphAPI({ apiKey: \"your-api-key\" })\nawait api.posts.update({\n  id: \"3T2PQZlsdQtigUp4fhlb\",\n  title: \"Updated Title\",\n  markdown: \"## New content\\n\\nUpdated post body.\",\n  status: \"published\"\n})"
+      - lang: typescript
+        label: Schedule a draft for a future publish
+        source: "import { ParagraphAPI } from \"@paragraph-com/sdk\"\n\nconst api = new ParagraphAPI({ apiKey: \"your-api-key\" })\nawait api.posts.update({\n  id: \"3T2PQZlsdQtigUp4fhlb\",\n  scheduledAt: Date.now() + 24 * 60 * 60 * 1000,\n})"
+      - lang: typescript
+        label: Cancel a scheduled publish
+        source: "import { ParagraphAPI } from \"@paragraph-com/sdk\"\n\nconst api = new ParagraphAPI({ apiKey: \"your-api-key\" })\nawait api.posts.update({\n  id: \"3T2PQZlsdQtigUp4fhlb\",\n  scheduledAt: null,\n})"
+      - lang: bash
+        label: Update post using curl
+        source: "curl -X PUT \"https://public.api.paragraph.com/api/v1/posts/3T2PQZlsdQtigUp4fhlb\" \\\n  -H \"Authorization: Bearer your-api-key\" \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\"title\": \"Updated Title\", \"markdown\": \"New content\"}'"
+      security:
+      - apiKey: []
+    delete:
+      description: 'Permanently delete a post from your publication. The publication is identified by the API key provided in the Authorization header.
+
+
+        **Warning:** This action is irreversible. The post and all related data (comments, notifications, drafts) will be permanently deleted.'
+      summary: Delete a post
+      tags:
+      - posts
+      parameters:
+      - name: postId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Unique identifier of the post to delete
+      requestBody:
+        description: Body
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+      responses:
+        '200':
+          description: Post deleted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                    - true
+                    description: Whether the deletion succeeded
+                required:
+                - success
+        '401':
+          description: Invalid or missing API key
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                    - false
+                    description: Always false for error responses
+                  msg:
+                    type: string
+                    description: Human-readable error message
+                required:
+                - success
+                - msg
+        '404':
+          description: Post not found in your publication
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                    - false
+                    description: Always false for error responses
+                  msg:
+                    type: string
+                    description: Human-readable error message
+                required:
+                - success
+                - msg
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                    - false
+                    description: Always false for error responses
+                  msg:
+                    type: string
+                    description: Human-readable error message
+                required:
+                - success
+                - msg
+      operationId: deletePost
+      x-mint:
+        mcp:
+          enabled: true
+          name: delete-post
+          description: Permanently delete a post by its ID
+      x-codeSamples:
+      - lang: typescript
+        label: Delete a post
+        source: 'import { ParagraphAPI } from "@paragraph-com/sdk"
+
+
+          const api = new ParagraphAPI({ apiKey: "your-api-key" })
+
+          await api.posts.delete({ id: "3T2PQZlsdQtigUp4fhlb" })'
+      - lang: bash
+        label: Delete post using curl
+        source: "curl -X DELETE \"https://public.api.paragraph.com/api/v1/posts/3T2PQZlsdQtigUp4fhlb\" \\\n  -H \"Authorization: Bearer your-api-key\""
+      security:
+      - apiKey: []
+  /v1/publications/{publicationId}/posts/slug/{postSlug}:
+    get:
+      description: Retrieve a post using its publication ID and its URL-friendly slug
+      summary: Get post by publication ID and post slug
+      tags:
+      - posts
+      parameters:
+      - name: publicationId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Unique identifier of the publication
+      - name: postSlug
+        in: path
+        required: true
+        schema:
+          type: string
+          minLength: 1
+          maxLength: 256
+        description: URL-friendly identifier of the post
+      - name: includeContent
+        in: query
+        description: 'Include full content fields (markdown, json, staticHtml). Default: false'
+        schema:
+          oneOf:
+          - type: boolean
+          - type: string
+      responses:
+        '200':
+          description: Post details retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: Unique identifier for the post
+                  title:
+                    type: string
+                    maxLength: 200
+                    description: Title of the post
+                  imageUrl:
+                    type: string
+                    format: uri
+                    description: Optional URL to the post's main image
+                  publishedAt:
+                    type: string
+                    description: Epoch timestamp when the post was published
+                  updatedAt:
+                    type: string
+                    description: Epoch timestamp when the post was last updated
+                  subtitle:
+                    type: string
+                    maxLength: 300
+                    description: Optional subtitle or brief summary
+                  slug:
+                    type: string
+                    minLength: 1
+                    maxLength: 256
+                    description: URL-friendly identifier for the post; accessible at paragraph.com/@[publicationSlug]/[slug]
+                  staticHtml:
+                    type: string
+                    description: Rendered HTML content of the post
+                  json:
+                    type: string
+                    description: TipTap JSON representation of the post content structure. This is the source of truth that the staticHtml and markdown is generated from
+                  markdown:
+                    type: string
+                    description: Markdown source of the post content
+                  coinId:
+                    type: string
+                    description: ID of the associated coin, if the post is coined
+                  categories:
+                    type: array
+                    items:
+                      type: string
+                    description: Categories/tags associated with this post
+                  authors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          description: Unique identifier for the user
+                        walletAddress:
+                          type: string
+                          pattern: ^0x[a-fA-F0-9]{40}$
+                          description: Wallet address of the user
+                        avatarUrl:
+                          type: string
+                          format: uri
+                          description: URL to the user's avatar image
+                        publicationId:
+                          type: string
+                          description: ID of the publication this user belongs to
+                        name:
+                          type: string
+                          description: Display name of the user
+                        bio:
+                          type: string
+                          maxLength: 500
+                          description: Brief biography of the user (max 500 characters)
+                        farcaster:
+                          type: object
+                          properties:
+                            username:
+                              type: string
+                              description: Farcaster username
+                            displayName:
+                              type: string
+                              description: Farcaster display name
+                            fid:
+                              type: number
+                              description: Farcaster fid
+                          required:
+                          - username
+                          - displayName
+                          - fid
+                          description: Farcaster profile information, if linked
+                      required:
+                      - id
+                      - publicationId
+                    description: Authors of this post
+                  authorIds:
+                    type: array
+                    items:
+                      type: string
+                    description: IDs of the authors of this post
+                  views:
+                    type: number
+                    description: Total views. Only included when fetching your own posts via GET /v1/posts
+                  status:
+                    type: string
+                    enum:
+                    - published
+                    - draft
+                    - scheduled
+                    - archived
+                    description: Current publish status. Only set on authenticated endpoints (listOwn, getById for your own post). Use this instead of publishedAt to determine publish state — publishedAt is preserved across unpublishing.
+                required:
+                - id
+                - title
+                - slug
+        '404':
+          description: Post not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                    - false
+                    description: Always false for error responses
+                  msg:
+                    type: string
+                    description: Human-readable error message
+                required:
+                - success
+                - msg
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                    - false
+                    description: Always false for error responses
+                  msg:
+                    type: string
+                    description: Human-readable error message
+                required:
+                - success
+                - msg
+      operationId: getPostByPublicationIdAndPostSlug
+      x-mint:
+        mcp:
+          enabled: true
+          name: get-post-by-publication-id-and-slug
+          description: Get a post using its publication ID and slug
+      x-codeSamples:
+      - lang: typescript
+        label: Get post by publication ID and slug
+        source: "import { ParagraphAPI } from \"@paragraph-com/sdk\"\n\nconst api = new ParagraphAPI()\nconst post = await api.posts.get({\n  publicationId: \"BMV6abfvCSUl51ErCVzd\",\n  slug: \"my-first-post\"\n}).single()"
+  /v1/publications/slug/{publicationSlug}/posts/slug/{postSlug}:
+    get:
+      description: Retrieve a post using its publication's slug and the post's slug. This is useful for building user-facing URLs.
+      summary: Get post by publication slug and post slug
+      tags:
+      - posts
+      parameters:
+      - name: publicationSlug
+        in: path
+        required: true
+        schema:
+          type: string
+          minLength: 1
+          maxLength: 256
+        description: URL-friendly identifier of the publication, e.g. 'blog'
+      - name: postSlug
+        in: path
+        required: true
+        schema:
+          type: string
+          minLength: 1
+          maxLength: 256
+        description: URL-friendly identifier of the post, e.g. 'my-first-post'
+      - name: includeContent
+        in: query
+        description: 'Include full content fields (markdown, json, staticHtml). Default: false'
+        schema:
+          oneOf:
+          - type: boolean
+          - type: string
+      responses:
+        '200':
+          description: Post details retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: Unique identifier for the post
+                  title:
+                    type: string
+                    maxLength: 200
+                    description: Title of the post
+                  imageUrl:
+                    type: string
+                    format: uri
+                    description: Optional URL to the post's main image
+                  publishedAt:
+                    type: string
+                    description: Epoch timestamp when the post was published
+                  updatedAt:
+                    type: string
+                    description: Epoch timestamp when the post was last updated
+                  subtitle:
+                    type: string
+                    maxLength: 300
+                    description: Optional subtitle or brief summary
+                  slug:
+                    type: string
+                    minLength: 1
+                    maxLength: 256
+                    description: URL-friendly identifier for the post; accessible at paragraph.com/@[publicationSlug]/[slug]
+                  staticHtml:
+                    type: string
+                    description: Rendered HTML content of the post
+                  json:
+                    type: string
+                    description: TipTap JSON representation of the post content structure. This is the source of truth that the staticHtml and markdown is generated from
+                  markdown:
+                    type: string
+                    description: Markdown source of the post content
+                  coinId:
+                    type: string
+                    description: ID of the associated coin, if the post is coined
+                  categories:
+                    type: array
+                    items:
+                      type: string
+                    description: Categories/tags associated with this post
+                  authors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          description: Unique identifier for the user
+                        walletAddress:
+                          type: string
+                          pattern: ^0x[a-fA-F0-9]{40}$
+                          description: Wallet address of the user
+                        avatarUrl:
+                          type: string
+                          format: uri
+                          description: URL to the user's avatar image
+                        publicationId:
+                          type: string
+                          description: ID of the publication this user belongs to
+                        name:
+                          type: string
+                          description: Display name of the user
+                        bio:
+                          type: string
+                          maxLength: 500
+                          description: Brief biography of the user (max 500 characters)
+                        farcaster:
+                          type: object
+                          properties:
+                            username:
+                              type: string
+                              description: Farcaster username
+                            displayName:
+                              type: string
+                              description: Farcaster display name
+                            fid:
+                              type: number
+                              description: Farcaster fid
+                          required:
+                          - username
+                          - displayName
+                          - fid
+                          description: Farcaster profile information, if linked
+                      required:
+                      - id
+                      - publicationId
+                    description: Authors of this post
+                  authorIds:
+                    type: array
+                    items:
+                      type: string
+                    description: IDs of the authors of this post
+                  views:
+                    type: number
+                    description: Total views. Only included when fetching your own posts via GET /v1/posts
+                  status:
+                    type: string
+                    enum:
+                    - published
+                    - draft
+                    - scheduled
+                    - archived
+                    description: Current publish status. Only set on authenticated endpoints (listOwn, getById for your own post). Use this instead of publishedAt to determine publish state — publishedAt is preserved across unpublishing.
+                required:
+                - id
+                - title
+                - slug
+        '404':
+          description: Post not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                    - false
+                    description: Always false for error responses
+                  msg:
+                    type: string
+                    description: Human-readable error message
+                required:
+                - success
+                - msg
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                    - false
+                    description: Always false for error responses
+                  msg:
+                    type: string
+                    description: Human-readable error message
+                required:
+                - success
+                - msg
+      operationId: getPostByPublicationSlugAndPostSlug
+      x-mint:
+        mcp:
+          enabled: true
+          name: get-post-by-publication-and-post-slug
+          description: Get a post using its publication slug and post slug
+      x-codeSamples:
+      - lang: typescript
+        label: Get post by publication & post slug
+        source: "import { ParagraphAPI } from \"@paragraph-com/sdk\"\n\nconst api = new ParagraphAPI()\nconst post = await api.posts.get({\n  publicationSlug: \"@blog\",\n  slug: \"my-first-post\"\n}).single()"
+  /v1/posts:
+    post:
+      description: 'Create a new post in your publication. The publication is identified by the API key provided in the Authorization header.
+
+
+        **Requirements:**
+
+        - `title` field is required
+
+        - Provide content as either `markdown` (converted to TipTap JSON) OR `bodyJson` (a Tiptap document for content with buttons/linked images) — exactly one is required, not both
+
+
+        **Behavior:**
+
+        - The post will be created as published by default. Set `status` to `"draft"` to create a draft instead
+
+        - If `sendNewsletter` is true, an email will be sent to all subscribers when the post publishes
+
+        - Set `scheduledAt` (Unix timestamp in milliseconds) to schedule first-publish for a future time. Must be in the future and at most 30 days out. Scheduling cannot be combined with `status: "draft"`. When scheduled, the response `status` is `"scheduled"` and the post publishes (plus sends newsletter, if requested) at the scheduled time.'
+      summary: Create a new post
+      tags:
+      - posts
+      parameters: []
+      requestBody:
+        description: Body
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                markdown:
+                  type: string
+                  description: Post content in Markdown format. Provide `markdown` OR `bodyJson`, not both. Markdown cannot represent buttons or linked images — use `bodyJson` for those.
+                bodyJson:
+                  type: string
+                  description: Post content as a Tiptap document, JSON-stringified (e.g. '{"type":"doc","content":[...]}'). Use instead of `markdown` when the body needs Subscribe/Share/custom buttons or linked images. Validated server-side; an invalid document is rejected. Provide `markdown` OR `bodyJson`, not both.
+                title:
+                  type: string
+                  maxLength: 200
+                  description: Title of the post
+                subtitle:
+                  type: string
+                  maxLength: 300
+                  description: Optional subtitle or brief summary
+                imageUrl:
+                  type: string
+                  format: uri
+                  description: Optional URL to the post's cover image
+                sendNewsletter:
+                  oneOf:
+                  - type: boolean
+                  - type: string
+                    enum:
+                    - 'true'
+                    - 'false'
+                    - '1'
+                    - '0'
+                  description: 'Whether to send an email newsletter to subscribers. Default: false'
+                status:
+                  type: string
+                  enum:
+                  - published
+                  - draft
+                  description: 'Status of the post. Default: published'
+                slug:
+                  type: string
+                  minLength: 1
+                  maxLength: 256
+                  description: Optional URL-friendly identifier for the post. If not provided, will be generated from title
+                postPreview:
+                  type: string
+                  maxLength: 500
+                  description: Optional preview text for the post. If not provided, will be generated from content
+                categories:
+                  oneOf:
+                  - type: array
+                    items:
+                      type: string
+                  - type: string
+                  description: Optional array of category tags for the post. Can also be a comma-separated string.
+                scheduledAt:
+                  description: 'Optional Unix timestamp (milliseconds) to schedule first-publish of the post at a future time. Must be in the future. Cannot be combined with status: ''draft''. When set, the post is created and queued to publish (and send newsletter, if requested) at the specified time. Pass 0 or omit the field for an unscheduled post.'
+                  type: integer
+                  minimum: 0
+              required:
+              - title
+      responses:
+        '200':
+          description: Post created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: The ID of the created post
+                  status:
+                    type: string
+                    enum:
+                    - published
+                    - draft
+                    - scheduled
+                    description: 'Final status of the post: ''published'' if published immediately, ''draft'' if created as a draft, ''scheduled'' if queued to publish at scheduledAt'
+                required:
+                - id
+                - status
+        '400':
+          description: Invalid request - check required fields
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                    - false
+                    description: Always false for error responses
+                  msg:
+                    type: string
+                    description: Human-readable error message
+                required:
+                - success
+                - msg
+        '401':
+          description: Invalid or missing API key
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                    - false
+                    description: Always false for error responses
+                  msg:
+                    type: string
+                    description: Human-readable error message
+                required:
+                - success
+                - msg
+        '404':
+          description: Publication not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                    - false
+                    description: Always false for error responses
+                  msg:
+                    type: string
+                    description: Human-readable error message
+                required:
+                - success
+                - msg
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                    - false
+                    description: Always false for error responses
+                  msg:
+                    type: string
+                    description: Human-readable error message
+                required:
+                - success
+                - msg
+      operationId: createPost
+      x-mint:
+        mcp:
+          enabled: true
+          name: create-post
+          description: Create a new post in a publication
+      x-codeSamples:
+      - lang: typescript
+        label: Create and publish a post
+        source: "import { ParagraphAPI } from \"@paragraph-com/sdk\"\n\nconst api = new ParagraphAPI({ apiKey: \"your-api-key\" })\nconst { id, status } = await api.posts.create({\n  title: \"My First Post\",\n  markdown: \"# Hello World\\n\\nThis is my first post!\",\n  sendNewsletter: true\n})\n// status: \"published\""
+      - lang: typescript
+        label: Create a draft
+        source: "import { ParagraphAPI } from \"@paragraph-com/sdk\"\n\nconst api = new ParagraphAPI({ apiKey: \"your-api-key\" })\nconst { id, status } = await api.posts.create({\n  title: \"Work in Progress\",\n  markdown: \"# Draft\\n\\nStill working on this.\",\n  status: \"draft\"\n})\n// status: \"draft\""
+      - lang: typescript
+        label: Schedule a post for a future time
+        source: "import { ParagraphAPI } from \"@paragraph-com/sdk\"\n\nconst api = new ParagraphAPI({ apiKey: \"your-api-key\" })\nconst { id, status } = await api.posts.create({\n  title: \"Launch Announcement\",\n  markdown: \"# We're launching tomorrow!\",\n  scheduledAt: Date.now() + 24 * 60 * 60 * 1000,\n  sendNewsletter: true,\n})\n// status: \"scheduled\""
+      - lang: bash
+        label: Create post using curl
+        source: "curl -X POST \"https://public.api.paragraph.com/api/v1/posts\" \\\n  -H \"Authorization: Bearer your-api-key\" \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\"title\": \"My First Post\", \"markdown\": \"# Hello World\"}'"
+      security:
+      - apiKey: []
+    get:
+      description: 'Retrieve a paginated list of posts from your publication. The publication is identified by the API key provided in the Authorization header.
+
+
+        Use the `status` parameter to filter by post status (published, draft, scheduled, or archived). Defaults to published.'
+      summary: List your posts
+      tags:
+      - posts
+      parameters:
+      - name: cursor
+        in: query
+        description: Cursor for pagination
+        schema:
+          type: string
+      - name: limit
+        in: query
+        description: 'Maximum number of items to return (1-100, default: 10)'
+        schema:
+          default: 10
+          type: integer
+          minimum: 1
+          maximum: 100
+      - name: includeContent
+        in: query
+        description: 'Include full content fields (markdown, json, staticHtml). Default: false'
+        schema:
+          oneOf:
+          - type: boolean
+          - type: string
+      - name: status
+        in: query
+        description: 'Filter by post status. Default: published'
+        schema:
+          type: string
+          enum:
+          - published
+          - draft
+          - scheduled
+          - archived
+      responses:
+        '200':
+          description: Posts retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          description: Unique identifier for the post
+                        title:
+                          type: string
+                          maxLength: 200
+                          description: Title of the post
+                        imageUrl:
+                          type: string
+                          format: uri
+                          description: Optional URL to the post's main image
+                        publishedAt:
+                          type: string
+                          description: Epoch timestamp when the post was published
+                        updatedAt:
+                          type: string
+                          description: Epoch timestamp when the post was last updated
+                        subtitle:
+                          type: string
+                          maxLength: 300
+                          description: Optional subtitle or brief summary
+                        slug:
+                          type: string
+                          minLength: 1
+                          maxLength: 256
+                          description: URL-friendly identifier for the post; accessible at paragraph.com/@[publicationSlug]/[slug]
+                        staticHtml:
+                          type: string
+                          description: Rendered HTML content of the post
+                        json:
+                          type: string
+                          description: TipTap JSON representation of the post content structure. This is the source of truth that the staticHtml and markdown is generated from
+                        markdown:
+                          type: string
+                          description: Markdown source of the post content
+                        coinId:
+                          type: string
+                          description: ID of the associated coin, if the post is coined
+                        categories:
+                          type: array
+                          items:
+                            type: string
+                          description: Categories/tags associated with this post
+                        authors:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: string
+                                description: Unique identifier for the user
+                              walletAddress:
+                                type: string
+                                pattern: ^0x[a-fA-F0-9]{40}$
+                                description: Wallet address of the user
+                              avatarUrl:
+                                type: string
+                                format: uri
+                                description: URL to the user's avatar image
+                              publicationId:
+                                type: string
+                                description: ID of the publication this user belongs to
+                              name:
+                                type: string
+                                description: Display name of the user
+                              bio:
+                                type: string
+                                maxLength: 500
+                                description: Brief biography of the user (max 500 characters)
+                              farcaster:
+                                type: object
+                                properties:
+                                  username:
+                                    type: string
+                                    description: Farcaster username
+                                  displayName:
+                                    type: string
+                                    description: Farcaster display name
+                                  fid:
+                                    type: number
+                                    description: Farcaster fid
+                                required:
+                                - username
+                                - displayName
+                                - fid
+                                description: Farcaster profile information, if linked
+                            required:
+                            - id
+                            - publicationId
+                          description: Authors of this post
+                        authorIds:
+                          type: array
+                          items:
+                            type: string
+                          description: IDs of the authors of this post
+                        views:
+                          type: number
+                          description: Total views. Only included when fetching your own posts via GET /v1/posts
+                        status:
+                          type: string
+                          enum:
+                          - published
+                          - draft
+                          - scheduled
+                          - archived
+                          description: Current publish status. Only set on authenticated endpoints (listOwn, getById for your own post). Use this instead of publishedAt to determine publish state — publishedAt is preserved across unpublishing.
+                      required:
+                      - id
+                      - title
+                      - slug
+                    description: Array of items in this page
+                  pagination:
+                    type: object
+                    properties:
+                      cursor:
+                        type: string
+                        description: Cursor for fetching the next page of results
+                      hasMore:
+                        type: boolean
+                        description: Whether more results are available
+                      total:
+                        type: number
+                        description: Total number of items available
+                    required:
+                    - hasMore
+                required:
+                - items
+                - pagination
+        '401':
+          description: Invalid or missing API key
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                    - false
+                    description: Always false for error responses
+                  msg:
+                    type: string
+                    description: Human-readable error message
+                required:
+                - success
+                - msg
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                    - false
+                    description: Always false for error responses
+                  msg:
+                    type: string
+                    description: Human-readable error message
+                required:
+                - success
+                - msg
+      operationId: listOwnPosts
+      x-mint:
+        mcp:
+          enabled: true
+          name: list-own-posts
+          description: List posts from your publication, filterable by status
+      x-codeSamples:
+      - lang: typescript
+        label: List draft posts
+        source: 'import { ParagraphAPI } from "@paragraph-com/sdk"
+
+
+          const api = new ParagraphAPI({ apiKey: "your-api-key" })
+
+          const { items: drafts, pagination } = await api.posts.list({ status: "draft" })'
+      - lang: bash
+        label: List draft posts using curl
+        source: "curl \"https://public.api.paragraph.com/api/v1/posts?status=draft\" \\\n  -H \"Authorization: Bearer your-api-key\""
+      security:
+      - apiKey: []
+  /v1/posts/slug/{slug}:
+    put:
+      description: 'Update an existing post using its URL slug. The publication is identified by the API key provided in the Authorization header.
+
+
+        **Behavior:**
+
+        - Only provided fields are updated; omitted fields remain unchanged
+
+        - When `markdown` is provided, it replaces the full content. Rich blocks (embeds, buttons, callouts) created in the editor will be lost
+
+        - Set `status` to `"published"` to publish a draft, `"draft"` to unpublish, or `"archived"` to archive
+
+        - When editing an already-live post that should remain live, include `status: "published"` in the update and verify the returned post status before telling the writer it is live
+
+        - Set `scheduledAt` (Unix timestamp in milliseconds) to schedule a draft''s first-publish for a future time. Must be in the future and at most 30 days out. Only valid for posts that haven''t been published or already scheduled. Pass `scheduledAt: null` to cancel a previously scheduled publish (or to reschedule: cancel first, then schedule again with the new time). Set `sendNewsletter: true` alongside `scheduledAt` to email subscribers when the post publishes.
+
+        - Set `imageUrl` to update the post''s cover/hero image; the URL is fetched, re-hosted, and a placeholder is generated. Pass `clearImage: true` to remove the existing cover.'
+      summary: Update a post by slug
+      tags:
+      - posts
+      parameters:
+      - name: slug
+        in: path
+        required: true
+        schema:
+          type: string
+          minLength: 1
+          maxLength: 256
+        description: URL-friendly identifier of the post to update
+      requestBody:
+        description: Body
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                markdown:
+                  type: string
+                  description: Post content in Markdown format. Replaces the FULL body. Markdown cannot represent buttons, linked images, or embedded media (videos, tweets, link cards) — replacing a post that has any of those with `markdown` drops them. Use `bodyJson` (round-tripped from get-post) to edit an existing post so nothing is lost. Provide `markdown` OR `bodyJson`, not both.
+                bodyJson:
+                  type: string
+                  description: Post content as a Tiptap document, JSON-stringified (e.g. '{"type":"doc","content":[...]}'). This accepts ANY Tiptap node the editor supports — including videos, tweets, link cards, callouts, and buttons — so editing a post by round-tripping the `json` returned by get-post preserves everything markdown would drop. Replaces the FULL body; node-type validity is checked by the renderer and an unusable document is rejected. Provide `markdown` OR `bodyJson`, not both.
+                title:
+                  type: string
+                  maxLength: 200
+                  description: Title of the post
+                subtitle:
+                  type: string
+                  maxLength: 300
+                  description: Optional subtitle or brief summary
+                slug:
+                  type: string
+                  minLength: 1
+                  maxLength: 256
+                  description: URL-friendly identifier for the post
+                postPreview:
+                  type: string
+                  maxLength: 500
+                  description: Preview text for the post
+                categories:
+                  oneOf:
+                  - type: array
+                    items:
+                      type: string
+                  - type: string
+                  description: Category tags for the post. Can also be a comma-separated string.
+                status:
+                  type: string
+                  enum:
+                  - draft
+                  - published
+                  - archived
+                  description: Set to 'published' to publish a draft or keep an already-live post published after edits, 'draft' to unpublish, or 'archived' to archive
+                scheduledAt:
+                  description: 'Unix timestamp (milliseconds) to schedule the post''s first publish at a future time. Must be in the future and at most 30 days out. Only valid for draft posts that haven''t been published or already scheduled. Cannot be combined with status: ''draft'' or ''archived''. Pass null to cancel a previously scheduled publish. The value 0 is treated the same as omitting the field (no scheduling request); note that on an already-scheduled post, omitting `scheduledAt` while changing `status` cancels the schedule.'
+                  type:
+                  - integer
+                  - 'null'
+                  minimum: 0
+                sendNewsletter:
+                  oneOf:
+                  - type: boolean
+                  - type: string
+                    enum:
+                    - 'true'
+                    - 'false'
+                    - '1'
+                    - '0'
+                  description: 'Whether to send an email newsletter to subscribers when the post publishes. Only meaningful when publishing (status: ''published'') or scheduling (scheduledAt set). Default: false'
+                publishedAt:
+                  type: integer
+                  minimum: 0
+                  exclusiveMinimum: 0
+                  description: Unix timestamp (milliseconds) to set as the post's publish date. Once set, the date is preserved across re-publishes.
+                imageUrl:
+                  type: string
+                  format: uri
+                  description: 'URL of an image to set as the post''s cover/hero image. The image is fetched, re-hosted on Paragraph''s CDN, and a placeholder is generated. Pass clearImage: true instead to remove the existing cover.'
+                clearImage:
+                  type: boolean
+                  description: When true, removes the post's existing cover/hero image. Ignored if imageUrl is also provided.
+      responses:
+        '200':
+          description: Post updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                    - true
+                    description: Whether the update succeeded
+                required:
+                - success
+        '400':
+          description: Invalid request - check field values
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                    - false
+                    description: Always false for error responses
+                  msg:
+                    type: string
+                    description: Human-readable error message
+                required:
+                - success
+                - msg
+        '401':
+          description: Invalid or missing API key
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                    - false
+                    description: Always false for error responses
+                  msg:
+                    type: string
+                    description: Human-readable error message
+                required:
+                - success
+                - msg
+        '404':
+          description: Post not found in your publication
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                    - false
+                    description: Always false for error responses
+                  msg:
+                    type: string
+                    description: Human-readable error message
+                required:
+                - success
+                - msg
+        '409':
+          description: 'Conflict - the body change was refused because you weren''t working from the post''s current content: either you didn''t call get-post before replacing the body, or the writer edited the post in the editor since you read it. Call get-post to read the current version, re-apply your change on it, and retry.'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                    - false
+                    description: Always false for error responses
+                  msg:
+                    type: string
+                    description: Human-readable error message
+                required:
+                - success
+                - msg
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                    - false
+                    description: Always false for error responses
+                  msg:
+                    type: string
+                    description: Human-readable error message
+                required:
+                - success
+                - msg
+      operationId: updatePostBySlug
+      x-mint:
+        mcp:
+          enabled: true
+          name: update-post-by-slug
+          description: Update an existing post by its URL slug
+      x-codeSamples:
+      - lang: typescript
+        label: Update a post by slug
+        source: "import { ParagraphAPI } from \"@paragraph-com/sdk\"\n\nconst api = new ParagraphAPI({ apiKey: \"your-api-key\" })\nawait api.posts.update({\n  slug: \"my-first-post\",\n  title: \"Updated Title\",\n  markdown: \"## New content\"\n})"
+      security:
+      - apiKey: []
+    delete:
+      description: 'Permanently delete a post using its URL slug. The publication is identified by the API key provided in the Authorization header.
+
+
+        **Warning:** This action is irreversible. The post and all related data (comments, notifications, drafts) will be permanently deleted.'
+      summary: Delete a post by slug
+      tags:
+      - posts
+      parameters:
+      - name: slug
+        in: path
+        required: true
+        schema:
+          type: string
+          minLength: 1
+          maxLength: 256
+        description: URL-friendly identifier of the post to delete
+      requestBody:
+        description: Body
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+      responses:
+        '200':
+          description: Post deleted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                    - true
+                    description: Whether the deletion succeeded
+                required:
+                - success
+        '401':
+          description: Invalid or missing API key
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                    - false
+                    description: Always false for error responses
+                  msg:
+                    type: string
+                    description: Human-readable error message
+                required:
+                - success
+                - msg
+        '404':
+          description: Post not found in your publication
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                    - false
+                    description: Always false for error responses
+                  msg:
+                    type: string
+                    description: Human-readable error message
+                required:
+                - success
+                - msg
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                    - false
+                    description: Always false for error responses
+                  msg:
+                    type: string
+                    description: Human-readable error message
+                required:
+                - success
+                - msg
+      operationId: deletePostBySlug
+      x-mint:
+        mcp:
+          enabled: true
+          name: delete-post-by-slug
+          description: Permanently delete a post by its URL slug
+      x-codeSamples:
+      - lang: typescript
+        label: Delete a post by slug
+        source: 'import { ParagraphAPI } from "@paragraph-com/sdk"
+
+
+          const api = new ParagraphAPI({ apiKey: "your-api-key" })
+
+          await api.posts.delete({ slug: "my-first-post" })'
+      security:
+      - apiKey: []
+  /v1/posts/{postId}/test-email:
+    post:
+      description: Sends a test newsletter email for the specified draft post to the publication owner's email address. Useful for previewing how a post will look as a newsletter before publishing. Only works for draft posts.
+      summary: Send a test newsletter email
+      tags:
+      - posts
+      parameters:
+      - name: postId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Unique identifier of the post to preview
+      requestBody:
+        description: Body
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+      responses:
+        '200':
+          description: Test email sent successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                    - true
+                    description: Whether the email was sent
+                required:
+                - success
+        '400':
+          description: No email associated with the account
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                    - false
+                    description: Always false for error responses
+                  msg:
+                    type: string
+                    description: Human-readable error message
+                required:
+                - success
+                - msg
+        '401':
+          description: Invalid or missing API key
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                    - false
+                    description: Always false for error responses
+                  msg:
+                    type: string
+                    description: Human-readable error message
+                required:
+                - success
+                - msg
+        '404':
+          description: Post not found in your publication
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                    - false
+                    description: Always false for error responses
+                  msg:
+                    type: string
+                    description: Human-readable error message
+                required:
+                - success
+                - msg
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    enum:
+                    - false
+                    description: Always false for error responses
+                  msg:
+                    type: string
+                    description: Human-readable error message
+                required:
+                - success
+                - msg
+      operationId: sendTestEmail
+      x-mint:
+        mcp:
+          enabled: true
+          name: send-test-email
+          description: Send a test newsletter email for a post
+      x-codeSamples:
+      - lang: typescript
+        label: Send a test email
+        source: 'import { ParagraphAPI } from "@paragraph-com/sdk"
+
+
+          const api = new ParagraphAPI({ apiKey: "your-api-key" })
+
+          await api.posts.sendTestEmail({ id: "3T2PQZlsdQtigUp4fhlb" })'
+      - lang: bash
+        label: Send test email using curl
+        source: "curl -X POST \"https://public.api.paragraph.com/api/v1/posts/3T2PQZlsdQtigUp4fhlb/test-email\" \\\n  -H \"Authorization: Bearer your-api-key\""
+      security:
+      - apiKey: []
+components:
+  securitySchemes:
+    apiKey:
+      type: http
+      scheme: bearer
+      description: API key for authenticating protected endpoints. Pass as Bearer token in Authorization header.
+x-mint:
+  mcp:
+    enabled: true
