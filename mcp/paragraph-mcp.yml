@@ -1,0 +1,76 @@
+generated: '2026-07-20'
+method: searched
+status: published
+source: https://docs.paragraph.com/developers/mcp
+server:
+  name: paragraph
+  transport: http
+  url: https://mcp.paragraph.com/mcp
+  auth: browser-based OAuth through Paragraph account (hosted); PARAGRAPH_API_KEY env for local
+  install_hosted: claude mcp add paragraph --transport http https://mcp.paragraph.com/mcp
+local:
+  package: "@paragraph-com/mcp"
+  transport: stdio
+  command: npx @paragraph-com/mcp
+  http_mode: npx @paragraph-com/mcp --http --port 3100
+  requirement: Node.js 18+
+  install: claude mcp add --env PARAGRAPH_API_KEY=your-key paragraph -- npx @paragraph-com/mcp
+notes: >-
+  Read-only tools (search, feed, public post fetching) work without authentication;
+  write operations and private-publication access require credentials.
+tools:
+  - name: get-publication
+    category: publications
+    source_operation: openapi/paragraph-openapi-original.json#getPublicationById
+  - name: create-post
+    category: posts
+    source_operation: openapi/paragraph-openapi-original.json#createPost
+  - name: update-post
+    category: posts
+    source_operation: openapi/paragraph-openapi-original.json#updatePost
+  - name: delete-post
+    category: posts
+    source_operation: openapi/paragraph-openapi-original.json#deletePost
+  - name: send-test-email
+    category: posts
+    source_operation: openapi/paragraph-openapi-original.json#sendTestEmail
+  - name: get-post
+    category: posts
+    source_operation: openapi/paragraph-openapi-original.json#getPostById
+  - name: list-posts
+    category: posts
+    source_operation: openapi/paragraph-openapi-original.json#getPosts
+  - name: list-subscribers
+    category: subscribers
+    source_operation: openapi/paragraph-openapi-original.json#listSubscribers
+  - name: add-subscriber
+    category: subscribers
+    source_operation: openapi/paragraph-openapi-original.json#addSubscriber
+  - name: remove-subscriber
+    category: subscribers
+    source_operation: openapi/paragraph-openapi-original.json#removeSubscriber
+  - name: get-user
+    category: users
+    source_operation: openapi/paragraph-openapi-original.json#getUser
+  - name: get-me
+    category: me
+    source_operation: openapi/paragraph-openapi-original.json#getMe
+  - name: get-coin
+    category: coins
+    source_operation: openapi/paragraph-openapi-original.json#getCoin
+  - name: list-coin-holders
+    category: coins
+    source_operation: openapi/paragraph-openapi-original.json#getCoinHoldersById
+  - name: search-posts
+    category: search
+    source_operation: openapi/paragraph-openapi-original.json#searchPosts
+  - name: search-blogs
+    category: search
+    source_operation: openapi/paragraph-openapi-original.json#searchBlogs
+  - name: search-coins
+    category: search
+    source_operation: openapi/paragraph-openapi-original.json#searchCoins
+  - name: get-feed
+    category: feed
+    source_operation: openapi/paragraph-openapi-original.json#getPostsFeed
+tool_count: 18

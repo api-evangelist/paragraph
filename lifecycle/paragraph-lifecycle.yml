@@ -1,0 +1,22 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.paragraph.com/developers
+versioning:
+  scheme: uri-path
+  current: v1
+  docs: https://docs.paragraph.com/api-reference
+stability:
+  status: alpha
+  note: The API is in alpha with potential breaking changes pending finalization.
+deprecation:
+  policy_url: null
+  sunset_header: false
+  note: No formal deprecation/Sunset (RFC 8594) policy is published.
+sla:
+  url: null
+  uptime_target: null
+status_page: null
+deprecated_operations: []
+notes: >-
+  No public status page or SLA was found (status.paragraph.com resolves to the marketing site,
+  not a status dashboard). Breaking changes are communicated through the alpha notice in the docs.

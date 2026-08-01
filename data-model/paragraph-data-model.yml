@@ -1,0 +1,56 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/paragraph-openapi-original.json
+note: >-
+  Derived from OpenAPI tags, path structure, and id-reference parameters. The spec uses inline
+  response schemas (empty components.schemas), so relationships are inferred from path nesting
+  and lookup keys rather than $ref graphs.
+entities:
+  - name: publication
+    lookups: [id, slug, domain]
+    description: A writer's site + newsletter + subscriber list.
+  - name: post
+    lookups: [id, slug (scoped to publication), tag]
+    description: A published article/newsletter issue belonging to a publication.
+  - name: user
+    lookups: [id, walletAddress]
+    description: A Paragraph account; may carry a wallet address and Farcaster profile.
+  - name: coin
+    lookups: [id, contractAddress]
+    description: On-chain writer coin or post coin used for monetization; has holders and buy/sell/quote args.
+  - name: subscriber
+    lookups: [email, wallet]
+    description: A member of a publication's subscriber list.
+relationships:
+  - from: post
+    to: publication
+    kind: belongs_to
+    via: publicationId
+  - from: publication
+    to: post
+    kind: has_many
+    via: publicationId
+  - from: publication
+    to: subscriber
+    kind: has_many
+    via: publicationId
+  - from: publication
+    to: user
+    kind: belongs_to
+    via: owner
+  - from: post
+    to: user
+    kind: belongs_to
+    via: author
+  - from: coin
+    to: user
+    kind: belongs_to
+    via: writer (writer coins)
+  - from: coin
+    to: post
+    kind: belongs_to
+    via: post (post coins)
+  - from: coin
+    to: holder
+    kind: has_many
+    via: contractAddress

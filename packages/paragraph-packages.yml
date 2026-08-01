@@ -1,0 +1,36 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.paragraph.com/developers
+packages:
+  - language: javascript
+    registry: npm
+    name: "@paragraph-com/sdk"
+    url: https://www.npmjs.com/package/@paragraph-com/sdk
+    install: npm install @paragraph-com/sdk
+    official: true
+    kind: sdk
+    description: Official TypeScript SDK for the Paragraph REST API — query publications, posts, coins, and user profiles with full type safety.
+  - language: javascript
+    registry: npm
+    name: "@paragraph-com/cli"
+    url: https://www.npmjs.com/package/@paragraph-com/cli
+    install: npm install -g @paragraph-com/cli
+    official: true
+    kind: cli
+    description: Official Paragraph command-line interface — manage posts, publications, subscribers, and coins. Built for humans, agents, and CI.
+  - language: javascript
+    registry: npm
+    name: "@paragraph-com/mcp"
+    url: https://www.npmjs.com/package/@paragraph-com/mcp
+    install: npx @paragraph-com/mcp
+    official: true
+    kind: mcp-server
+    description: Official Paragraph Model Context Protocol server (stdio / optional HTTP) — connects AI agents to the Paragraph API.
+  - language: shell
+    registry: homebrew
+    name: paragraph
+    url: https://github.com/paragraph-xyz/homebrew-tap
+    install: brew tap paragraph-xyz/tap && brew install paragraph
+    official: true
+    kind: cli
+    description: Homebrew distribution of the Paragraph CLI (no Node.js required).

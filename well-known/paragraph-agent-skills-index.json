@@ -1,0 +1,12 @@
+{
+  "$schema": "https://schemas.agentskills.io/discovery/0.2.0/schema.json",
+  "skills": [
+    {
+      "name": "paragraph-cli",
+      "type": "skill-md",
+      "description": "Use the Paragraph CLI and MCP server to manage posts, publications, subscribers, and coins on paragraph.com. Trigger when the user asks to publish, create, update, or manage newsletter content on Paragraph via CLI or MCP.",
+      "url": "https://paragraph.com/SKILL.md",
+      "digest": "sha256:68a58c4c97272a961cc9d734e5811ab8b8c796e637348840a65d1e0e8d140f10"
+    }
+  ]
+}

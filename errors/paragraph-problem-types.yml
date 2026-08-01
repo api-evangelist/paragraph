@@ -1,0 +1,54 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/paragraph-openapi-original.json
+format: custom-json
+envelope:
+  content_type: application/json
+  shape: '{ "success": false, "msg": "human-readable error message" }'
+  fields:
+    success: boolean, always false for error responses
+    msg: human-readable error message
+note: >-
+  Paragraph does NOT use RFC 9457 application/problem+json. Every error returns the
+  { success:false, msg } envelope with the appropriate HTTP status code. The CLI/SDK
+  surface structured error codes (UNAUTHORIZED, NOT_FOUND, etc.) on top of these statuses.
+problems:
+  - status: 400
+    title: Invalid request
+    meaning: Request failed validation — check field values. Analytics queries also return 400 for invalid SQL with a validator message.
+    occurrences: 13
+  - status: 401
+    title: Invalid or missing API key
+    meaning: Authentication required or the supplied Bearer API key is invalid.
+    occurrences: 16
+  - status: 403
+    title: Forbidden
+    meaning: API key does not have access to this publication, or the publication is not eligible for the requested action (e.g. custom emails).
+    occurrences: 2
+  - status: 404
+    title: Not found
+    meaning: Resource (publication, post, coin, quote, buy/sell args, popular coins) does not exist.
+    occurrences: 33
+  - status: 408
+    title: Query timed out
+    meaning: Analytics query exceeded the 30s limit — try a more targeted query or a materialized view.
+    occurrences: 1
+    source_operation: openapi/paragraph-openapi-original.json#analyticsQuery
+  - status: 409
+    title: Conflict
+    meaning: >-
+      Optimistic-concurrency refusal — the update body was not based on the post's current
+      content (missing/stale version). Re-fetch the post and retry against current content.
+    occurrences: 2
+    source_operations:
+      - openapi/paragraph-openapi-original.json#updatePost
+      - openapi/paragraph-openapi-original.json#updatePostBySlug
+  - status: 500
+    title: Internal server error
+    meaning: Unexpected server-side failure.
+    occurrences: 45
+  - status: 503
+    title: Service unavailable
+    meaning: Publication temporarily cannot send through this endpoint — contact support.
+    occurrences: 1
+    source_operation: openapi/paragraph-openapi-original.json#sendCustomEmail

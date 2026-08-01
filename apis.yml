@@ -1,26 +1,252 @@
 aid: paragraph
 name: Paragraph
-description: Paragraph is a company surfaced as a portfolio company of union-square-ventures and added
-  to the API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment
-  pipeline.
+description: >-
+  Paragraph is a web3-native publishing and newsletter platform where writers get a website,
+  a newsletter, an owned subscriber list, and an AI agent that drafts, distributes, and maintains
+  their publication. It supports custom domains, Substack import, subscriber management, and
+  onchain monetization through writer coins and post coins. Paragraph ships a full public REST
+  API (public.api.paragraph.com), an official TypeScript SDK, a CLI, a hosted Model Context
+  Protocol server, and published Agent Skills so developers and AI agents can manage posts,
+  publications, subscribers, and coins programmatically. Backed by Union Square Ventures.
 url: https://raw.githubusercontent.com/api-evangelist/paragraph/refs/heads/main/apis.yml
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://paragraph.com/og.png
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - union-square-ventures
-x-tier: stub
+x-tier: enriched
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-20'
 tags:
 - Company
-apis: []
+- Publishing
+- Newsletters
+- Web3
+- Content
+- Blogging
+- Creator Economy
+- API
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+apis:
+- aid: paragraph:paragraph-analytics-api
+  name: Paragraph analytics API
+  description: The analytics API from Paragraph — 2 operation(s) for analytics.
+  humanURL: https://docs.paragraph.com/developers
+  baseURL: https://public.api.paragraph.com/api
+  tags:
+  - analytics
+  properties:
+  - type: OpenAPI
+    url: openapi/paragraph-analytics-api-openapi.yml
+  - type: APIReference
+    url: https://docs.paragraph.com/api-reference
+  - type: Documentation
+    url: https://docs.paragraph.com
+- aid: paragraph:paragraph-auth-api
+  name: Paragraph auth API
+  description: The auth API from Paragraph — 2 operation(s) for auth.
+  humanURL: https://docs.paragraph.com/developers
+  baseURL: https://public.api.paragraph.com/api
+  tags:
+  - auth
+  properties:
+  - type: OpenAPI
+    url: openapi/paragraph-auth-api-openapi.yml
+  - type: APIReference
+    url: https://docs.paragraph.com/api-reference
+  - type: Documentation
+    url: https://docs.paragraph.com
+- aid: paragraph:paragraph-coins-api
+  name: Paragraph coins API
+  description: Operations related to tokenized content
+  humanURL: https://docs.paragraph.com/developers
+  baseURL: https://public.api.paragraph.com/api
+  tags:
+  - coins
+  properties:
+  - type: OpenAPI
+    url: openapi/paragraph-coins-api-openapi.yml
+  - type: APIReference
+    url: https://docs.paragraph.com/api-reference
+  - type: Documentation
+    url: https://docs.paragraph.com
+- aid: paragraph:paragraph-discover-api
+  name: Paragraph discover API
+  description: The discover API from Paragraph — 3 operation(s) for discover.
+  humanURL: https://docs.paragraph.com/developers
+  baseURL: https://public.api.paragraph.com/api
+  tags:
+  - discover
+  properties:
+  - type: OpenAPI
+    url: openapi/paragraph-discover-api-openapi.yml
+  - type: APIReference
+    url: https://docs.paragraph.com/api-reference
+  - type: Documentation
+    url: https://docs.paragraph.com
+- aid: paragraph:paragraph-emails-api
+  name: Paragraph emails API
+  description: The emails API from Paragraph — 1 operation(s) for emails.
+  humanURL: https://docs.paragraph.com/developers
+  baseURL: https://public.api.paragraph.com/api
+  tags:
+  - emails
+  properties:
+  - type: OpenAPI
+    url: openapi/paragraph-emails-api-openapi.yml
+  - type: APIReference
+    url: https://docs.paragraph.com/api-reference
+  - type: Documentation
+    url: https://docs.paragraph.com
+- aid: paragraph:paragraph-me-api
+  name: Paragraph me API
+  description: The me API from Paragraph — 1 operation(s) for me.
+  humanURL: https://docs.paragraph.com/developers
+  baseURL: https://public.api.paragraph.com/api
+  tags:
+  - me
+  properties:
+  - type: OpenAPI
+    url: openapi/paragraph-me-api-openapi.yml
+  - type: APIReference
+    url: https://docs.paragraph.com/api-reference
+  - type: Documentation
+    url: https://docs.paragraph.com
+- aid: paragraph:paragraph-posts-api
+  name: Paragraph posts API
+  description: Operations related to posts and content
+  humanURL: https://docs.paragraph.com/developers
+  baseURL: https://public.api.paragraph.com/api
+  tags:
+  - posts
+  properties:
+  - type: OpenAPI
+    url: openapi/paragraph-posts-api-openapi.yml
+  - type: APIReference
+    url: https://docs.paragraph.com/api-reference
+  - type: Documentation
+    url: https://docs.paragraph.com
+- aid: paragraph:paragraph-publications-api
+  name: Paragraph publications API
+  description: Operations related to publications
+  humanURL: https://docs.paragraph.com/developers
+  baseURL: https://public.api.paragraph.com/api
+  tags:
+  - publications
+  properties:
+  - type: OpenAPI
+    url: openapi/paragraph-publications-api-openapi.yml
+  - type: APIReference
+    url: https://docs.paragraph.com/api-reference
+  - type: Documentation
+    url: https://docs.paragraph.com
+- aid: paragraph:paragraph-subscribers-api
+  name: Paragraph subscribers API
+  description: Operations related to subscriber management (requires API key)
+  humanURL: https://docs.paragraph.com/developers
+  baseURL: https://public.api.paragraph.com/api
+  tags:
+  - subscribers
+  properties:
+  - type: OpenAPI
+    url: openapi/paragraph-subscribers-api-openapi.yml
+  - type: APIReference
+    url: https://docs.paragraph.com/api-reference
+  - type: Documentation
+    url: https://docs.paragraph.com
+- aid: paragraph:paragraph-users-api
+  name: Paragraph users API
+  description: Operations related to users and authors
+  humanURL: https://docs.paragraph.com/developers
+  baseURL: https://public.api.paragraph.com/api
+  tags:
+  - users
+  properties:
+  - type: OpenAPI
+    url: openapi/paragraph-users-api-openapi.yml
+  - type: APIReference
+    url: https://docs.paragraph.com/api-reference
+  - type: Documentation
+    url: https://docs.paragraph.com
 common:
+- type: DeveloperPortal
+  url: https://docs.paragraph.com/developers
+- type: Documentation
+  url: https://docs.paragraph.com
+- type: APIReference
+  url: https://docs.paragraph.com/api-reference
+- type: GettingStarted
+  url: https://docs.paragraph.com/getting-started/quickstart
+- type: GitHubOrganization
+  url: https://github.com/paragraph-xyz
+- type: Blog
+  url: https://paragraph.com/@blog
+- type: Support
+  url: https://docs.paragraph.com/developers
+- type: Pricing
+  url: https://paragraph.com/pricing
+- type: SignUp
+  url: https://app.paragraph.com
+- type: TermsOfService
+  url: https://paragraph.com/terms-of-use
+- type: PrivacyPolicy
+  url: https://paragraph.com/privacy
+- type: OpenAPI
+  url: openapi/paragraph-openapi-original.json
+- type: Overlay
+  url: overlays/paragraph-openapi-overlay.yaml
+- type: Authentication
+  url: authentication/paragraph-authentication.yml
+- type: Packages
+  url: packages/paragraph-packages.yml
+- type: SDKs
+  url: packages/paragraph-packages.yml
+- type: CLI
+  url: cli/paragraph-cli.yml
+- type: MCPServer
+  url: mcp/paragraph-mcp.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: LLMsTxt
+  url: llms/paragraph-llms.txt
+- type: WellKnown
+  url: well-known/paragraph-well-known.yml
+- type: Conventions
+  url: conventions/paragraph-conventions.yml
+- type: ErrorCatalog
+  url: errors/paragraph-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/paragraph-lifecycle.yml
+- type: Conformance
+  url: conformance/paragraph-conformance.yml
+- type: DataModel
+  url: data-model/paragraph-data-model.yml
+- type: AgenticAccess
+  url: agentic-access/paragraph-agentic-access.yml
+- type: DomainSecurity
+  url: security/paragraph-domain-security.yml
 - type: Website
-  url: https://paragraph.xyz
+  url: https://paragraph.com
+x-enrichment:
+  date: '2026-07-20'
+  status: enriched
+  artifacts_added: 19
+  pass: local-v1

@@ -1,0 +1,40 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.paragraph.com/developers
+authentication:
+  style: bearer
+  scheme: HTTP Bearer token (API key) in the Authorization header
+  public_reads: Many read endpoints (search, feed, public publication/post fetch) require no key
+  key_source: app.paragraph.com → Settings → Publication → Developer
+  cross_ref: authentication/paragraph-authentication.yml
+pagination:
+  style: cursor
+  request_params: [cursor, limit]
+  response_fields: [items, pagination]
+  notes: List endpoints return { items, pagination }; follow the cursor for the next page. CLI exposes --cursor / --limit.
+idempotency:
+  supported: false
+  notes: >-
+    No Idempotency-Key header is documented. Post updates instead use optimistic concurrency —
+    a 409 Conflict is returned when the update body is not based on the post's current content.
+concurrency:
+  style: optimistic
+  signal: 409 Conflict on stale/mismatched update bodies (updatePost / updatePostBySlug)
+error_envelope:
+  content_type: application/json
+  shape: '{ "success": false, "msg": "message" }'
+  rfc9457: false
+  cross_ref: errors/paragraph-problem-types.yml
+rate_limiting:
+  present: true
+  notes: Requests are rate-limited for fair usage; higher limits on request to support@paragraph.com.
+versioning:
+  scheme: uri-path
+  current: v1
+  stability: alpha (breaking changes possible until finalized)
+  cross_ref: lifecycle/paragraph-lifecycle.yml
+identifiers:
+  publications: by id, slug, or custom domain
+  posts: by id or slug (scoped to publication)
+  users: by id or wallet address
+  coins: by id or on-chain contract address

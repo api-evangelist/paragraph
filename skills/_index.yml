@@ -1,0 +1,18 @@
+generated: '2026-07-20'
+method: searched
+source: https://github.com/paragraph-xyz/skill
+note: >-
+  Provider-published Agent Skills (agentskills.io format), saved verbatim from the
+  paragraph-xyz/skill repository. Also advertised via
+  https://paragraph.com/.well-known/agent-skills/index.json
+skills:
+  - file: paragraph-api-SKILL.md
+    name: paragraph-api
+    description: Use the Paragraph REST API or TypeScript SDK to manage posts, publications, subscribers, and coins.
+    api: openapi/paragraph-openapi-original.json
+    official: true
+  - file: paragraph-cli-SKILL.md
+    name: paragraph-cli
+    description: Use the Paragraph CLI and MCP server to manage posts, publications, subscribers, and coins.
+    api: openapi/paragraph-openapi-original.json
+    official: true

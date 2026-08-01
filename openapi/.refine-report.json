@@ -1,0 +1,32 @@
+{
+  "provider": "paragraph",
+  "sources": [
+    "paragraph-analytics-api-openapi.yml",
+    "paragraph-auth-api-openapi.yml",
+    "paragraph-coins-api-openapi.yml",
+    "paragraph-discover-api-openapi.yml",
+    "paragraph-emails-api-openapi.yml",
+    "paragraph-me-api-openapi.yml",
+    "paragraph-posts-api-openapi.yml",
+    "paragraph-publications-api-openapi.yml",
+    "paragraph-subscribers-api-openapi.yml",
+    "paragraph-users-api-openapi.yml"
+  ],
+  "outputs": [
+    "paragraph-analytics-api-openapi.yml",
+    "paragraph-auth-api-openapi.yml",
+    "paragraph-coins-api-openapi.yml",
+    "paragraph-discover-api-openapi.yml",
+    "paragraph-emails-api-openapi.yml",
+    "paragraph-me-api-openapi.yml",
+    "paragraph-posts-api-openapi.yml",
+    "paragraph-publications-api-openapi.yml",
+    "paragraph-subscribers-api-openapi.yml",
+    "paragraph-users-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

@@ -1,0 +1,26 @@
+generated: '2026-07-20'
+method: searched
+hosts:
+  - host: https://paragraph.com
+    documents:
+      - path: /.well-known/agent-skills/index.json   # Agent Skills Discovery RFC 0.2.0
+        status: 200
+        file: paragraph-agent-skills-index.json
+      - path: /.well-known/security.txt              # RFC 9116
+        status: 500
+      - path: /.well-known/openid-configuration       # OIDC discovery
+        status: 404
+      - path: /.well-known/api-catalog                 # RFC 9727
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+  - host: https://public.api.paragraph.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/oauth-authorization-server  # RFC 8414
+        status: 404
+notes: >-
+  Paragraph publishes an Agent Skills Discovery document at
+  https://paragraph.com/.well-known/agent-skills/index.json (agentskills.io schema 0.2.0)
+  advertising the paragraph-cli skill-md. No security.txt, OIDC, or api-catalog documents are served.

@@ -1,0 +1,22 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Paragraph API
+  version: 1.0.0
+extends: openapi/paragraph-openapi-original.json
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-provider: paragraph
+      x-apievangelist-base-url: https://public.api.paragraph.com/api
+      x-apievangelist-auth: HTTP Bearer API key (public reads unauthenticated)
+      x-apievangelist-pagination: cursor + limit → { items, pagination }
+      x-apievangelist-error-envelope: '{ success:false, msg }'
+      x-apievangelist-stability: alpha
+      x-apievangelist-mcp: https://mcp.paragraph.com/mcp
+      x-apievangelist-agent-skills: https://github.com/paragraph-xyz/skill
+  - target: $.info
+    update:
+      x-apievangelist-rating-notes: >-
+        OpenAPI 3.1.0 with 46 operations across publications/posts/users/coins/subscribers/
+        discover/analytics/emails/auth. Rich developer surface: TS SDK, CLI, hosted MCP,
+        published agent skills. Gaps: no RFC 9457 errors, no status page/SLA, no webhooks.

@@ -1,0 +1,14 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/paragraph-openapi-original.json
+summary:
+  types:
+  - http
+schemes:
+- name: apiKey
+  type: http
+  scheme: bearer
+  description: API key for authenticating protected endpoints. Pass as Bearer token in Authorization
+    header.
+  sources:
+  - openapi/paragraph-openapi-original.json

@@ -1,0 +1,33 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.paragraph.com/developers/cli
+name: paragraph
+package: "@paragraph-com/cli"
+install:
+  npm: npm install -g @paragraph-com/cli
+  homebrew: brew tap paragraph-xyz/tap && brew install paragraph
+requirement: Node.js 18+ (not required for the Homebrew build)
+auth:
+  interactive: paragraph login
+  token: paragraph login --token <key>
+  pipe: echo "<key>" | paragraph login --with-token
+  env: PARAGRAPH_API_KEY=<key>
+  config_file: ~/.paragraph/config.json (mode 0600)
+  key_source: app.paragraph.com → Settings → Publication → Developer
+commands:
+  posts: [create, publish, update, draft, archive, delete, list, get, by-tag, feed, test-email]
+  publications: [get (by id, slug, or domain)]
+  subscribers: [list, count, add (email/wallet), import]
+  coins: [get, popular, search, holders, quote]
+  users: [get (by id or wallet address)]
+  search: [post, blog]
+flags:
+  - "--json — structured output to stdout"
+  - "--dry-run — preview destructive operations"
+  - "--yes — skip confirmation prompts (required in non-TTY)"
+  - "--field <name> — extract a single post field"
+  - "--limit / --cursor — pagination control"
+  - "--publication <id> — query another publication"
+notes: >-
+  Designed for AI agents and scripts. Paginated responses use cursor navigation; errors
+  return structured JSON with code identifiers (UNAUTHORIZED, NOT_FOUND, ...).
