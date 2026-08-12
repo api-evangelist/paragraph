@@ -210,7 +210,7 @@ common:
 - type: PrivacyPolicy
   url: https://paragraph.com/privacy
 - type: OpenAPI
-  url: openapi/paragraph-openapi-original.json
+  url: openapi/_original/paragraph-openapi-original.json
 - type: Overlay
   url: overlays/paragraph-openapi-overlay.yaml
 - type: Authentication
