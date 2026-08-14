@@ -10,17 +10,23 @@ description: >-
   publications, subscribers, and coins programmatically. Backed by Union Square Ventures.
 url: https://raw.githubusercontent.com/api-evangelist/paragraph/refs/heads/main/apis.yml
 accessModel:
-  pricing: unknown
+  pricing: freemium
   onboarding: self-serve
-  trial: false
-  try_now: false
-  public: false
-  label: Self-serve signup
-  confidence: medium
+  trial: true
+  try_now: true
+  public: true
+  label: Free tier with self-serve signup
+  confidence: high
   source:
-  - authentication
-  generated: '2026-07-22'
-  method: derived
+  - https://docs.paragraph.com/account/plans-and-credits
+  - https://paragraph.com/pricing
+  - plans/paragraph-plans-pricing.yml
+  generated: '2026-08-13'
+  method: searched
+  note: >-
+    Free plan ($0/mo, 500 agent credits, limited API and MCP access) through Scale ($200/mo) plus
+    a custom Enterprise tier. Many REST reads (search, feed, public publication/post fetch)
+    require no credential at all.
 image: https://paragraph.com/og.png
 x-type: company
 x-source: vc-portfolio
@@ -30,7 +36,7 @@ x-tier: enriched
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-20'
+modified: '2026-08-13'
 tags:
 - Company
 - Publishing
@@ -243,10 +249,22 @@ common:
   url: agentic-access/paragraph-agentic-access.yml
 - type: DomainSecurity
   url: security/paragraph-domain-security.yml
+- type: OAuthScopes
+  url: scopes/paragraph-scopes.yml
+- type: Plans
+  url: plans/paragraph-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/paragraph-rate-limits.yml
+- type: ChangeLog
+  url: changelog/paragraph-changelog.yml
+- type: ToolCrosswalk
+  url: mcp/paragraph-tool-crosswalk.yml
+- type: ContentSignal
+  url: well-known/paragraph-robots.txt
 - type: Website
   url: https://paragraph.com
 x-enrichment:
-  date: '2026-07-20'
+  date: '2026-08-13'
   status: enriched
-  artifacts_added: 19
+  artifacts_added: 11
   pass: local-v1
