@@ -1,11 +1,13 @@
-generated: '2026-07-20'
+generated: '2026-08-13'
 method: searched
 source: https://docs.paragraph.com/developers
 authentication:
   style: bearer
   scheme: HTTP Bearer token (API key) in the Authorization header
   public_reads: Many read endpoints (search, feed, public publication/post fetch) require no key
-  key_source: app.paragraph.com → Settings → Publication → Developer
+  key_source: app.paragraph.com → Settings → API keys
+  discovery: RFC 8414 + RFC 9728 metadata at paragraph.com (scopes api.read, api.write)
+  agent_registration: https://paragraph.com/auth.md — anonymous register + user claim
   cross_ref: authentication/paragraph-authentication.yml
 pagination:
   style: cursor
@@ -27,11 +29,22 @@ error_envelope:
   cross_ref: errors/paragraph-problem-types.yml
 rate_limiting:
   present: true
-  notes: Requests are rate-limited for fair usage; higher limits on request to support@paragraph.com.
+  quantified: false
+  response_headers: []
+  exhaustion_status: undocumented
+  sdk_error_code: RATE_LIMITED
+  notes: >-
+    Requests are rate-limited for fair usage; higher limits on request to support@paragraph.com.
+    No number, window, scope, RateLimit-*/Retry-After header or 429 response is published — the
+    limit is stated but not measurable. See rate-limits/paragraph-rate-limits.yml.
+  cross_ref: rate-limits/paragraph-rate-limits.yml
 versioning:
   scheme: uri-path
   current: v1
   stability: alpha (breaking changes possible until finalized)
+  change_record: >-
+    No API changelog is published; the dated record lives in GitHub Releases on the SDK, CLI and
+    MCP repositories. See changelog/paragraph-changelog.yml.
   cross_ref: lifecycle/paragraph-lifecycle.yml
 identifiers:
   publications: by id, slug, or custom domain

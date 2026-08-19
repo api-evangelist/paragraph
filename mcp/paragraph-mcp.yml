@@ -1,4 +1,4 @@
-generated: '2026-07-20'
+generated: '2026-08-13'
 method: searched
 status: published
 source: https://docs.paragraph.com/developers/mcp
@@ -9,68 +9,135 @@ server:
   auth: browser-based OAuth through Paragraph account (hosted); PARAGRAPH_API_KEY env for local
   install_hosted: claude mcp add paragraph --transport http https://mcp.paragraph.com/mcp
 local:
-  package: "@paragraph-com/mcp"
+  package: '@paragraph-com/mcp'
   transport: stdio
   command: npx @paragraph-com/mcp
   http_mode: npx @paragraph-com/mcp --http --port 3100
   requirement: Node.js 18+
   install: claude mcp add --env PARAGRAPH_API_KEY=your-key paragraph -- npx @paragraph-com/mcp
-notes: >-
-  Read-only tools (search, feed, public post fetching) work without authentication;
-  write operations and private-publication access require credentials.
+notes: Read-only tools (search, feed, public post fetching) work without authentication; write operations
+  and private-publication access require credentials.
 tools:
-  - name: get-publication
-    category: publications
-    source_operation: openapi/paragraph-openapi-original.json#getPublicationById
-  - name: create-post
-    category: posts
-    source_operation: openapi/paragraph-openapi-original.json#createPost
-  - name: update-post
-    category: posts
-    source_operation: openapi/paragraph-openapi-original.json#updatePost
-  - name: delete-post
-    category: posts
-    source_operation: openapi/paragraph-openapi-original.json#deletePost
-  - name: send-test-email
-    category: posts
-    source_operation: openapi/paragraph-openapi-original.json#sendTestEmail
-  - name: get-post
-    category: posts
-    source_operation: openapi/paragraph-openapi-original.json#getPostById
-  - name: list-posts
-    category: posts
-    source_operation: openapi/paragraph-openapi-original.json#getPosts
-  - name: list-subscribers
-    category: subscribers
-    source_operation: openapi/paragraph-openapi-original.json#listSubscribers
-  - name: add-subscriber
-    category: subscribers
-    source_operation: openapi/paragraph-openapi-original.json#addSubscriber
-  - name: remove-subscriber
-    category: subscribers
-    source_operation: openapi/paragraph-openapi-original.json#removeSubscriber
-  - name: get-user
-    category: users
-    source_operation: openapi/paragraph-openapi-original.json#getUser
-  - name: get-me
-    category: me
-    source_operation: openapi/paragraph-openapi-original.json#getMe
-  - name: get-coin
-    category: coins
-    source_operation: openapi/paragraph-openapi-original.json#getCoin
-  - name: list-coin-holders
-    category: coins
-    source_operation: openapi/paragraph-openapi-original.json#getCoinHoldersById
-  - name: search-posts
-    category: search
-    source_operation: openapi/paragraph-openapi-original.json#searchPosts
-  - name: search-blogs
-    category: search
-    source_operation: openapi/paragraph-openapi-original.json#searchBlogs
-  - name: search-coins
-    category: search
-    source_operation: openapi/paragraph-openapi-original.json#searchCoins
-  - name: get-feed
-    category: feed
-    source_operation: openapi/paragraph-openapi-original.json#getPostsFeed
-tool_count: 18
+- name: get-publication
+  category: publications
+  source_operation: openapi/paragraph-openapi-original.json#getPublicationById
+- name: create-post
+  category: posts
+  source_operation: openapi/paragraph-openapi-original.json#createPost
+- name: update-post
+  category: posts
+  source_operation: openapi/paragraph-openapi-original.json#updatePost
+- name: delete-post
+  category: posts
+  source_operation: openapi/paragraph-openapi-original.json#deletePost
+- name: send-test-email
+  category: posts
+  source_operation: openapi/paragraph-openapi-original.json#sendTestEmail
+- name: get-post
+  category: posts
+  source_operation: openapi/paragraph-openapi-original.json#getPostById
+- name: list-posts
+  category: posts
+  source_operation: openapi/paragraph-openapi-original.json#getPosts
+- name: list-subscribers
+  category: subscribers
+  source_operation: openapi/paragraph-openapi-original.json#listSubscribers
+- name: add-subscriber
+  category: subscribers
+  source_operation: openapi/paragraph-openapi-original.json#addSubscriber
+- name: remove-subscriber
+  category: subscribers
+  source_operation: openapi/paragraph-openapi-original.json#removeSubscriber
+- name: get-user
+  category: users
+  source_operation: openapi/paragraph-openapi-original.json#getUser
+- name: get-me
+  category: me
+  source_operation: openapi/paragraph-openapi-original.json#getMe
+- name: get-coin
+  category: coins
+  source_operation: openapi/paragraph-openapi-original.json#getCoin
+- name: list-coin-holders
+  category: coins
+  source_operation: openapi/paragraph-openapi-original.json#getCoinHoldersById
+- name: search-posts
+  category: search
+  source_operation: openapi/paragraph-openapi-original.json#searchPosts
+- name: search-blogs
+  category: search
+  source_operation: openapi/paragraph-openapi-original.json#searchBlogs
+- name: search-coins
+  category: search
+  source_operation: openapi/paragraph-openapi-original.json#searchCoins
+- name: get-feed
+  category: feed
+  source_operation: openapi/paragraph-openapi-original.json#getPostsFeed
+- name: send-custom-email
+  category: emails
+  source_operation: openapi/paragraph-openapi-original.json#sendCustomEmail
+  note: >-
+    Named in the provider's own paragraph-cli Agent Skill — "markdown email blast to a recipient
+    list — requires publication approval".
+- name: update-publication
+  category: publications
+  source_operation: openapi/paragraph-openapi-original.json#updatePublication
+  note: >-
+    Named in the provider's own paragraph-cli Agent Skill — "settings, featured post, pinned
+    posts, email-notification toggles".
+tool_count_named: 20
+tool_count_provider_stated: 23
+tool_count_note: >-
+  Paragraph's published paragraph-cli Agent Skill states "The MCP server exposes 23 tools (posts,
+  publications, subscribers, coins, search, feed, users, me, analytics, emails)". Twenty are named
+  above from the docs and that skill; three remain unnamed because the live tools/list manifest is
+  auth-gated. The analytics category in the provider's list has no named tool here, so the
+  unnamed three most likely include analytics-query / analytics-schema. Counted honestly rather
+  than invented.
+tool_list_provenance: >-
+  Derived by name from the provider's docs and published Agent Skill, then bound to OpenAPI
+  operations. The live tools/list manifest is auth-gated (see probe below), so per-tool
+  inputSchema has NOT been read from the server and is not asserted here.
+deployment:
+  mode: both
+  endpoint: https://mcp.paragraph.com/mcp
+  install: npx @paragraph-com/mcp
+  package: https://www.npmjs.com/package/@paragraph-com/mcp
+  auth: oauth
+  verified: probed
+  checked: '2026-08-13'
+  note: >-
+    Paragraph ships BOTH agent surfaces: a hosted remote endpoint an MCP client can POST to today
+    (https://mcp.paragraph.com/mcp, OAuth), and a local stdio server a human installs
+    (npx @paragraph-com/mcp, PARAGRAPH_API_KEY). Both are documented verbatim at
+    https://docs.paragraph.com/developers/mcp. Corrected from mode:remote on 2026-08-13 — the
+    earlier census recorded only the endpoint.
+  probe:
+    url: https://mcp.paragraph.com/mcp
+    method: 'POST tools/list (jsonrpc 2.0, anonymous)'
+    http_status: 401
+    result: gated
+    www_authenticate: >-
+      Bearer realm="OAuth",
+      resource_metadata="https://mcp.paragraph.com/.well-known/oauth-protected-resource",
+      error="invalid_token"
+    body: '{"error":"invalid_token","error_description":"Missing or invalid access token"}'
+    note: >-
+      A correct RFC 9728 challenge — the server names its protected-resource metadata document in
+      the WWW-Authenticate header, so an agent can discover how to authenticate. `initialize`
+      returns the same 401, so even capability negotiation requires a token.
+authorization_server:
+  issuer: https://mcp.paragraph.com
+  metadata: well-known/paragraph-mcp-oauth-authorization-server.json
+  authorization_endpoint: https://mcp.paragraph.com/authorize
+  token_endpoint: https://mcp.paragraph.com/token
+  registration_endpoint: https://mcp.paragraph.com/register
+  dynamic_client_registration: true
+  grant_types_supported: [authorization_code, refresh_token]
+  code_challenge_methods_supported: [plain, S256]
+  scopes_supported: []
+  note: >-
+    RFC 7591 dynamic client registration is open, so an agent can register itself without a
+    human pre-provisioning a client. No scopes are advertised on this server — MCP authorization
+    is all-or-nothing for the connected account, unlike the api.read/api.write pair the REST
+    resource advertises at paragraph.com.
+crosswalk: mcp/paragraph-tool-crosswalk.yml

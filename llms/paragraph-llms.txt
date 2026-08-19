@@ -6,12 +6,12 @@
   - [Import your publication](/getting-started/import-your-publication): Bring your posts and subscribers to Paragraph from Substack or another platform.
   - [Workspace tour](/getting-started/workspace-tour): A quick tour of the main areas in your Paragraph workspace.
 - Your agent
-  - [Meet your agent](/agent): Your Paragraph agent drafts, distributes, and maintains your publication, and nothing big ships without your OK.
+  - [Meet your agent](/agent): Your Paragraph agent drafts, distributes, and maintains your publication through one-time suggestions and scoped automations.
   - [Chat with your agent](/agent/chat): Ask your agent to draft, research, schedule, and analyze, all from a conversation in your workspace.
-  - [Voice and memory](/agent/voice-and-memory): Teach your agent your goals, brand voice, social voice, and context so everything it writes sounds like you.
-  - [Suggestions](/agent/suggestions): Your agent proposes drafts, refreshes, and distribution ideas, and every suggestion waits for your review.
-  - [Scheduled tasks](/agent/scheduled-tasks): Set recurring workflows once, and your agent keeps drafting, researching, and reporting on schedule.
-  - [Approvals](/agent/approvals): Your agent shows you everything it does, asks before anything big ships, and earns more freedom only as you grant it.
+  - [Voice and memory](/agent/voice-and-memory): Teach your agent your goals, brand voice, social voice, visual brand, and context so everything it makes sounds and looks like you.
+  - [Inbox](/agent/inbox): Review one-time proposals from your agent and follow today's runs in one place.
+  - [Automations](/agent/scheduled-tasks): Create jobs that run before publishing, after publication events, or on a schedule.
+  - [Approvals](/agent/approvals): Understand the difference between choosing a suggestion once and authorizing an automation to act on a saved trigger.
   - [Connections](/agent/connections): Connect X, Telegram, Slack, and other tools so your agent can post, chat, and pull context from where you work.
 - Writing and publishing
   - [Editor](/publishing/editor): Write, format, and publish posts in the Paragraph editor.
@@ -22,10 +22,11 @@
 - Grow your audience
   - [Subscribers](/audience/subscribers): Manage your subscriber list, import it from anywhere, and export it whenever you like.
   - [Distribution](/audience/distribution): Turn each post into X threads, LinkedIn versions, and newsletter sends, without doing it all by hand.
+  - [X Articles](/audience/x-articles): Publish a long-form Article on X from Paragraph, review it before it goes out, and know which formatting carries over.
   - [Analytics](/audience/analytics): Understand how your posts, newsletter, and channels perform, in the app or by asking your agent.
 - Account and billing
   - [Plans and credits](/account/plans-and-credits): What each Paragraph plan includes, what it costs, and how credits power your agent.
-  - [Manage your account](/account/manage-account): Account settings, publication details, team permissions, and taking your data with you.
+  - [Manage your account](/account/manage-account): Account settings, publication details, automations, and taking your data with you.
 - Developers
   - [Build with Paragraph](/developers): Integrate Paragraph into your application with the REST API, TypeScript SDK, CLI, MCP server, and agent skills.
   - [TypeScript SDK](/developers/sdk): Install the Paragraph SDK and query publications, posts, coins, and user profiles with full type safety.

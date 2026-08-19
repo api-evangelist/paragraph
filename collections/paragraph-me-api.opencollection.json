@@ -1,0 +1,33 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Paragraph analytics me API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "me",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get authenticated publication",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://public.api.paragraph.com/api/v1/me",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns the publication associated with the API key used in the request. Useful for verifying your API key and retrieving your publication details."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

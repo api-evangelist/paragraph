@@ -1,0 +1,37 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Paragraph analytics emails API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "emails",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Send a custom email",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://public.api.paragraph.com/api/v1/emails/send",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Send an email from your publication to a list of recipient addresses.\n\n**Eligibility:**\n- Publications must be approved by Paragraph before they can send custom emails. Ineligible publications receive a 403. Eligibility is managed by Paragraph and is not user-configurable.\n\n**Per-recipient filtering:**\n- Malformed addresses and known disposable domains are skipped.\n- Addresses that previously unsubscribed from this publication are skipped as `suppressed`.\n- Skipped recipients are returned in the"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

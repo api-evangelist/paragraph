@@ -1,0 +1,106 @@
+generated: '2026-08-13'
+method: searched
+source: https://github.com/paragraph-xyz/paragraph-sdk-js/releases
+scope: >-
+  Paragraph publishes NO changelog for the REST API itself — docs.paragraph.com/changelog and
+  paragraph.com/changelog both resolve to the marketing homepage, and the API is described only as
+  "in alpha, there may be breaking changes until we finalize the design". The dated, versioned
+  change record Paragraph does publish lives in GitHub Releases on the three first-party client
+  repositories, which is what this artifact captures.
+scheme: semver
+api_changelog:
+  published: false
+  probed:
+    - url: https://docs.paragraph.com/changelog
+      status: 404
+    - url: https://paragraph.com/changelog
+      status: 200
+      note: soft-200 — redirects to https://paragraph.com/ and serves the marketing homepage
+streams:
+  - name: TypeScript SDK
+    package: '@paragraph-com/sdk'
+    repo: https://github.com/paragraph-xyz/paragraph-sdk-js
+    releases: https://github.com/paragraph-xyz/paragraph-sdk-js/releases
+    current_version: 2.2.1
+    current_released: '2026-05-08'
+    release_count: 16
+    note: >-
+      This repository also holds the canonical published OpenAPI at
+      https://github.com/paragraph-xyz/paragraph-sdk-js/blob/main/openapi.json, so SDK releases
+      are the closest thing to a dated API change record.
+    entries:
+      - version: 2.2.1
+        date: '2026-05-08'
+        breaking: false
+      - version: 2.2.0
+        date: '2026-04-30'
+        breaking: false
+      - version: 2.1.0
+        date: '2026-04-29'
+        breaking: false
+      - version: 2.0.2
+        date: '2026-04-23'
+        breaking: false
+        additions:
+          - Add analytics resource (PAR-8559, PR #16)
+      - version: 2.0.1
+        date: '2026-04-17'
+        breaking: false
+      - version: 2.0.0
+        date: '2026-04-16'
+        breaking: true
+        note: Major version bump; no release notes body published beyond the compare link.
+      - version: 1.6.0
+        date: '2026-04-14'
+        breaking: false
+  - name: MCP server
+    package: '@paragraph-com/mcp'
+    repo: https://github.com/paragraph-xyz/paragraph-mcp
+    releases: https://github.com/paragraph-xyz/paragraph-mcp/releases
+    current_version: 1.5.3
+    current_released: '2026-07-08'
+    release_count: 17
+    entries:
+      - version: 1.5.3
+        date: '2026-07-08'
+        breaking: false
+        highlights:
+          - 'fix: surface API error body (msg/error) to agents in toError (PR #2)'
+          - 'feat: accept Tiptap bodyJson in create/update-post (PAR-9429, PR #3)'
+      - version: 1.5.2
+        date: '2026-06-02'
+        breaking: false
+      - version: 1.5.1
+        date: '2026-05-08'
+        breaking: false
+      - version: 1.5.0
+        date: '2026-04-30'
+        breaking: false
+  - name: CLI
+    package: '@paragraph-com/cli'
+    repo: https://github.com/paragraph-xyz/paragraph-cli
+    releases: https://github.com/paragraph-xyz/paragraph-cli/releases
+    current_version: 0.3.1
+    current_released: '2026-05-08'
+    release_count: 9
+    entries:
+      - version: 0.3.1
+        date: '2026-05-08'
+        breaking: false
+      - version: 0.3.0
+        date: '2026-04-30'
+        breaking: false
+      - version: 0.2.0
+        date: '2026-04-29'
+        breaking: false
+      - version: 0.1.0
+        date: '2026-04-16'
+        breaking: false
+quality_note: >-
+  Most releases carry an auto-generated body containing only a "Full Changelog" compare link, so
+  the human-readable highlights above are only those releases where the provider wrote notes. No
+  release is labelled breaking by the provider; the 2.0.0 designation is inferred from semver
+  alone and is recorded as such.
+cross_ref:
+  - lifecycle/paragraph-lifecycle.yml
+  - packages/paragraph-packages.yml

@@ -1,0 +1,52 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Paragraph analytics API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "analytics",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Run an analytics SQL query",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://public.api.paragraph.com/api/v1/analytics/query",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Execute a read-only SQL query against the analytics schema, scoped to your publication.\n\n**Auth:** Requires an API key. Queries run as the publication that owns the API key; Row-Level Security guarantees that only that publication's rows are visible even if the SQL is unscoped.\n\n**SQL requirements:**\n- `SELECT` or `WITH` (CTE) statements only\n- Reference tables unprefixed (e.g. `FROM posts`) — the `analytics` schema is the default `search_path`\n- No semicolons, no writes, no DDL, no superuser fu"
+        },
+        {
+          "info": {
+            "name": "Describe the analytics schema",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://public.api.paragraph.com/api/v1/analytics/schema",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns column metadata for every table and view in the analytics schema. Use this to discover available tables/columns before writing an analytics query."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

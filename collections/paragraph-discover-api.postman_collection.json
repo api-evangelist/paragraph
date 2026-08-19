@@ -1,0 +1,439 @@
+{
+  "item": [
+    {
+      "id": "457ac8c2-f95a-415e-a38d-c9051bfbe81c",
+      "name": "discover",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "cae1ec36-e811-4671-8357-79d075ea601f",
+          "name": "Search posts",
+          "request": {
+            "name": "Search posts",
+            "description": {
+              "content": "Search for posts across all publications. Returns results ranked by relevance, popularity, and recency.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "discover",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<string>",
+                  "description": "Search query string"
+                },
+                {
+                  "disabled": false,
+                  "key": "blogId",
+                  "value": "<string>",
+                  "description": "Optional publication ID to restrict search to a specific publication"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c0765fb9-0dc8-47ab-9a66-08b001bd8a73",
+              "name": "Post search results",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "discover",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "blogId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"post\": {\n      \"postId\": \"string\",\n      \"blogId\": \"string\",\n      \"createdAt\": \"string\",\n      \"publishedAt\": \"string\",\n      \"title\": \"string\",\n      \"subtitle\": \"string\",\n      \"postPreview\": \"string\",\n      \"coverImageUrl\": \"string\",\n      \"slug\": \"string\",\n      \"coinId\": \"string\"\n    },\n    \"blog\": {\n      \"blogId\": \"string\",\n      \"userId\": \"string\",\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"slug\": \"string\",\n      \"logoUrl\": \"string\",\n      \"coinId\": \"string\",\n      \"customDomain\": \"string\",\n      \"summary\": \"string\"\n    },\n    \"user\": {\n      \"userId\": \"string\",\n      \"name\": \"string\",\n      \"bio\": \"string\",\n      \"avatarUrl\": \"string\",\n      \"walletAddress\": \"string\"\n    }\n  },\n  {\n    \"post\": {\n      \"postId\": \"string\",\n      \"blogId\": \"string\",\n      \"createdAt\": \"string\",\n      \"publishedAt\": \"string\",\n      \"title\": \"string\",\n      \"subtitle\": \"string\",\n      \"postPreview\": \"string\",\n      \"coverImageUrl\": \"string\",\n      \"slug\": \"string\",\n      \"coinId\": \"string\"\n    },\n    \"blog\": {\n      \"blogId\": \"string\",\n      \"userId\": \"string\",\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"slug\": \"string\",\n      \"logoUrl\": \"string\",\n      \"coinId\": \"string\",\n      \"customDomain\": \"string\",\n      \"summary\": \"string\"\n    },\n    \"user\": {\n      \"userId\": \"string\",\n      \"name\": \"string\",\n      \"bio\": \"string\",\n      \"avatarUrl\": \"string\",\n      \"walletAddress\": \"string\"\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bc83adfd-52fb-42e8-8848-6b78486c2906",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "discover",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "blogId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"msg\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cec2689c-9b7d-4a0d-8d54-4424f31da203",
+          "name": "Search publications",
+          "request": {
+            "name": "Search publications",
+            "description": {
+              "content": "Search for publications by name, slug, or description. Returns results ranked by relevance and subscriber count.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "discover",
+                "blogs",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<string>",
+                  "description": "Search query string"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ae059c93-b198-4507-99ed-f0ef705e7bb5",
+              "name": "Publication search results",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "discover",
+                    "blogs",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"blog\": {\n      \"blogId\": \"string\",\n      \"userId\": \"string\",\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"slug\": \"string\",\n      \"logoUrl\": \"string\",\n      \"coinId\": \"string\",\n      \"customDomain\": \"string\",\n      \"summary\": \"string\"\n    },\n    \"user\": {\n      \"userId\": \"string\",\n      \"name\": \"string\",\n      \"bio\": \"string\",\n      \"avatarUrl\": \"string\",\n      \"walletAddress\": \"string\"\n    },\n    \"activeSubscriberCount\": 3473.8523668098765\n  },\n  {\n    \"blog\": {\n      \"blogId\": \"string\",\n      \"userId\": \"string\",\n      \"name\": \"string\",\n      \"url\": \"string\",\n      \"slug\": \"string\",\n      \"logoUrl\": \"string\",\n      \"coinId\": \"string\",\n      \"customDomain\": \"string\",\n      \"summary\": \"string\"\n    },\n    \"user\": {\n      \"userId\": \"string\",\n      \"name\": \"string\",\n      \"bio\": \"string\",\n      \"avatarUrl\": \"string\",\n      \"walletAddress\": \"string\"\n    },\n    \"activeSubscriberCount\": 8969.250614221195\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a6c135bc-e8d4-42a0-9ac1-7ed29f64d8b1",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "discover",
+                    "blogs",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"msg\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a9ea722d-a9c5-46ad-bcc8-4ade6cd33074",
+          "name": "Search coins",
+          "request": {
+            "name": "Search coins",
+            "description": {
+              "content": "Search for writer coins by ticker, contract address, or publication name. Returns results ranked by relevance and subscriber count.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "discover",
+                "coins",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<string>",
+                  "description": "Search query string"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d3f1c385-7787-49eb-9a9e-fda82407b795",
+              "name": "Coin search results",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "discover",
+                    "coins",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"coin\": {\n      \"coinId\": \"string\",\n      \"ticker\": \"string\",\n      \"contractAddress\": \"string\",\n      \"blogId\": \"string\"\n    },\n    \"blog\": {\n      \"blogId\": \"string\",\n      \"name\": \"string\",\n      \"slug\": \"string\",\n      \"logoUrl\": \"string\"\n    },\n    \"activeSubscriberCount\": 8409.397144434975\n  },\n  {\n    \"coin\": {\n      \"coinId\": \"string\",\n      \"ticker\": \"string\",\n      \"contractAddress\": \"string\",\n      \"blogId\": \"string\"\n    },\n    \"blog\": {\n      \"blogId\": \"string\",\n      \"name\": \"string\",\n      \"slug\": \"string\",\n      \"logoUrl\": \"string\"\n    },\n    \"activeSubscriberCount\": 3503.1734685560414\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f229c4c3-7de0-4490-a234-8eb72e290e6c",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "discover",
+                    "coins",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"msg\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://public.api.paragraph.com/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "noauth"
+  },
+  "info": {
+    "_postman_id": "0c6195d3-2277-4f17-aaf7-5d25423b3976",
+    "name": "Paragraph analytics discover API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Public API for interacting with Paragraph publications, posts, users, and coined writing.\n\n## Rate Limiting\nAPI requests are rate-limited to ensure fair usage. Contact support@paragraph.com for higher limits.\n\n## Pagination\nList endpoints support cursor-based pagination using `cursor` and `limit` parameters.\n\nContact Support:\n Name: Paragraph Support\n Email: support@paragraph.com",
+      "type": "text/plain"
+    }
+  }
+}

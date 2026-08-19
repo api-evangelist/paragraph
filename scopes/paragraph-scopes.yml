@@ -1,0 +1,62 @@
+generated: '2026-08-13'
+method: probed
+source: https://paragraph.com/.well-known/oauth-authorization-server
+docs: https://paragraph.com/auth.md
+summary:
+  scope_count: 2
+  granularity: coarse
+  source_of_truth: RFC 8414 / RFC 9728 discovery metadata (NOT the OpenAPI)
+  note: >-
+    The published OpenAPI declares only an HTTP bearer securityScheme (`apiKey`) with no oauth2
+    flows, so `derive-oauth-scopes.py` finds nothing to derive. Paragraph nonetheless publishes
+    scopes in its OAuth discovery documents at paragraph.com, which is where these come from.
+resource:
+  identifier: https://public.api.paragraph.com/api
+  resource_name: Paragraph
+  authorization_servers:
+    - https://paragraph.com
+  bearer_methods_supported:
+    - header
+scopes:
+  - name: api.read
+    description: >-
+      Read access to the publication the user selects during approval — publications, posts,
+      subscribers, coins, analytics, and profile reads.
+    evidence: scopes_supported in both the RFC 8414 and RFC 9728 documents at paragraph.com
+  - name: api.write
+    description: >-
+      Write access to the publication the user selects during approval — create/update/delete
+      posts, add/remove subscribers, send test and custom emails, update publication settings.
+    evidence: scopes_supported in both the RFC 8414 and RFC 9728 documents at paragraph.com
+granularity_caveat: >-
+  Paragraph's own auth.md states plainly: "Paragraph API keys grant read and write access to the
+  publication the user selects during approval. The keys are not currently fine-grained." The two
+  advertised scopes therefore describe the coarse read/write split, not per-resource permissions,
+  and the issued credential is an API key rather than a scoped OAuth access token.
+agent_auth:
+  flow: anonymous registration + user claim
+  skill: https://paragraph.com/auth.md
+  register_uri: https://public.api.paragraph.com/api/v1/api/auth/sessions
+  claim_uri: https://paragraph.com/api/auth
+  identity_types_supported: [anonymous]
+  credential_types_supported: [api_key]
+  credential_transport: 'Authorization: Bearer <api-key>'
+  backing_operations:
+    - createAuthSession   # POST /v1/api/auth/sessions
+    - getAuthSession      # GET  /v1/api/auth/sessions/{sessionId}
+    - deleteAuthSession   # DELETE /v1/api/auth/sessions/{sessionId}
+mcp_authorization_server:
+  issuer: https://mcp.paragraph.com
+  note: >-
+    The hosted MCP endpoint runs a SEPARATE authorization server from the REST API resource, and
+    it advertises NO scopes_supported — authorization is all-or-nothing for the connected account.
+  authorization_endpoint: https://mcp.paragraph.com/authorize
+  token_endpoint: https://mcp.paragraph.com/token
+  registration_endpoint: https://mcp.paragraph.com/register
+  grant_types_supported: [authorization_code, refresh_token]
+  code_challenge_methods_supported: [plain, S256]
+  scopes_supported: []
+cross_ref:
+  - authentication/paragraph-authentication.yml
+  - well-known/paragraph-well-known.yml
+  - mcp/paragraph-mcp.yml

@@ -1,0 +1,303 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Paragraph analytics coins API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "coins",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get coin by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://public.api.paragraph.com/api/v1/coins/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Paragraph-internal unique identifier for the coin"
+              }
+            ]
+          },
+          "docs": "Retrieve information about a tokenized post using its unique ID"
+        },
+        {
+          "info": {
+            "name": "Get coin by contract address",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://public.api.paragraph.com/api/v1/coins/contract/:contractAddress",
+            "params": [
+              {
+                "name": "contractAddress",
+                "value": "",
+                "type": "path",
+                "description": "Contract address"
+              }
+            ]
+          },
+          "docs": "Retrieve information about a tokenized post using its contract address"
+        },
+        {
+          "info": {
+            "name": "List coin holders by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://public.api.paragraph.com/api/v1/coins/:id/holders",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique ID of the coin"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for pagination"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return (1-100, default: 10)"
+              }
+            ]
+          },
+          "docs": "Retrieve a paginated list of holders for a coined post"
+        },
+        {
+          "info": {
+            "name": "List coin holders by contract address",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://public.api.paragraph.com/api/v1/coins/contract/:contractAddress/holders",
+            "params": [
+              {
+                "name": "contractAddress",
+                "value": "",
+                "type": "path",
+                "description": "Contract address"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for pagination"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return (1-100, default: 10)"
+              }
+            ]
+          },
+          "docs": "Retrieve a paginated list of holders for a tokenized post"
+        },
+        {
+          "info": {
+            "name": "Get coin's buy args by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://public.api.paragraph.com/api/v1/coins/buy/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the coin"
+              },
+              {
+                "name": "walletAddress",
+                "value": "",
+                "type": "query",
+                "description": "Address of the wallet that is going to buy the coin"
+              },
+              {
+                "name": "amount",
+                "value": "",
+                "type": "query",
+                "description": "Amount of Base ETH in wei that is going to be swapped for the coin"
+              }
+            ]
+          },
+          "docs": "Retrieve the args needed to buy a coin using a wallet"
+        },
+        {
+          "info": {
+            "name": "Get coin's buy args by contract address",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://public.api.paragraph.com/api/v1/coins/buy/contract/:contractAddress",
+            "params": [
+              {
+                "name": "contractAddress",
+                "value": "",
+                "type": "path",
+                "description": "Contract address of the coin"
+              },
+              {
+                "name": "walletAddress",
+                "value": "",
+                "type": "query",
+                "description": "Address of the wallet that is going to buy the coin"
+              },
+              {
+                "name": "amount",
+                "value": "",
+                "type": "query",
+                "description": "Amount of Base ETH in wei that is going to be swapped for the coin"
+              }
+            ]
+          },
+          "docs": "Retrieve the args needed to buy a coin using a wallet"
+        },
+        {
+          "info": {
+            "name": "Get coin's sell args by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://public.api.paragraph.com/api/v1/coins/sell/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the coin"
+              },
+              {
+                "name": "walletAddress",
+                "value": "",
+                "type": "query",
+                "description": "Address of the wallet that is going to sell the coin"
+              },
+              {
+                "name": "amount",
+                "value": "",
+                "type": "query",
+                "description": "Amount of coin in wei that is going to be swapped to WETH"
+              }
+            ]
+          },
+          "docs": "Retrieve the args needed to sell a coin using a wallet that has it"
+        },
+        {
+          "info": {
+            "name": "Get coin's sell args by contract address",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://public.api.paragraph.com/api/v1/coins/sell/contract/:contractAddress",
+            "params": [
+              {
+                "name": "contractAddress",
+                "value": "",
+                "type": "path",
+                "description": "Contract address of the coin"
+              },
+              {
+                "name": "walletAddress",
+                "value": "",
+                "type": "query",
+                "description": "Address of the wallet that is going to sell the coin"
+              },
+              {
+                "name": "amount",
+                "value": "",
+                "type": "query",
+                "description": "Amount of coin in wei that is going to be swapped to WETH"
+              }
+            ]
+          },
+          "docs": "Retrieve the args needed to sell a coin using a wallet that has it"
+        },
+        {
+          "info": {
+            "name": "Get coin quote by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://public.api.paragraph.com/api/v1/coins/quote/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Paragraph-internal unique identifier for the coin"
+              },
+              {
+                "name": "amount",
+                "value": "",
+                "type": "query",
+                "description": "Amount of Base ETH in wei that is going to be swapped for the coin"
+              }
+            ]
+          },
+          "docs": "Retrieve a quote for the amount of coin in exchange of ETH"
+        },
+        {
+          "info": {
+            "name": "Get coin quote by contract address",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://public.api.paragraph.com/api/v1/coins/quote/contract/:contractAddress",
+            "params": [
+              {
+                "name": "contractAddress",
+                "value": "",
+                "type": "path",
+                "description": "Contract address of the coin"
+              },
+              {
+                "name": "amount",
+                "value": "",
+                "type": "query",
+                "description": "Amount of Base ETH in wei that is going to be swapped for the coin"
+              }
+            ]
+          },
+          "docs": "Retrieve a quote for the amount of the coin in exchange of ETH"
+        },
+        {
+          "info": {
+            "name": "Get popular coins",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://public.api.paragraph.com/api/v1/coins/list/popular"
+          },
+          "docs": "Retrieve popular coins"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

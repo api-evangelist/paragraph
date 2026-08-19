@@ -1,0 +1,405 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Paragraph analytics posts API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "posts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get posts feed",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://public.api.paragraph.com/api/v1/posts/feed",
+            "params": [
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for pagination"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return (1-60, default: 20)"
+              },
+              {
+                "name": "includeContent",
+                "value": "",
+                "type": "query",
+                "description": "Include full content fields (json, staticHtml, markdown) in the post. Default: false"
+              }
+            ]
+          },
+          "docs": "Retrieve a curated, paginated list of posts."
+        },
+        {
+          "info": {
+            "name": "Get posts by tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://public.api.paragraph.com/api/v1/posts/tag/:tag",
+            "params": [
+              {
+                "name": "tag",
+                "value": "",
+                "type": "path",
+                "description": "Tag to filter posts by"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for pagination"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return (1-100, default: 10)"
+              },
+              {
+                "name": "includeContent",
+                "value": "",
+                "type": "query",
+                "description": "Include full content fields (json, staticHtml, markdown) in the post. Default: false"
+              }
+            ]
+          },
+          "docs": "Retrieve a paginated list of posts with a specific tag, sorted by publish date (newest first)"
+        },
+        {
+          "info": {
+            "name": "Get posts in a publication",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://public.api.paragraph.com/api/v1/publications/:publicationId/posts",
+            "params": [
+              {
+                "name": "publicationId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the publication"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for pagination"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return (1-100, default: 10)"
+              },
+              {
+                "name": "includeContent",
+                "value": "",
+                "type": "query",
+                "description": "Include full content fields (markdown, json, staticHtml). Default: false"
+              }
+            ]
+          },
+          "docs": "Retrieve a paginated list of published posts from a publication"
+        },
+        {
+          "info": {
+            "name": "Get post by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://public.api.paragraph.com/api/v1/posts/:postId",
+            "params": [
+              {
+                "name": "postId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the post"
+              },
+              {
+                "name": "includeContent",
+                "value": "",
+                "type": "query",
+                "description": "Include full content fields (markdown, json, staticHtml). Default: false"
+              }
+            ]
+          },
+          "docs": "Retrieve detailed information about a specific post"
+        },
+        {
+          "info": {
+            "name": "Update a post by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://public.api.paragraph.com/api/v1/posts/:postId",
+            "params": [
+              {
+                "name": "postId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the post to update"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Update an existing post in your publication. The publication is identified by the API key provided in the Authorization header.\n\n**Behavior:**\n- Only provided fields are updated; omitted fields remain unchanged\n- When `markdown` is provided, it replaces the full content. Rich blocks (embeds, buttons, callouts) created in the editor will be lost — the markdown to editor conversion is lossy for blocks without a markdown equivalent\n- Set `status` to `\"published\"` to publish a draft, `\"draft\"` to un"
+        },
+        {
+          "info": {
+            "name": "Delete a post",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://public.api.paragraph.com/api/v1/posts/:postId",
+            "params": [
+              {
+                "name": "postId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the post to delete"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Permanently delete a post from your publication. The publication is identified by the API key provided in the Authorization header.\n\n**Warning:** This action is irreversible. The post and all related data (comments, notifications, drafts) will be permanently deleted."
+        },
+        {
+          "info": {
+            "name": "Get post by publication ID and post slug",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://public.api.paragraph.com/api/v1/publications/:publicationId/posts/slug/:postSlug",
+            "params": [
+              {
+                "name": "publicationId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the publication"
+              },
+              {
+                "name": "postSlug",
+                "value": "",
+                "type": "path",
+                "description": "URL-friendly identifier of the post"
+              },
+              {
+                "name": "includeContent",
+                "value": "",
+                "type": "query",
+                "description": "Include full content fields (markdown, json, staticHtml). Default: false"
+              }
+            ]
+          },
+          "docs": "Retrieve a post using its publication ID and its URL-friendly slug"
+        },
+        {
+          "info": {
+            "name": "Get post by publication slug and post slug",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://public.api.paragraph.com/api/v1/publications/slug/:publicationSlug/posts/slug/:postSlug",
+            "params": [
+              {
+                "name": "publicationSlug",
+                "value": "",
+                "type": "path",
+                "description": "URL-friendly identifier of the publication, e.g. 'blog'"
+              },
+              {
+                "name": "postSlug",
+                "value": "",
+                "type": "path",
+                "description": "URL-friendly identifier of the post, e.g. 'my-first-post'"
+              },
+              {
+                "name": "includeContent",
+                "value": "",
+                "type": "query",
+                "description": "Include full content fields (markdown, json, staticHtml). Default: false"
+              }
+            ]
+          },
+          "docs": "Retrieve a post using its publication's slug and the post's slug. This is useful for building user-facing URLs."
+        },
+        {
+          "info": {
+            "name": "List your posts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://public.api.paragraph.com/api/v1/posts",
+            "params": [
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for pagination"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return (1-100, default: 10)"
+              },
+              {
+                "name": "includeContent",
+                "value": "",
+                "type": "query",
+                "description": "Include full content fields (markdown, json, staticHtml). Default: false"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by post status. Default: published"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve a paginated list of posts from your publication. The publication is identified by the API key provided in the Authorization header.\n\nUse the `status` parameter to filter by post status (published, draft, scheduled, or archived). Defaults to published."
+        },
+        {
+          "info": {
+            "name": "Create a new post",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://public.api.paragraph.com/api/v1/posts",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create a new post in your publication. The publication is identified by the API key provided in the Authorization header.\n\n**Requirements:**\n- `title` field is required\n- Provide content as either `markdown` (converted to TipTap JSON) OR `bodyJson` (a Tiptap document for content with buttons/linked images) — exactly one is required, not both\n\n**Behavior:**\n- The post will be created as published by default. Set `status` to `\"draft\"` to create a draft instead\n- If `sendNewsletter` is true, an ema"
+        },
+        {
+          "info": {
+            "name": "Update a post by slug",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://public.api.paragraph.com/api/v1/posts/slug/:slug",
+            "params": [
+              {
+                "name": "slug",
+                "value": "",
+                "type": "path",
+                "description": "URL-friendly identifier of the post to update"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Update an existing post using its URL slug. The publication is identified by the API key provided in the Authorization header.\n\n**Behavior:**\n- Only provided fields are updated; omitted fields remain unchanged\n- When `markdown` is provided, it replaces the full content. Rich blocks (embeds, buttons, callouts) created in the editor will be lost\n- Set `status` to `\"published\"` to publish a draft, `\"draft\"` to unpublish, or `\"archived\"` to archive\n- When editing an already-live post that should rem"
+        },
+        {
+          "info": {
+            "name": "Delete a post by slug",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://public.api.paragraph.com/api/v1/posts/slug/:slug",
+            "params": [
+              {
+                "name": "slug",
+                "value": "",
+                "type": "path",
+                "description": "URL-friendly identifier of the post to delete"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Permanently delete a post using its URL slug. The publication is identified by the API key provided in the Authorization header.\n\n**Warning:** This action is irreversible. The post and all related data (comments, notifications, drafts) will be permanently deleted."
+        },
+        {
+          "info": {
+            "name": "Send a test newsletter email",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://public.api.paragraph.com/api/v1/posts/:postId/test-email",
+            "params": [
+              {
+                "name": "postId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the post to preview"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Sends a test newsletter email for the specified draft post to the publication owner's email address. Useful for previewing how a post will look as a newsletter before publishing. Only works for draft posts."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,110 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Paragraph analytics subscribers API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "subscribers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Import subscribers from CSV",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://public.api.paragraph.com/api/v1/subscribers/import",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Import subscribers from a CSV file into your publication. The publication is identified by the API key provided in the Authorization header.\n\n**File Requirements:**\n- Maximum file size: 10MB\n- Content type: text/csv\n\n**Supported CSV Columns:**\n- Email: `email` or `subscriberEmail` (case-insensitive)\n- Wallet: `wallet_address` (case-insensitive)\n- Created date: `created_at`, `subscription date`, `created`, or `createdAt` (case-insensitive, optional)\n\nAt least one of email or wallet_address must b"
+        },
+        {
+          "info": {
+            "name": "List subscribers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://public.api.paragraph.com/api/v1/subscribers",
+            "params": [
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for pagination"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return (1-100, default: 10)"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve a paginated list of subscribers for your publication. The publication is identified by the API key provided in the Authorization header.\n\n**Response:**\n- Returns subscriber email and/or wallet address\n- Only active subscribers are returned\n- Results are ordered by subscription date (newest first)"
+        },
+        {
+          "info": {
+            "name": "Add a new subscriber",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://public.api.paragraph.com/api/v1/subscribers",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Add a new subscriber to your publication. The publication is identified by the API key provided in the Authorization header.\n\n**Requirements:**\n- At least one of `email` or `wallet` must be provided\n- If both are provided, the subscriber will be associated with both credentials\n\n**Behavior:**\n- If the subscriber already exists (by email or wallet), they will not be duplicated"
+        },
+        {
+          "info": {
+            "name": "Remove a subscriber",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://public.api.paragraph.com/api/v1/subscribers",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Remove a subscriber from your publication. The publication is identified by the API key provided in the Authorization header. Identify the subscriber by email, wallet, or both.\n\n**Requirements:**\n- At least one of `email` or `wallet` must be provided\n- If both are provided, they must resolve to the same subscriber\n\n**Behavior:**\n- The subscription is hard-deleted, mirroring the dashboard's \"remove subscriber\" action"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

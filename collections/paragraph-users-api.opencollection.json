@@ -1,0 +1,56 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Paragraph analytics users API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get user by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://public.api.paragraph.com/api/v1/users/:userId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the user"
+              }
+            ]
+          },
+          "docs": "Retrieve detailed information about a specific user"
+        },
+        {
+          "info": {
+            "name": "Get user by wallet address",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://public.api.paragraph.com/api/v1/users/wallet/:walletAddress",
+            "params": [
+              {
+                "name": "walletAddress",
+                "value": "",
+                "type": "path",
+                "description": "Ethereum wallet address"
+              }
+            ]
+          },
+          "docs": "Retrieve user details using their Ethereum wallet address"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,3857 @@
+{
+  "item": [
+    {
+      "id": "9da92cb9-b694-4bab-bb55-aefc74f3902f",
+      "name": "posts",
+      "description": {
+        "content": "Operations related to posts and content",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c2f32273-aa4e-4ded-89cb-c9771c128d7f",
+          "name": "Get posts feed",
+          "request": {
+            "name": "Get posts feed",
+            "description": {
+              "content": "Retrieve a curated, paginated list of posts.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "posts",
+                "feed"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>",
+                  "description": "Cursor for pagination"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20",
+                  "description": "Maximum number of items to return (1-60, default: 20)"
+                },
+                {
+                  "disabled": false,
+                  "key": "includeContent",
+                  "value": "<boolean>",
+                  "description": "Include full content fields (json, staticHtml, markdown) in the post. Default: false"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "aaa218a4-e336-4e3e-b8df-a82c57870fbd",
+              "name": "Feed items retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "posts",
+                    "feed"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "includeContent",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"post\": {\n        \"id\": \"string\",\n        \"title\": \"string\",\n        \"slug\": \"string\",\n        \"imageUrl\": \"http://UirIcHPXUPflZliBzKzenOu.zovdhpzrM+,LeiRzIflhRIGTA-NEs+oSR0pfeTYkTLqST0KVv+eQsaTo6P3\",\n        \"publishedAt\": \"string\",\n        \"updatedAt\": \"string\",\n        \"subtitle\": \"string\",\n        \"staticHtml\": \"string\",\n        \"json\": \"string\",\n        \"markdown\": \"string\",\n        \"coinId\": \"string\",\n        \"categories\": [\n          \"string\",\n          \"string\"\n        ],\n        \"authors\": [\n          {\n            \"id\": \"string\",\n            \"publicationId\": \"string\",\n            \"walletAddress\": \"0x4396450AcDFEC757FCCaC824cDDEAafCebcFc830\",\n            \"avatarUrl\": \"http://pOBpSWjcLUdLSOYOUOiCJmCjzWQdFWOz.swyzLNUMCcu60f\",\n            \"name\": \"string\",\n            \"bio\": \"string\",\n            \"farcaster\": {\n              \"username\": \"string\",\n              \"displayName\": \"string\",\n              \"fid\": 8192.61072914375\n            }\n          },\n          {\n            \"id\": \"string\",\n            \"publicationId\": \"string\",\n            \"walletAddress\": \"0x36e2C69fB6efAbeC809ABdeFca4a1bA54FE16a9C\",\n            \"avatarUrl\": \"https://mnowGvR.ygekQRnNr0JrpbEkJ1xpqaxfT+W.THTY\",\n            \"name\": \"string\",\n            \"bio\": \"string\",\n            \"farcaster\": {\n              \"username\": \"string\",\n              \"displayName\": \"string\",\n              \"fid\": 8433.343573195654\n            }\n          }\n        ],\n        \"authorIds\": [\n          \"string\",\n          \"string\"\n        ],\n        \"views\": 2282.0640457987897,\n        \"status\": \"archived\"\n      },\n      \"publication\": {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"ownerUserId\": \"string\",\n        \"slug\": \"string\",\n        \"customDomain\": \"https://WzRnhhxVFGuljfRriauszfGEDhe.tanmA0xgOu4GaBi.FNsW4FpnNIgljavm4eA\",\n        \"summary\": \"string\",\n        \"logoUrl\": \"https://VUaAPBOespAyuebpWQjcBVjffbdZoInx.iswC4bkX+5MGGLV2U2y1GSYWB8xR5dT6\",\n        \"postListType\": \"feed\",\n        \"themeColor\": \"rose-600\",\n        \"headerFont\": \"mono\",\n        \"bodyFont\": \"default\",\n        \"showMostPopular\": true,\n        \"hideStats\": true,\n        \"featuredPost\": \"string\",\n        \"disableComments\": false,\n        \"disableHighlights\": false,\n        \"enableTableOfContents\": true,\n        \"enableSubscribePopup\": true,\n        \"enableSubscribeScroll\": true,\n        \"pinnedPostIds\": [\n          \"string\",\n          \"string\"\n        ],\n        \"emailNotifications\": {\n          \"newComment\": false,\n          \"newSubscriber\": true,\n          \"newPaidSubscriber\": true,\n          \"newContentCollected\": true\n        }\n      },\n      \"user\": {\n        \"id\": \"string\",\n        \"publicationId\": \"string\",\n        \"walletAddress\": \"0x90b4F32B8F4FDF9434911Bb03D3baA64C75bf2fa\",\n        \"avatarUrl\": \"https://WrLwYFG.sqvw13ZkgE8YEkQHJrvXTF8EnHgifkWnYCxiQrWpo9sN.YkYEnBLxvljjF,bulK+YsgH\",\n        \"name\": \"string\",\n        \"bio\": \"string\",\n        \"farcaster\": {\n          \"username\": \"string\",\n          \"displayName\": \"string\",\n          \"fid\": 8470.866494240281\n        }\n      }\n    },\n    {\n      \"post\": {\n        \"id\": \"string\",\n        \"title\": \"string\",\n        \"slug\": \"string\",\n        \"imageUrl\": \"https://akOXFhXtZduFOZ.krLHtlGuzXoiglykhB3O537\",\n        \"publishedAt\": \"string\",\n        \"updatedAt\": \"string\",\n        \"subtitle\": \"string\",\n        \"staticHtml\": \"string\",\n        \"json\": \"string\",\n        \"markdown\": \"string\",\n        \"coinId\": \"string\",\n        \"categories\": [\n          \"string\",\n          \"string\"\n        ],\n        \"authors\": [\n          {\n            \"id\": \"string\",\n            \"publicationId\": \"string\",\n            \"walletAddress\": \"0xb02D93dacb91AcA7F932D155FCA1B3e5edca95E8\",\n            \"avatarUrl\": \"https://poSxJAqnVPqvLTJfklpRKROrEr.xynkhd6Zb\",\n            \"name\": \"string\",\n            \"bio\": \"string\",\n            \"farcaster\": {\n              \"username\": \"string\",\n              \"displayName\": \"string\",\n              \"fid\": 8312.444844635429\n            }\n          },\n          {\n            \"id\": \"string\",\n            \"publicationId\": \"string\",\n            \"walletAddress\": \"0xcbe3C6AcE590AD778CCa59a4c72AcFa3EF03b316\",\n            \"avatarUrl\": \"http://ixCjDFJHSxwhHlIlrcyoqO.imjc+\",\n            \"name\": \"string\",\n            \"bio\": \"string\",\n            \"farcaster\": {\n              \"username\": \"string\",\n              \"displayName\": \"string\",\n              \"fid\": 1255.8861546387268\n            }\n          }\n        ],\n        \"authorIds\": [\n          \"string\",\n          \"string\"\n        ],\n        \"views\": 1648.59151583312,\n        \"status\": \"scheduled\"\n      },\n      \"publication\": {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"ownerUserId\": \"string\",\n        \"slug\": \"string\",\n        \"customDomain\": \"https://xwLfovfEjIbcNkkjtUqipJ.lrd,r8\",\n        \"summary\": \"string\",\n        \"logoUrl\": \"http://PhxmkqCvwIdggDUH.qwKSrva,fnsEHZsKn6KhURCReuLKRWTVSkiPFMTTMP\",\n        \"postListType\": \"grid\",\n        \"themeColor\": \"rose-600\",\n        \"headerFont\": \"default\",\n        \"bodyFont\": \"default\",\n        \"showMostPopular\": false,\n        \"hideStats\": false,\n        \"featuredPost\": \"string\",\n        \"disableComments\": true,\n        \"disableHighlights\": false,\n        \"enableTableOfContents\": true,\n        \"enableSubscribePopup\": true,\n        \"enableSubscribeScroll\": false,\n        \"pinnedPostIds\": [\n          \"string\",\n          \"string\"\n        ],\n        \"emailNotifications\": {\n          \"newComment\": true,\n          \"newSubscriber\": true,\n          \"newPaidSubscriber\": false,\n          \"newContentCollected\": true\n        }\n      },\n      \"user\": {\n        \"id\": \"string\",\n        \"publicationId\": \"string\",\n        \"walletAddress\": \"0x8FE51bEd2FeDf5DaFafb0dcDCa72bcF18AffdEf7\",\n        \"avatarUrl\": \"http://PEnPVCHjajIBAHjghzVlkpnItSjMPw.yaHbj,TxMgv3XRzfdFrvxjzhMuaosYCScstlOFY,Nbj4obZqMUetFG.sQY31eiGXWT\",\n        \"name\": \"string\",\n        \"bio\": \"string\",\n        \"farcaster\": {\n          \"username\": \"string\",\n          \"displayName\": \"string\",\n          \"fid\": 8320.917159197861\n        }\n      }\n    }\n  ],\n  \"pagination\": {\n    \"hasMore\": false,\n    \"cursor\": \"string\",\n    \"total\": 2537.4459283660954\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6402ea7c-9dd7-443e-b2d1-860a4cac3a5f",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "posts",
+                    "feed"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "includeContent",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"msg\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9511c352-f179-4e5b-bfa1-74207a13b60d",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "posts",
+                    "feed"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "includeContent",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"msg\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2c7657b3-39cc-41a6-b292-f8ade8c9366d",
+          "name": "Get posts by tag",
+          "request": {
+            "name": "Get posts by tag",
+            "description": {
+              "content": "Retrieve a paginated list of posts with a specific tag, sorted by publish date (newest first)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "posts",
+                "tag",
+                ":tag"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>",
+                  "description": "Cursor for pagination"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Maximum number of items to return (1-100, default: 10)"
+                },
+                {
+                  "disabled": false,
+                  "key": "includeContent",
+                  "value": "<boolean>",
+                  "description": "Include full content fields (json, staticHtml, markdown) in the post. Default: false"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "tag",
+                  "description": "(Required) Tag to filter posts by"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "47261df0-5aa9-48c6-9697-243852b6d7bd",
+              "name": "Posts retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "posts",
+                    "tag",
+                    ":tag"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "includeContent",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tag",
+                      "description": "(Required) Tag to filter posts by"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"id\": \"string\",\n      \"title\": \"string\",\n      \"slug\": \"string\",\n      \"imageUrl\": \"https://mGfqMsMOK.pilaNgdDIUnPV3CkteVtX1\",\n      \"publishedAt\": \"string\",\n      \"updatedAt\": \"string\",\n      \"subtitle\": \"string\",\n      \"staticHtml\": \"string\",\n      \"json\": \"string\",\n      \"markdown\": \"string\",\n      \"coinId\": \"string\",\n      \"categories\": [\n        \"string\",\n        \"string\"\n      ],\n      \"authors\": [\n        {\n          \"id\": \"string\",\n          \"publicationId\": \"string\",\n          \"walletAddress\": \"0x85929BC53b0BF56A8B8560FA980f34a91Cf2Ef23\",\n          \"avatarUrl\": \"https://yZhN.ttmYSDuV.LLqR-f43\",\n          \"name\": \"string\",\n          \"bio\": \"string\",\n          \"farcaster\": {\n            \"username\": \"string\",\n            \"displayName\": \"string\",\n            \"fid\": 2033.4320514447425\n          }\n        },\n        {\n          \"id\": \"string\",\n          \"publicationId\": \"string\",\n          \"walletAddress\": \"0x2E2Dfb854c784Ca2a0E5f4EeCccE5AE1Fe220912\",\n          \"avatarUrl\": \"http://EEDv.vvtJQ69PNnL1CQXnGtfJPb3zmCUy\",\n          \"name\": \"string\",\n          \"bio\": \"string\",\n          \"farcaster\": {\n            \"username\": \"string\",\n            \"displayName\": \"string\",\n            \"fid\": 2871.6728405842764\n          }\n        }\n      ],\n      \"authorIds\": [\n        \"string\",\n        \"string\"\n      ],\n      \"views\": 2566.6894481890768,\n      \"status\": \"archived\"\n    },\n    {\n      \"id\": \"string\",\n      \"title\": \"string\",\n      \"slug\": \"string\",\n      \"imageUrl\": \"http://zZhVkPHhaIOkukhSX.tmdmetuXDGr1tFKYpV\",\n      \"publishedAt\": \"string\",\n      \"updatedAt\": \"string\",\n      \"subtitle\": \"string\",\n      \"staticHtml\": \"string\",\n      \"json\": \"string\",\n      \"markdown\": \"string\",\n      \"coinId\": \"string\",\n      \"categories\": [\n        \"string\",\n        \"string\"\n      ],\n      \"authors\": [\n        {\n          \"id\": \"string\",\n          \"publicationId\": \"string\",\n          \"walletAddress\": \"0xFb984bbDC4cF5e3aFe1B2AC7CC0008A02Bc282a2\",\n          \"avatarUrl\": \"https://okgkbzukyUAKVJxgrE.avbitPH\",\n          \"name\": \"string\",\n          \"bio\": \"string\",\n          \"farcaster\": {\n            \"username\": \"string\",\n            \"displayName\": \"string\",\n            \"fid\": 8838.046557521639\n          }\n        },\n        {\n          \"id\": \"string\",\n          \"publicationId\": \"string\",\n          \"walletAddress\": \"0x7C5F01EE06E9eEa46CB399b428008dCcc8F2d9Aa\",\n          \"avatarUrl\": \"https://gNBZdjeVb.llU6mw5A2i-rDj-ovE99v3L3\",\n          \"name\": \"string\",\n          \"bio\": \"string\",\n          \"farcaster\": {\n            \"username\": \"string\",\n            \"displayName\": \"string\",\n            \"fid\": 3840.995876742306\n          }\n        }\n      ],\n      \"authorIds\": [\n        \"string\",\n        \"string\"\n      ],\n      \"views\": 3955.4756568419025,\n      \"status\": \"published\"\n    }\n  ],\n  \"pagination\": {\n    \"hasMore\": true,\n    \"cursor\": \"string\",\n    \"total\": 7826.299258724546\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "600a0c8f-e815-4ce2-9d42-eb92cdb684a2",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "posts",
+                    "tag",
+                    ":tag"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "includeContent",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tag",
+                      "description": "(Required) Tag to filter posts by"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"msg\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4228f30a-b35a-435e-869c-aca8978395a7",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "posts",
+                    "tag",
+                    ":tag"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "includeContent",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tag",
+                      "description": "(Required) Tag to filter posts by"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"msg\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c4332796-135a-4588-be78-e5b0a8fe8199",
+          "name": "Get posts in a publication",
+          "request": {
+            "name": "Get posts in a publication",
+            "description": {
+              "content": "Retrieve a paginated list of published posts from a publication",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "publications",
+                ":publicationId",
+                "posts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>",
+                  "description": "Cursor for pagination"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Maximum number of items to return (1-100, default: 10)"
+                },
+                {
+                  "disabled": false,
+                  "key": "includeContent",
+                  "value": "<boolean>",
+                  "description": "Include full content fields (markdown, json, staticHtml). Default: false"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "publicationId",
+                  "description": "(Required) Unique identifier of the publication"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "aa056642-da37-4b55-8b7b-abc3dc86f075",
+              "name": "Posts retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "publications",
+                    ":publicationId",
+                    "posts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "includeContent",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "publicationId",
+                      "description": "(Required) Unique identifier of the publication"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"id\": \"string\",\n      \"title\": \"string\",\n      \"slug\": \"string\",\n      \"imageUrl\": \"https://mGfqMsMOK.pilaNgdDIUnPV3CkteVtX1\",\n      \"publishedAt\": \"string\",\n      \"updatedAt\": \"string\",\n      \"subtitle\": \"string\",\n      \"staticHtml\": \"string\",\n      \"json\": \"string\",\n      \"markdown\": \"string\",\n      \"coinId\": \"string\",\n      \"categories\": [\n        \"string\",\n        \"string\"\n      ],\n      \"authors\": [\n        {\n          \"id\": \"string\",\n          \"publicationId\": \"string\",\n          \"walletAddress\": \"0x85929BC53b0BF56A8B8560FA980f34a91Cf2Ef23\",\n          \"avatarUrl\": \"https://yZhN.ttmYSDuV.LLqR-f43\",\n          \"name\": \"string\",\n          \"bio\": \"string\",\n          \"farcaster\": {\n            \"username\": \"string\",\n            \"displayName\": \"string\",\n            \"fid\": 2033.4320514447425\n          }\n        },\n        {\n          \"id\": \"string\",\n          \"publicationId\": \"string\",\n          \"walletAddress\": \"0x2E2Dfb854c784Ca2a0E5f4EeCccE5AE1Fe220912\",\n          \"avatarUrl\": \"http://EEDv.vvtJQ69PNnL1CQXnGtfJPb3zmCUy\",\n          \"name\": \"string\",\n          \"bio\": \"string\",\n          \"farcaster\": {\n            \"username\": \"string\",\n            \"displayName\": \"string\",\n            \"fid\": 2871.6728405842764\n          }\n        }\n      ],\n      \"authorIds\": [\n        \"string\",\n        \"string\"\n      ],\n      \"views\": 2566.6894481890768,\n      \"status\": \"archived\"\n    },\n    {\n      \"id\": \"string\",\n      \"title\": \"string\",\n      \"slug\": \"string\",\n      \"imageUrl\": \"http://zZhVkPHhaIOkukhSX.tmdmetuXDGr1tFKYpV\",\n      \"publishedAt\": \"string\",\n      \"updatedAt\": \"string\",\n      \"subtitle\": \"string\",\n      \"staticHtml\": \"string\",\n      \"json\": \"string\",\n      \"markdown\": \"string\",\n      \"coinId\": \"string\",\n      \"categories\": [\n        \"string\",\n        \"string\"\n      ],\n      \"authors\": [\n        {\n          \"id\": \"string\",\n          \"publicationId\": \"string\",\n          \"walletAddress\": \"0xFb984bbDC4cF5e3aFe1B2AC7CC0008A02Bc282a2\",\n          \"avatarUrl\": \"https://okgkbzukyUAKVJxgrE.avbitPH\",\n          \"name\": \"string\",\n          \"bio\": \"string\",\n          \"farcaster\": {\n            \"username\": \"string\",\n            \"displayName\": \"string\",\n            \"fid\": 8838.046557521639\n          }\n        },\n        {\n          \"id\": \"string\",\n          \"publicationId\": \"string\",\n          \"walletAddress\": \"0x7C5F01EE06E9eEa46CB399b428008dCcc8F2d9Aa\",\n          \"avatarUrl\": \"https://gNBZdjeVb.llU6mw5A2i-rDj-ovE99v3L3\",\n          \"name\": \"string\",\n          \"bio\": \"string\",\n          \"farcaster\": {\n            \"username\": \"string\",\n            \"displayName\": \"string\",\n            \"fid\": 3840.995876742306\n          }\n        }\n      ],\n      \"authorIds\": [\n        \"string\",\n        \"string\"\n      ],\n      \"views\": 3955.4756568419025,\n      \"status\": \"published\"\n    }\n  ],\n  \"pagination\": {\n    \"hasMore\": true,\n    \"cursor\": \"string\",\n    \"total\": 7826.299258724546\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "09349d78-8af3-4257-b40e-2019f46c4115",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "publications",
+                    ":publicationId",
+                    "posts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "includeContent",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "publicationId",
+                      "description": "(Required) Unique identifier of the publication"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"msg\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e803646e-1472-4094-8d15-3fb7c8a630bb",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "publications",
+                    ":publicationId",
+                    "posts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "includeContent",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "publicationId",
+                      "description": "(Required) Unique identifier of the publication"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"msg\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ab11fd46-1e2d-477a-91a9-e88c5485c3c7",
+          "name": "Get post by ID",
+          "request": {
+            "name": "Get post by ID",
+            "description": {
+              "content": "Retrieve detailed information about a specific post",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "posts",
+                ":postId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "includeContent",
+                  "value": "<boolean>",
+                  "description": "Include full content fields (markdown, json, staticHtml). Default: false"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "postId",
+                  "description": "(Required) Unique identifier of the post"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fbe55192-7533-4db7-b699-373d8219bc74",
+              "name": "Post details retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "posts",
+                    ":postId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includeContent",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "postId",
+                      "description": "(Required) Unique identifier of the post"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"title\": \"string\",\n  \"slug\": \"string\",\n  \"imageUrl\": \"https://LioAUORXPOhAhznEQYkZXDnIc.vslmsNEq28TSkzD,B8qlyqxC6GJ57zPjku.8tD2xnYA.H4XFNileMcdEx4nDlPBq.\",\n  \"publishedAt\": \"string\",\n  \"updatedAt\": \"string\",\n  \"subtitle\": \"string\",\n  \"staticHtml\": \"string\",\n  \"json\": \"string\",\n  \"markdown\": \"string\",\n  \"coinId\": \"string\",\n  \"categories\": [\n    \"string\",\n    \"string\"\n  ],\n  \"authors\": [\n    {\n      \"id\": \"string\",\n      \"publicationId\": \"string\",\n      \"walletAddress\": \"0xA5Ef7C790Ad75741Ddb199EFdeBDeaFE4D0cd0a0\",\n      \"avatarUrl\": \"https://MfrKBFXtcUloSRQYvH.xdcyQ6SuV9UaDc2Pzav+wFdH\",\n      \"name\": \"string\",\n      \"bio\": \"string\",\n      \"farcaster\": {\n        \"username\": \"string\",\n        \"displayName\": \"string\",\n        \"fid\": 342.16859193295977\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"publicationId\": \"string\",\n      \"walletAddress\": \"0x934b607CCeFe9Ac36ab5Af3f8B1c197DF1799a8D\",\n      \"avatarUrl\": \"https://iVnXxHouKtdzXsZqfpFKvChke.jleHbFkbtbDRb,0d6ZUn,kjI-T\",\n      \"name\": \"string\",\n      \"bio\": \"string\",\n      \"farcaster\": {\n        \"username\": \"string\",\n        \"displayName\": \"string\",\n        \"fid\": 5728.640562893039\n      }\n    }\n  ],\n  \"authorIds\": [\n    \"string\",\n    \"string\"\n  ],\n  \"views\": 7926.154508884806,\n  \"status\": \"published\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f00f1700-a0ea-46b3-aa75-4af3c91978d7",
+              "name": "Post not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "posts",
+                    ":postId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includeContent",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "postId",
+                      "description": "(Required) Unique identifier of the post"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"msg\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6c33f194-c155-4702-82cd-45cdf439f20f",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "posts",
+                    ":postId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includeContent",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "postId",
+                      "description": "(Required) Unique identifier of the post"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"msg\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "727f38df-07a9-4552-8e00-e03eccdfe745",
+          "name": "Update a post by ID",
+          "request": {
+            "name": "Update a post by ID",
+            "description": {
+              "content": "Update an existing post in your publication. The publication is identified by the API key provided in the Authorization header.\n\n**Behavior:**\n- Only provided fields are updated; omitted fields remain unchanged\n- When `markdown` is provided, it replaces the full content. Rich blocks (embeds, buttons, callouts) created in the editor will be lost — the markdown to editor conversion is lossy for blocks without a markdown equivalent\n- Set `status` to `\"published\"` to publish a draft, `\"draft\"` to unpublish, or `\"archived\"` to archive\n- When editing an already-live post that should remain live, include `status: \"published\"` in the update and verify the returned post status before telling the writer it is live\n- Set `scheduledAt` (Unix timestamp in milliseconds) to schedule a draft's first-publish for a future time. Must be in the future and at most 30 days out. Only valid for posts that haven't been published or already scheduled. Pass `scheduledAt: null` to cancel a previously scheduled publish (or to reschedule: cancel first, then schedule again with the new time). Set `sendNewsletter: true` alongside `scheduledAt` to email subscribers when the post publishes.\n- Set `imageUrl` to update the post's cover/hero image; the URL is fetched, re-hosted, and a placeholder is generated. Pass `clearImage: true` to remove the existing cover.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "posts",
+                ":postId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "postId",
+                  "description": "(Required) Unique identifier of the post to update"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"markdown\": \"<string>\",\n  \"bodyJson\": \"<string>\",\n  \"title\": \"<string>\",\n  \"subtitle\": \"<string>\",\n  \"slug\": \"<string>\",\n  \"postPreview\": \"<string>\",\n  \"categories\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"status\": \"<string>\",\n  \"scheduledAt\": \"<integer,null>\",\n  \"sendNewsletter\": \"<boolean>\",\n  \"publishedAt\": \"<integer>\",\n  \"imageUrl\": \"<uri>\",\n  \"clearImage\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d5c28b35-d641-4dc6-9bbb-fdf884b64a9c",
+              "name": "Post updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "posts",
+                    ":postId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "postId",
+                      "description": "(Required) Unique identifier of the post to update"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"markdown\": \"<string>\",\n  \"bodyJson\": \"<string>\",\n  \"title\": \"<string>\",\n  \"subtitle\": \"<string>\",\n  \"slug\": \"<string>\",\n  \"postPreview\": \"<string>\",\n  \"categories\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"status\": \"<string>\",\n  \"scheduledAt\": \"<integer,null>\",\n  \"sendNewsletter\": \"<boolean>\",\n  \"publishedAt\": \"<integer>\",\n  \"imageUrl\": \"<uri>\",\n  \"clearImage\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "58d23b1b-7c1a-4f4f-ad45-15b40cffd75c",
+              "name": "Invalid request - check field values",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "posts",
+                    ":postId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "postId",
+                      "description": "(Required) Unique identifier of the post to update"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"markdown\": \"<string>\",\n  \"bodyJson\": \"<string>\",\n  \"title\": \"<string>\",\n  \"subtitle\": \"<string>\",\n  \"slug\": \"<string>\",\n  \"postPreview\": \"<string>\",\n  \"categories\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"status\": \"<string>\",\n  \"scheduledAt\": \"<integer,null>\",\n  \"sendNewsletter\": \"<boolean>\",\n  \"publishedAt\": \"<integer>\",\n  \"imageUrl\": \"<uri>\",\n  \"clearImage\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"msg\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6c7349e3-f695-4de3-936a-ab027fad6d69",
+              "name": "Invalid or missing API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "posts",
+                    ":postId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "postId",
+                      "description": "(Required) Unique identifier of the post to update"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"markdown\": \"<string>\",\n  \"bodyJson\": \"<string>\",\n  \"title\": \"<string>\",\n  \"subtitle\": \"<string>\",\n  \"slug\": \"<string>\",\n  \"postPreview\": \"<string>\",\n  \"categories\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"status\": \"<string>\",\n  \"scheduledAt\": \"<integer,null>\",\n  \"sendNewsletter\": \"<boolean>\",\n  \"publishedAt\": \"<integer>\",\n  \"imageUrl\": \"<uri>\",\n  \"clearImage\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"msg\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5098c29a-3794-4545-9e5b-c50e6c332f64",
+              "name": "Post not found in your publication",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "posts",
+                    ":postId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "postId",
+                      "description": "(Required) Unique identifier of the post to update"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"markdown\": \"<string>\",\n  \"bodyJson\": \"<string>\",\n  \"title\": \"<string>\",\n  \"subtitle\": \"<string>\",\n  \"slug\": \"<string>\",\n  \"postPreview\": \"<string>\",\n  \"categories\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"status\": \"<string>\",\n  \"scheduledAt\": \"<integer,null>\",\n  \"sendNewsletter\": \"<boolean>\",\n  \"publishedAt\": \"<integer>\",\n  \"imageUrl\": \"<uri>\",\n  \"clearImage\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"msg\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1f586f30-e08b-4ee2-93cb-0c92e6f9bd17",
+              "name": "Conflict - the body change was refused because you weren't working from the post's current content: either you didn't call get-post before replacing the body, or the writer edited the post in the editor since you read it. Call get-post to read the current version, re-apply your change on it, and retry.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "posts",
+                    ":postId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "postId",
+                      "description": "(Required) Unique identifier of the post to update"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"markdown\": \"<string>\",\n  \"bodyJson\": \"<string>\",\n  \"title\": \"<string>\",\n  \"subtitle\": \"<string>\",\n  \"slug\": \"<string>\",\n  \"postPreview\": \"<string>\",\n  \"categories\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"status\": \"<string>\",\n  \"scheduledAt\": \"<integer,null>\",\n  \"sendNewsletter\": \"<boolean>\",\n  \"publishedAt\": \"<integer>\",\n  \"imageUrl\": \"<uri>\",\n  \"clearImage\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"msg\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3f67a78f-baa7-4794-967d-7b8d55decb9a",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "posts",
+                    ":postId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "postId",
+                      "description": "(Required) Unique identifier of the post to update"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"markdown\": \"<string>\",\n  \"bodyJson\": \"<string>\",\n  \"title\": \"<string>\",\n  \"subtitle\": \"<string>\",\n  \"slug\": \"<string>\",\n  \"postPreview\": \"<string>\",\n  \"categories\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"status\": \"<string>\",\n  \"scheduledAt\": \"<integer,null>\",\n  \"sendNewsletter\": \"<boolean>\",\n  \"publishedAt\": \"<integer>\",\n  \"imageUrl\": \"<uri>\",\n  \"clearImage\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"msg\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "16f59276-9912-42b7-9d94-54a7747cbf39",
+          "name": "Delete a post",
+          "request": {
+            "name": "Delete a post",
+            "description": {
+              "content": "Permanently delete a post from your publication. The publication is identified by the API key provided in the Authorization header.\n\n**Warning:** This action is irreversible. The post and all related data (comments, notifications, drafts) will be permanently deleted.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "posts",
+                ":postId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "postId",
+                  "description": "(Required) Unique identifier of the post to delete"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "dc8ab0a1-b195-4cb0-8d4b-c9261869a77a",
+              "name": "Post deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "posts",
+                    ":postId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "postId",
+                      "description": "(Required) Unique identifier of the post to delete"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "71327607-7902-4c4d-9efb-26b5f562730a",
+              "name": "Invalid or missing API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "posts",
+                    ":postId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "postId",
+                      "description": "(Required) Unique identifier of the post to delete"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"msg\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ea942499-35ba-4e1b-baf0-e06ed2cdc32c",
+              "name": "Post not found in your publication",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "posts",
+                    ":postId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "postId",
+                      "description": "(Required) Unique identifier of the post to delete"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"msg\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "33911f21-46e2-428e-a82b-e2288da93e3c",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "posts",
+                    ":postId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "postId",
+                      "description": "(Required) Unique identifier of the post to delete"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"msg\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1699bdbe-c20c-4337-8e04-1cf48d1decca",
+          "name": "Get post by publication ID and post slug",
+          "request": {
+            "name": "Get post by publication ID and post slug",
+            "description": {
+              "content": "Retrieve a post using its publication ID and its URL-friendly slug",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "publications",
+                ":publicationId",
+                "posts",
+                "slug",
+                ":postSlug"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "includeContent",
+                  "value": "<boolean>",
+                  "description": "Include full content fields (markdown, json, staticHtml). Default: false"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "publicationId",
+                  "description": "(Required) Unique identifier of the publication"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "postSlug",
+                  "description": "(Required) URL-friendly identifier of the post"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "648b0a96-3d89-4d3f-b0a0-87828be11db6",
+              "name": "Post details retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "publications",
+                    ":publicationId",
+                    "posts",
+                    "slug",
+                    ":postSlug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includeContent",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "publicationId",
+                      "description": "(Required) Unique identifier of the publication"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "postSlug",
+                      "description": "(Required) URL-friendly identifier of the post"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"title\": \"string\",\n  \"slug\": \"string\",\n  \"imageUrl\": \"https://LioAUORXPOhAhznEQYkZXDnIc.vslmsNEq28TSkzD,B8qlyqxC6GJ57zPjku.8tD2xnYA.H4XFNileMcdEx4nDlPBq.\",\n  \"publishedAt\": \"string\",\n  \"updatedAt\": \"string\",\n  \"subtitle\": \"string\",\n  \"staticHtml\": \"string\",\n  \"json\": \"string\",\n  \"markdown\": \"string\",\n  \"coinId\": \"string\",\n  \"categories\": [\n    \"string\",\n    \"string\"\n  ],\n  \"authors\": [\n    {\n      \"id\": \"string\",\n      \"publicationId\": \"string\",\n      \"walletAddress\": \"0xA5Ef7C790Ad75741Ddb199EFdeBDeaFE4D0cd0a0\",\n      \"avatarUrl\": \"https://MfrKBFXtcUloSRQYvH.xdcyQ6SuV9UaDc2Pzav+wFdH\",\n      \"name\": \"string\",\n      \"bio\": \"string\",\n      \"farcaster\": {\n        \"username\": \"string\",\n        \"displayName\": \"string\",\n        \"fid\": 342.16859193295977\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"publicationId\": \"string\",\n      \"walletAddress\": \"0x934b607CCeFe9Ac36ab5Af3f8B1c197DF1799a8D\",\n      \"avatarUrl\": \"https://iVnXxHouKtdzXsZqfpFKvChke.jleHbFkbtbDRb,0d6ZUn,kjI-T\",\n      \"name\": \"string\",\n      \"bio\": \"string\",\n      \"farcaster\": {\n        \"username\": \"string\",\n        \"displayName\": \"string\",\n        \"fid\": 5728.640562893039\n      }\n    }\n  ],\n  \"authorIds\": [\n    \"string\",\n    \"string\"\n  ],\n  \"views\": 7926.154508884806,\n  \"status\": \"published\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7622526f-2684-45aa-92c6-9a30e5fc6811",
+              "name": "Post not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "publications",
+                    ":publicationId",
+                    "posts",
+                    "slug",
+                    ":postSlug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includeContent",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "publicationId",
+                      "description": "(Required) Unique identifier of the publication"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "postSlug",
+                      "description": "(Required) URL-friendly identifier of the post"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"msg\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f58e9f58-3113-4b14-ae21-7f47fb35ff0e",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "publications",
+                    ":publicationId",
+                    "posts",
+                    "slug",
+                    ":postSlug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includeContent",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "publicationId",
+                      "description": "(Required) Unique identifier of the publication"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "postSlug",
+                      "description": "(Required) URL-friendly identifier of the post"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"msg\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8b4d7b53-4895-4e92-899f-128e49bb300d",
+          "name": "Get post by publication slug and post slug",
+          "request": {
+            "name": "Get post by publication slug and post slug",
+            "description": {
+              "content": "Retrieve a post using its publication's slug and the post's slug. This is useful for building user-facing URLs.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "publications",
+                "slug",
+                ":publicationSlug",
+                "posts",
+                "slug",
+                ":postSlug"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "includeContent",
+                  "value": "<boolean>",
+                  "description": "Include full content fields (markdown, json, staticHtml). Default: false"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "publicationSlug",
+                  "description": "(Required) URL-friendly identifier of the publication, e.g. 'blog'"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "postSlug",
+                  "description": "(Required) URL-friendly identifier of the post, e.g. 'my-first-post'"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a3786e49-f92f-4114-83f0-ff1774caea69",
+              "name": "Post details retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "publications",
+                    "slug",
+                    ":publicationSlug",
+                    "posts",
+                    "slug",
+                    ":postSlug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includeContent",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "publicationSlug",
+                      "description": "(Required) URL-friendly identifier of the publication, e.g. 'blog'"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "postSlug",
+                      "description": "(Required) URL-friendly identifier of the post, e.g. 'my-first-post'"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"title\": \"string\",\n  \"slug\": \"string\",\n  \"imageUrl\": \"https://LioAUORXPOhAhznEQYkZXDnIc.vslmsNEq28TSkzD,B8qlyqxC6GJ57zPjku.8tD2xnYA.H4XFNileMcdEx4nDlPBq.\",\n  \"publishedAt\": \"string\",\n  \"updatedAt\": \"string\",\n  \"subtitle\": \"string\",\n  \"staticHtml\": \"string\",\n  \"json\": \"string\",\n  \"markdown\": \"string\",\n  \"coinId\": \"string\",\n  \"categories\": [\n    \"string\",\n    \"string\"\n  ],\n  \"authors\": [\n    {\n      \"id\": \"string\",\n      \"publicationId\": \"string\",\n      \"walletAddress\": \"0xA5Ef7C790Ad75741Ddb199EFdeBDeaFE4D0cd0a0\",\n      \"avatarUrl\": \"https://MfrKBFXtcUloSRQYvH.xdcyQ6SuV9UaDc2Pzav+wFdH\",\n      \"name\": \"string\",\n      \"bio\": \"string\",\n      \"farcaster\": {\n        \"username\": \"string\",\n        \"displayName\": \"string\",\n        \"fid\": 342.16859193295977\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"publicationId\": \"string\",\n      \"walletAddress\": \"0x934b607CCeFe9Ac36ab5Af3f8B1c197DF1799a8D\",\n      \"avatarUrl\": \"https://iVnXxHouKtdzXsZqfpFKvChke.jleHbFkbtbDRb,0d6ZUn,kjI-T\",\n      \"name\": \"string\",\n      \"bio\": \"string\",\n      \"farcaster\": {\n        \"username\": \"string\",\n        \"displayName\": \"string\",\n        \"fid\": 5728.640562893039\n      }\n    }\n  ],\n  \"authorIds\": [\n    \"string\",\n    \"string\"\n  ],\n  \"views\": 7926.154508884806,\n  \"status\": \"published\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "469abdec-aaf7-46dd-baef-6df3bab43a2a",
+              "name": "Post not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "publications",
+                    "slug",
+                    ":publicationSlug",
+                    "posts",
+                    "slug",
+                    ":postSlug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includeContent",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "publicationSlug",
+                      "description": "(Required) URL-friendly identifier of the publication, e.g. 'blog'"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "postSlug",
+                      "description": "(Required) URL-friendly identifier of the post, e.g. 'my-first-post'"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"msg\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b0c446bd-ee56-43e8-9b72-e40d0620490a",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "publications",
+                    "slug",
+                    ":publicationSlug",
+                    "posts",
+                    "slug",
+                    ":postSlug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includeContent",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "publicationSlug",
+                      "description": "(Required) URL-friendly identifier of the publication, e.g. 'blog'"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "postSlug",
+                      "description": "(Required) URL-friendly identifier of the post, e.g. 'my-first-post'"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"msg\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2ece9fd7-0ba4-46f3-a108-d9489b8da928",
+          "name": "Create a new post",
+          "request": {
+            "name": "Create a new post",
+            "description": {
+              "content": "Create a new post in your publication. The publication is identified by the API key provided in the Authorization header.\n\n**Requirements:**\n- `title` field is required\n- Provide content as either `markdown` (converted to TipTap JSON) OR `bodyJson` (a Tiptap document for content with buttons/linked images) — exactly one is required, not both\n\n**Behavior:**\n- The post will be created as published by default. Set `status` to `\"draft\"` to create a draft instead\n- If `sendNewsletter` is true, an email will be sent to all subscribers when the post publishes\n- Set `scheduledAt` (Unix timestamp in milliseconds) to schedule first-publish for a future time. Must be in the future and at most 30 days out. Scheduling cannot be combined with `status: \"draft\"`. When scheduled, the response `status` is `\"scheduled\"` and the post publishes (plus sends newsletter, if requested) at the scheduled time.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "posts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"<string>\",\n  \"markdown\": \"<string>\",\n  \"bodyJson\": \"<string>\",\n  \"subtitle\": \"<string>\",\n  \"imageUrl\": \"<uri>\",\n  \"sendNewsletter\": \"<boolean>\",\n  \"status\": \"<string>\",\n  \"slug\": \"<string>\",\n  \"postPreview\": \"<string>\",\n  \"categories\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"scheduledAt\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "49e397d8-7ddc-471d-a4db-cbe5a42575e2",
+              "name": "Post created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "posts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"<string>\",\n  \"markdown\": \"<string>\",\n  \"bodyJson\": \"<string>\",\n  \"subtitle\": \"<string>\",\n  \"imageUrl\": \"<uri>\",\n  \"sendNewsletter\": \"<boolean>\",\n  \"status\": \"<string>\",\n  \"slug\": \"<string>\",\n  \"postPreview\": \"<string>\",\n  \"categories\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"scheduledAt\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"status\": \"draft\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1673f82f-6a9f-48a9-8ef0-bb1913cd0d96",
+              "name": "Invalid request - check required fields",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "posts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"<string>\",\n  \"markdown\": \"<string>\",\n  \"bodyJson\": \"<string>\",\n  \"subtitle\": \"<string>\",\n  \"imageUrl\": \"<uri>\",\n  \"sendNewsletter\": \"<boolean>\",\n  \"status\": \"<string>\",\n  \"slug\": \"<string>\",\n  \"postPreview\": \"<string>\",\n  \"categories\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"scheduledAt\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"msg\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fb9cc340-2e56-4183-877d-fb854dbf7d4d",
+              "name": "Invalid or missing API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "posts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"<string>\",\n  \"markdown\": \"<string>\",\n  \"bodyJson\": \"<string>\",\n  \"subtitle\": \"<string>\",\n  \"imageUrl\": \"<uri>\",\n  \"sendNewsletter\": \"<boolean>\",\n  \"status\": \"<string>\",\n  \"slug\": \"<string>\",\n  \"postPreview\": \"<string>\",\n  \"categories\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"scheduledAt\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"msg\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5a71adfb-d7b4-48fe-ba83-68965fe52803",
+              "name": "Publication not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "posts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"<string>\",\n  \"markdown\": \"<string>\",\n  \"bodyJson\": \"<string>\",\n  \"subtitle\": \"<string>\",\n  \"imageUrl\": \"<uri>\",\n  \"sendNewsletter\": \"<boolean>\",\n  \"status\": \"<string>\",\n  \"slug\": \"<string>\",\n  \"postPreview\": \"<string>\",\n  \"categories\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"scheduledAt\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"msg\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4a9cf75e-ee65-40f4-9b73-fef41589f569",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "posts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"<string>\",\n  \"markdown\": \"<string>\",\n  \"bodyJson\": \"<string>\",\n  \"subtitle\": \"<string>\",\n  \"imageUrl\": \"<uri>\",\n  \"sendNewsletter\": \"<boolean>\",\n  \"status\": \"<string>\",\n  \"slug\": \"<string>\",\n  \"postPreview\": \"<string>\",\n  \"categories\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"scheduledAt\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"msg\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3a9fc7e1-d05e-4dce-a23a-d32727fe691a",
+          "name": "List your posts",
+          "request": {
+            "name": "List your posts",
+            "description": {
+              "content": "Retrieve a paginated list of posts from your publication. The publication is identified by the API key provided in the Authorization header.\n\nUse the `status` parameter to filter by post status (published, draft, scheduled, or archived). Defaults to published.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "posts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>",
+                  "description": "Cursor for pagination"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Maximum number of items to return (1-100, default: 10)"
+                },
+                {
+                  "disabled": false,
+                  "key": "includeContent",
+                  "value": "<boolean>",
+                  "description": "Include full content fields (markdown, json, staticHtml). Default: false"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter by post status. Default: published"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "1b4608bf-58a2-47fd-ae40-796d6a9e7a1f",
+              "name": "Posts retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "posts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "includeContent",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"id\": \"string\",\n      \"title\": \"string\",\n      \"slug\": \"string\",\n      \"imageUrl\": \"https://mGfqMsMOK.pilaNgdDIUnPV3CkteVtX1\",\n      \"publishedAt\": \"string\",\n      \"updatedAt\": \"string\",\n      \"subtitle\": \"string\",\n      \"staticHtml\": \"string\",\n      \"json\": \"string\",\n      \"markdown\": \"string\",\n      \"coinId\": \"string\",\n      \"categories\": [\n        \"string\",\n        \"string\"\n      ],\n      \"authors\": [\n        {\n          \"id\": \"string\",\n          \"publicationId\": \"string\",\n          \"walletAddress\": \"0x85929BC53b0BF56A8B8560FA980f34a91Cf2Ef23\",\n          \"avatarUrl\": \"https://yZhN.ttmYSDuV.LLqR-f43\",\n          \"name\": \"string\",\n          \"bio\": \"string\",\n          \"farcaster\": {\n            \"username\": \"string\",\n            \"displayName\": \"string\",\n            \"fid\": 2033.4320514447425\n          }\n        },\n        {\n          \"id\": \"string\",\n          \"publicationId\": \"string\",\n          \"walletAddress\": \"0x2E2Dfb854c784Ca2a0E5f4EeCccE5AE1Fe220912\",\n          \"avatarUrl\": \"http://EEDv.vvtJQ69PNnL1CQXnGtfJPb3zmCUy\",\n          \"name\": \"string\",\n          \"bio\": \"string\",\n          \"farcaster\": {\n            \"username\": \"string\",\n            \"displayName\": \"string\",\n            \"fid\": 2871.6728405842764\n          }\n        }\n      ],\n      \"authorIds\": [\n        \"string\",\n        \"string\"\n      ],\n      \"views\": 2566.6894481890768,\n      \"status\": \"archived\"\n    },\n    {\n      \"id\": \"string\",\n      \"title\": \"string\",\n      \"slug\": \"string\",\n      \"imageUrl\": \"http://zZhVkPHhaIOkukhSX.tmdmetuXDGr1tFKYpV\",\n      \"publishedAt\": \"string\",\n      \"updatedAt\": \"string\",\n      \"subtitle\": \"string\",\n      \"staticHtml\": \"string\",\n      \"json\": \"string\",\n      \"markdown\": \"string\",\n      \"coinId\": \"string\",\n      \"categories\": [\n        \"string\",\n        \"string\"\n      ],\n      \"authors\": [\n        {\n          \"id\": \"string\",\n          \"publicationId\": \"string\",\n          \"walletAddress\": \"0xFb984bbDC4cF5e3aFe1B2AC7CC0008A02Bc282a2\",\n          \"avatarUrl\": \"https://okgkbzukyUAKVJxgrE.avbitPH\",\n          \"name\": \"string\",\n          \"bio\": \"string\",\n          \"farcaster\": {\n            \"username\": \"string\",\n            \"displayName\": \"string\",\n            \"fid\": 8838.046557521639\n          }\n        },\n        {\n          \"id\": \"string\",\n          \"publicationId\": \"string\",\n          \"walletAddress\": \"0x7C5F01EE06E9eEa46CB399b428008dCcc8F2d9Aa\",\n          \"avatarUrl\": \"https://gNBZdjeVb.llU6mw5A2i-rDj-ovE99v3L3\",\n          \"name\": \"string\",\n          \"bio\": \"string\",\n          \"farcaster\": {\n            \"username\": \"string\",\n            \"displayName\": \"string\",\n            \"fid\": 3840.995876742306\n          }\n        }\n      ],\n      \"authorIds\": [\n        \"string\",\n        \"string\"\n      ],\n      \"views\": 3955.4756568419025,\n      \"status\": \"published\"\n    }\n  ],\n  \"pagination\": {\n    \"hasMore\": true,\n    \"cursor\": \"string\",\n    \"total\": 7826.299258724546\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1b037532-1b37-4375-bb37-d0eba8aa6638",
+              "name": "Invalid or missing API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "posts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "includeContent",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"msg\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e2066861-990a-4741-8dad-2c9835a1caf0",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "posts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "includeContent",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"msg\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3a0e7278-4447-4a99-9763-1bdc617ed840",
+          "name": "Update a post by slug",
+          "request": {
+            "name": "Update a post by slug",
+            "description": {
+              "content": "Update an existing post using its URL slug. The publication is identified by the API key provided in the Authorization header.\n\n**Behavior:**\n- Only provided fields are updated; omitted fields remain unchanged\n- When `markdown` is provided, it replaces the full content. Rich blocks (embeds, buttons, callouts) created in the editor will be lost\n- Set `status` to `\"published\"` to publish a draft, `\"draft\"` to unpublish, or `\"archived\"` to archive\n- When editing an already-live post that should remain live, include `status: \"published\"` in the update and verify the returned post status before telling the writer it is live\n- Set `scheduledAt` (Unix timestamp in milliseconds) to schedule a draft's first-publish for a future time. Must be in the future and at most 30 days out. Only valid for posts that haven't been published or already scheduled. Pass `scheduledAt: null` to cancel a previously scheduled publish (or to reschedule: cancel first, then schedule again with the new time). Set `sendNewsletter: true` alongside `scheduledAt` to email subscribers when the post publishes.\n- Set `imageUrl` to update the post's cover/hero image; the URL is fetched, re-hosted, and a placeholder is generated. Pass `clearImage: true` to remove the existing cover.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "posts",
+                "slug",
+                ":slug"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "slug",
+                  "description": "(Required) URL-friendly identifier of the post to update"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"markdown\": \"<string>\",\n  \"bodyJson\": \"<string>\",\n  \"title\": \"<string>\",\n  \"subtitle\": \"<string>\",\n  \"slug\": \"<string>\",\n  \"postPreview\": \"<string>\",\n  \"categories\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"status\": \"<string>\",\n  \"scheduledAt\": \"<integer,null>\",\n  \"sendNewsletter\": \"<boolean>\",\n  \"publishedAt\": \"<integer>\",\n  \"imageUrl\": \"<uri>\",\n  \"clearImage\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4d3872d2-585d-4729-bd4e-a69a66406bb3",
+              "name": "Post updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "posts",
+                    "slug",
+                    ":slug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "slug",
+                      "description": "(Required) URL-friendly identifier of the post to update"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"markdown\": \"<string>\",\n  \"bodyJson\": \"<string>\",\n  \"title\": \"<string>\",\n  \"subtitle\": \"<string>\",\n  \"slug\": \"<string>\",\n  \"postPreview\": \"<string>\",\n  \"categories\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"status\": \"<string>\",\n  \"scheduledAt\": \"<integer,null>\",\n  \"sendNewsletter\": \"<boolean>\",\n  \"publishedAt\": \"<integer>\",\n  \"imageUrl\": \"<uri>\",\n  \"clearImage\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "135d98f1-ed0d-44c9-8ed9-da761d5ee6a6",
+              "name": "Invalid request - check field values",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "posts",
+                    "slug",
+                    ":slug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "slug",
+                      "description": "(Required) URL-friendly identifier of the post to update"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"markdown\": \"<string>\",\n  \"bodyJson\": \"<string>\",\n  \"title\": \"<string>\",\n  \"subtitle\": \"<string>\",\n  \"slug\": \"<string>\",\n  \"postPreview\": \"<string>\",\n  \"categories\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"status\": \"<string>\",\n  \"scheduledAt\": \"<integer,null>\",\n  \"sendNewsletter\": \"<boolean>\",\n  \"publishedAt\": \"<integer>\",\n  \"imageUrl\": \"<uri>\",\n  \"clearImage\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"msg\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "984e5d0c-7263-449c-9086-32e3e05e18cd",
+              "name": "Invalid or missing API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "posts",
+                    "slug",
+                    ":slug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "slug",
+                      "description": "(Required) URL-friendly identifier of the post to update"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"markdown\": \"<string>\",\n  \"bodyJson\": \"<string>\",\n  \"title\": \"<string>\",\n  \"subtitle\": \"<string>\",\n  \"slug\": \"<string>\",\n  \"postPreview\": \"<string>\",\n  \"categories\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"status\": \"<string>\",\n  \"scheduledAt\": \"<integer,null>\",\n  \"sendNewsletter\": \"<boolean>\",\n  \"publishedAt\": \"<integer>\",\n  \"imageUrl\": \"<uri>\",\n  \"clearImage\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"msg\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7a224a2f-7aec-4b5c-b9bb-e6b932b783fb",
+              "name": "Post not found in your publication",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "posts",
+                    "slug",
+                    ":slug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "slug",
+                      "description": "(Required) URL-friendly identifier of the post to update"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"markdown\": \"<string>\",\n  \"bodyJson\": \"<string>\",\n  \"title\": \"<string>\",\n  \"subtitle\": \"<string>\",\n  \"slug\": \"<string>\",\n  \"postPreview\": \"<string>\",\n  \"categories\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"status\": \"<string>\",\n  \"scheduledAt\": \"<integer,null>\",\n  \"sendNewsletter\": \"<boolean>\",\n  \"publishedAt\": \"<integer>\",\n  \"imageUrl\": \"<uri>\",\n  \"clearImage\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"msg\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "004e6504-9083-4d99-8fdd-86a28fe5e288",
+              "name": "Conflict - the body change was refused because you weren't working from the post's current content: either you didn't call get-post before replacing the body, or the writer edited the post in the editor since you read it. Call get-post to read the current version, re-apply your change on it, and retry.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "posts",
+                    "slug",
+                    ":slug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "slug",
+                      "description": "(Required) URL-friendly identifier of the post to update"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"markdown\": \"<string>\",\n  \"bodyJson\": \"<string>\",\n  \"title\": \"<string>\",\n  \"subtitle\": \"<string>\",\n  \"slug\": \"<string>\",\n  \"postPreview\": \"<string>\",\n  \"categories\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"status\": \"<string>\",\n  \"scheduledAt\": \"<integer,null>\",\n  \"sendNewsletter\": \"<boolean>\",\n  \"publishedAt\": \"<integer>\",\n  \"imageUrl\": \"<uri>\",\n  \"clearImage\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"msg\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cd6f45c5-5c30-471a-867c-4aca6097a2be",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "posts",
+                    "slug",
+                    ":slug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "slug",
+                      "description": "(Required) URL-friendly identifier of the post to update"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"markdown\": \"<string>\",\n  \"bodyJson\": \"<string>\",\n  \"title\": \"<string>\",\n  \"subtitle\": \"<string>\",\n  \"slug\": \"<string>\",\n  \"postPreview\": \"<string>\",\n  \"categories\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"status\": \"<string>\",\n  \"scheduledAt\": \"<integer,null>\",\n  \"sendNewsletter\": \"<boolean>\",\n  \"publishedAt\": \"<integer>\",\n  \"imageUrl\": \"<uri>\",\n  \"clearImage\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"msg\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f2f37774-f121-4b58-8707-83a288c13827",
+          "name": "Delete a post by slug",
+          "request": {
+            "name": "Delete a post by slug",
+            "description": {
+              "content": "Permanently delete a post using its URL slug. The publication is identified by the API key provided in the Authorization header.\n\n**Warning:** This action is irreversible. The post and all related data (comments, notifications, drafts) will be permanently deleted.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "posts",
+                "slug",
+                ":slug"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "slug",
+                  "description": "(Required) URL-friendly identifier of the post to delete"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b209e34c-9037-46fc-aa41-096ea534a20f",
+              "name": "Post deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "posts",
+                    "slug",
+                    ":slug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "slug",
+                      "description": "(Required) URL-friendly identifier of the post to delete"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d084da22-d0aa-4d1f-a563-9f829e314b58",
+              "name": "Invalid or missing API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "posts",
+                    "slug",
+                    ":slug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "slug",
+                      "description": "(Required) URL-friendly identifier of the post to delete"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"msg\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dcca610c-ebd2-4cd8-bfd1-22976b419f4e",
+              "name": "Post not found in your publication",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "posts",
+                    "slug",
+                    ":slug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "slug",
+                      "description": "(Required) URL-friendly identifier of the post to delete"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"msg\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "80b9def0-6115-4d60-8e3f-828f54091430",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "posts",
+                    "slug",
+                    ":slug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "slug",
+                      "description": "(Required) URL-friendly identifier of the post to delete"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"msg\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d6adf8c6-1d59-4fab-acef-b2b650b35d8d",
+          "name": "Send a test newsletter email",
+          "request": {
+            "name": "Send a test newsletter email",
+            "description": {
+              "content": "Sends a test newsletter email for the specified draft post to the publication owner's email address. Useful for previewing how a post will look as a newsletter before publishing. Only works for draft posts.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "posts",
+                ":postId",
+                "test-email"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "postId",
+                  "description": "(Required) Unique identifier of the post to preview"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6e3d2dad-3e72-45ff-a929-024af115e55a",
+              "name": "Test email sent successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "posts",
+                    ":postId",
+                    "test-email"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "postId",
+                      "description": "(Required) Unique identifier of the post to preview"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "278ca6a3-38b0-4201-adbd-18ee48dd3090",
+              "name": "No email associated with the account",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "posts",
+                    ":postId",
+                    "test-email"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "postId",
+                      "description": "(Required) Unique identifier of the post to preview"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"msg\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a0429a9c-28ef-4cf4-b7b7-180898c1a594",
+              "name": "Invalid or missing API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "posts",
+                    ":postId",
+                    "test-email"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "postId",
+                      "description": "(Required) Unique identifier of the post to preview"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"msg\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aa28ffee-a9d2-4b2e-835b-b42187f391bf",
+              "name": "Post not found in your publication",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "posts",
+                    ":postId",
+                    "test-email"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "postId",
+                      "description": "(Required) Unique identifier of the post to preview"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"msg\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "29761158-d3cc-4b5d-b36a-bfab7aee8258",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "posts",
+                    ":postId",
+                    "test-email"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "postId",
+                      "description": "(Required) Unique identifier of the post to preview"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"msg\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://public.api.paragraph.com/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "noauth"
+  },
+  "info": {
+    "_postman_id": "48c6de34-2167-4c8c-8b4f-b726d9ebb18b",
+    "name": "Paragraph analytics posts API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Public API for interacting with Paragraph publications, posts, users, and coined writing.\n\n## Rate Limiting\nAPI requests are rate-limited to ensure fair usage. Contact support@paragraph.com for higher limits.\n\n## Pagination\nList endpoints support cursor-based pagination using `cursor` and `limit` parameters.\n\nContact Support:\n Name: Paragraph Support\n Email: support@paragraph.com",
+      "type": "text/plain"
+    }
+  }
+}

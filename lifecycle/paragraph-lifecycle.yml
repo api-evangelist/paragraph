@@ -1,4 +1,4 @@
-generated: '2026-07-20'
+generated: '2026-08-13'
 method: searched
 source: https://docs.paragraph.com/developers
 versioning:
@@ -7,7 +7,9 @@ versioning:
   docs: https://docs.paragraph.com/api-reference
 stability:
   status: alpha
-  note: The API is in alpha with potential breaking changes pending finalization.
+  note: >-
+    "The API is in alpha. There may be breaking changes until we finalize the design." —
+    https://docs.paragraph.com/developers
 deprecation:
   policy_url: null
   sunset_header: false
@@ -15,8 +17,34 @@ deprecation:
 sla:
   url: null
   uptime_target: null
-status_page: null
+status_page:
+  url: null
+  probed:
+    - url: https://status.paragraph.com
+      status: 200
+      result: >-
+        soft-200 — redirects to https://paragraph.com/ and serves the marketing homepage
+        (byte-identical to the homepage). NOT a status dashboard.
+  note: No status page exists. No StatusPage pointer is emitted.
+changelog:
+  api_changelog_published: false
+  package_releases: changelog/paragraph-changelog.yml
+  probed:
+    - url: https://docs.paragraph.com/changelog
+      status: 404
+    - url: https://paragraph.com/changelog
+      status: 200
+      result: soft-200 — redirects to the marketing homepage
 deprecated_operations: []
+package_currency:
+  sdk: '@paragraph-com/sdk 2.2.1 (2026-05-08)'
+  cli: '@paragraph-com/cli 0.3.1 (2026-05-08)'
+  mcp: '@paragraph-com/mcp 1.5.3 (2026-07-08)'
+  note: All three first-party packages are current relative to the alpha 1.0.0 spec.
 notes: >-
-  No public status page or SLA was found (status.paragraph.com resolves to the marketing site,
-  not a status dashboard). Breaking changes are communicated through the alpha notice in the docs.
+  Re-probed 2026-08-13; unchanged from the previous round. Paragraph publishes no status page,
+  no SLA, no deprecation policy and no API changelog. status.paragraph.com and
+  paragraph.com/changelog both answer 200 with the marketing homepage, which is a wildcard
+  catch-all rather than a served surface — recorded as absences, not presences. Breaking changes
+  are communicated only through the blanket alpha notice in the docs, and the only dated change
+  record is GitHub Releases on the three client repositories.

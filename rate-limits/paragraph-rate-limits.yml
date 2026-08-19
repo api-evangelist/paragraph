@@ -1,0 +1,56 @@
+generated: '2026-08-13'
+method: searched
+source: https://docs.paragraph.com/developers
+limit_count: 0
+published: false
+summary: >-
+  Paragraph confirms in three places that the public REST API is rate-limited, but publishes no
+  number, no window, no scope and no response headers. This is a documented-but-unquantified
+  limit: an agent can learn that throttling exists, and can recognise the SDK's RATE_LIMITED
+  error code, but cannot compute a budget or a backoff from anything Paragraph publishes.
+evidence:
+  - source: https://docs.paragraph.com/developers
+    quote: >-
+      "The API is rate-limited. If you're hitting rate limits and want to request an increase,
+      reach out to support@paragraph.com."
+  - source: openapi/_original/paragraph-openapi-original.json (info.description)
+    quote: >-
+      "## Rate Limiting — API requests are rate-limited to ensure fair usage. Contact
+      support@paragraph.com for higher limits."
+  - source: https://docs.paragraph.com/developers/sdk
+    quote: >-
+      "Error codes: UNAUTHORIZED, FORBIDDEN, NOT_FOUND, RATE_LIMITED, SERVER_ERROR,
+      REQUEST_FAILED, CLIENT_ERROR, UNKNOWN."
+limits: []
+response_headers:
+  documented: []
+  note: >-
+    No X-RateLimit-*, RateLimit-* (draft-ietf-httpapi-ratelimit-headers) or Retry-After header is
+    documented anywhere in the developer docs or the OpenAPI. No 429 response is declared on any
+    of the 45 operations in the published spec — the spec's declared error statuses stop at 400,
+    401, 403, 404, 408, 409, 500 and 503.
+exhaustion:
+  status_code: null
+  documented_status: false
+  sdk_error_code: RATE_LIMITED
+  note: >-
+    The TypeScript SDK and CLI normalise a throttled response to the RATE_LIMITED error code, so
+    the condition is detectable client-side, but the wire status code is not documented and 429 is
+    absent from the OpenAPI.
+increase_process:
+  channel: email
+  contact: support@paragraph.com
+  self_serve: false
+plan_linkage:
+  note: >-
+    The Free plan is described as having "Limited API and MCP access", but the limit is not
+    quantified and no other tier publishes an API quota. See plans/paragraph-plans-pricing.yml.
+gap: >-
+  This is the single highest-value runtime-semantics gap in Paragraph's developer surface:
+  publishing the numeric limit and emitting RateLimit-Limit / RateLimit-Remaining /
+  RateLimit-Reset (or Retry-After) headers plus a declared 429 response would turn an
+  unquantified prose statement into a signal an agent can actually act on.
+cross_ref:
+  - conventions/paragraph-conventions.yml
+  - errors/paragraph-problem-types.yml
+  - plans/paragraph-plans-pricing.yml

@@ -1,18 +1,45 @@
-generated: '2026-07-20'
+generated: '2026-08-13'
 method: searched
 source: https://github.com/paragraph-xyz/skill
+discovery: https://paragraph.com/.well-known/agent-skills/index.json
 note: >-
-  Provider-published Agent Skills (agentskills.io format), saved verbatim from the
-  paragraph-xyz/skill repository. Also advertised via
-  https://paragraph.com/.well-known/agent-skills/index.json
+  Provider-published agent instructions, saved verbatim. The two SKILL.md files follow the
+  agentskills.io format and come from the paragraph-xyz/skill repository; the discovery document
+  at /.well-known/agent-skills/index.json advertises paragraph-cli with a sha256 digest.
+  paragraph-auth-SKILL.md is a third, separately published agent instruction file that the
+  RFC 8414 discovery document points to via its agent_auth.skill field.
+install:
+  all: npx skills add paragraph-xyz/skill
+  one: npx skills add paragraph-xyz/skill --skill paragraph-api
 skills:
   - file: paragraph-api-SKILL.md
     name: paragraph-api
     description: Use the Paragraph REST API or TypeScript SDK to manage posts, publications, subscribers, and coins.
-    api: openapi/paragraph-openapi-original.json
+    api: openapi/_original/paragraph-openapi-original.json
     official: true
+    format: agentskills.io (frontmatter + markdown)
+    install_required: false
   - file: paragraph-cli-SKILL.md
     name: paragraph-cli
     description: Use the Paragraph CLI and MCP server to manage posts, publications, subscribers, and coins.
-    api: openapi/paragraph-openapi-original.json
+    api: openapi/_original/paragraph-openapi-original.json
     official: true
+    format: agentskills.io (frontmatter + markdown)
+    install_required: true
+    install: npm install -g @paragraph-com/cli
+    advertised_at: https://paragraph.com/.well-known/agent-skills/index.json
+    published_url: https://paragraph.com/SKILL.md
+    digest: sha256:68a58c4c97272a961cc9d734e5811ab8b8c796e637348840a65d1e0e8d140f10
+  - file: paragraph-auth-SKILL.md
+    name: paragraph-auth
+    description: >-
+      How an agent registers itself for Paragraph API access — discover the OAuth metadata,
+      POST a registration session, have the user claim and approve it, then use the issued key.
+    source: https://paragraph.com/auth.md
+    official: true
+    format: markdown instructions (no agentskills.io frontmatter)
+    install_required: false
+    referenced_by: https://paragraph.com/.well-known/oauth-authorization-server (agent_auth.skill)
+    fetched: '2026-08-13'
+    http_status: 200
+    content_type: text/markdown

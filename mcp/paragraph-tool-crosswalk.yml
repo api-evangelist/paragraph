@@ -1,0 +1,240 @@
+generated: '2026-08-13'
+method: derived
+source: >-
+  mcp/paragraph-mcp.yml (tool names from https://docs.paragraph.com/developers/mcp and the
+  provider-published paragraph-cli Agent Skill) bound to operationIds in
+  openapi/_original/paragraph-openapi-original.json
+surfaces:
+  openapi:
+    file: openapi/_original/paragraph-openapi-original.json
+    version: OpenAPI 3.1.0
+    base_url: https://public.api.paragraph.com/api
+    operations: 45
+    gated: false
+  mcp:
+    url: https://mcp.paragraph.com/mcp
+    transport: streamable-http
+    gated: true
+    gate: 'HTTP 401 invalid_token on anonymous tools/list and initialize; OAuth required'
+    local_alternative: npx @paragraph-com/mcp (stdio)
+  graphql:
+    present: false
+    note: Paragraph publishes no GraphQL surface.
+confidence_policy: >-
+  The live tools/list manifest is auth-gated, so no binding here was verified against a real
+  inputSchema. Bindings are by name and documented semantics against the published OpenAPI.
+  confidence: high means the tool name and the operationId are an unambiguous 1:1 match and the
+  provider's docs describe the same action; medium means the mapping is by semantics and the tool
+  may accept a polymorphic identifier that also covers sibling operations; low is not used.
+crosswalk:
+  - tool: get-publication
+    category: publications
+    rest: [getPublicationById]
+    binding: direct
+    confidence: medium
+    note: >-
+      The CLI's documented equivalent (`paragraph publication get`) resolves by id, slug OR custom
+      domain, so this tool may also cover getPublicationBySlug and getPublicationByDomain. Not
+      asserted — those two stay in rest_only until the tool's inputSchema can be read.
+  - tool: update-publication
+    category: publications
+    rest: [updatePublication]
+    binding: direct
+    confidence: high
+  - tool: create-post
+    category: posts
+    rest: [createPost]
+    binding: direct
+    confidence: high
+  - tool: update-post
+    category: posts
+    rest: [updatePost]
+    binding: direct
+    confidence: medium
+    note: >-
+      Provider release notes add publishedAt (backdating), imageUrl and clearImage to this tool.
+      It may also cover updatePostBySlug via a polymorphic identifier; not asserted.
+  - tool: delete-post
+    category: posts
+    rest: [deletePost]
+    binding: direct
+    confidence: medium
+    note: May also cover deletePostBySlug via a polymorphic identifier; not asserted.
+  - tool: get-post
+    category: posts
+    rest: [getPostById]
+    binding: direct
+    confidence: medium
+    note: >-
+      May also cover getPostByPublicationIdAndPostSlug / getPostByPublicationSlugAndPostSlug;
+      not asserted.
+  - tool: list-posts
+    category: posts
+    rest: [getPosts]
+    binding: direct
+    confidence: high
+  - tool: send-test-email
+    category: posts
+    rest: [sendTestEmail]
+    binding: direct
+    confidence: high
+  - tool: send-custom-email
+    category: emails
+    rest: [sendCustomEmail]
+    binding: direct
+    confidence: high
+    note: >-
+      The highest-consequence tool on the surface — a markdown email blast to a recipient list.
+      The backing operation is the only one in the spec declaring 403 (publication not eligible)
+      and 503 (temporarily cannot send). Provider states it requires publication approval.
+  - tool: list-subscribers
+    category: subscribers
+    rest: [listSubscribers]
+    binding: direct
+    confidence: high
+  - tool: add-subscriber
+    category: subscribers
+    rest: [addSubscriber]
+    binding: direct
+    confidence: high
+  - tool: remove-subscriber
+    category: subscribers
+    rest: [removeSubscriber]
+    binding: direct
+    confidence: high
+    note: Provider describes it as a hard delete by email or wallet.
+  - tool: get-user
+    category: users
+    rest: [getUser]
+    binding: direct
+    confidence: medium
+    note: May also cover getUserByWallet via a polymorphic identifier; not asserted.
+  - tool: get-me
+    category: me
+    rest: [getMe]
+    binding: direct
+    confidence: high
+  - tool: get-coin
+    category: coins
+    rest: [getCoin]
+    binding: direct
+    confidence: medium
+    note: May also cover getCoinByContract via a polymorphic identifier; not asserted.
+  - tool: list-coin-holders
+    category: coins
+    rest: [getCoinHoldersById]
+    binding: direct
+    confidence: medium
+    note: May also cover getCoinHoldersByContract; not asserted.
+  - tool: search-posts
+    category: search
+    rest: [searchPosts]
+    binding: direct
+    confidence: high
+  - tool: search-blogs
+    category: search
+    rest: [searchBlogs]
+    binding: direct
+    confidence: high
+  - tool: search-coins
+    category: search
+    rest: [searchCoins]
+    binding: direct
+    confidence: high
+  - tool: get-feed
+    category: feed
+    rest: [getPostsFeed]
+    binding: direct
+    confidence: high
+mcp_only: []
+mcp_unnamed:
+  count: 3
+  reason: >-
+    Paragraph states the server exposes 23 tools; 20 are named in its docs and Agent Skill. The
+    remaining 3 cannot be enumerated because anonymous tools/list returns 401. The provider's own
+    category list names "analytics", for which no tool is named, so analytics-query and
+    analytics-schema are the most likely members — recorded as a gap, not as tools.
+rest_only:
+  - operationId: getPublicationBySlug
+    reason: No separately named MCP tool; may be folded into get-publication.
+  - operationId: getPublicationByDomain
+    reason: No separately named MCP tool; may be folded into get-publication.
+  - operationId: getSubscriberCount
+    reason: Exposed in the CLI (`subscriber count`) but no MCP tool is named for it.
+  - operationId: getPostsByTag
+    reason: No named MCP tool.
+  - operationId: getPostByPublicationIdAndPostSlug
+    reason: No separately named MCP tool; may be folded into get-post.
+  - operationId: getPostByPublicationSlugAndPostSlug
+    reason: No separately named MCP tool; may be folded into get-post.
+  - operationId: listOwnPosts
+    reason: No named MCP tool; list-posts binds to the publication-scoped getPosts.
+  - operationId: updatePostBySlug
+    reason: No separately named MCP tool; may be folded into update-post.
+  - operationId: deletePostBySlug
+    reason: No separately named MCP tool; may be folded into delete-post.
+  - operationId: getUserByWallet
+    reason: No separately named MCP tool; may be folded into get-user.
+  - operationId: getCoinByContract
+    reason: No separately named MCP tool; may be folded into get-coin.
+  - operationId: getCoinHoldersByContract
+    reason: No separately named MCP tool; may be folded into list-coin-holders.
+  - operationId: getBuyArgsById
+    reason: On-chain transaction argument builder — no MCP tool named.
+  - operationId: getBuyArgsByContract
+    reason: On-chain transaction argument builder — no MCP tool named.
+  - operationId: getSellArgsById
+    reason: On-chain transaction argument builder — no MCP tool named.
+  - operationId: getSellArgsByContract
+    reason: On-chain transaction argument builder — no MCP tool named.
+  - operationId: getQuoteById
+    reason: Coin price quote — no MCP tool named.
+  - operationId: getQuoteByContract
+    reason: Coin price quote — no MCP tool named.
+  - operationId: getPopularCoins
+    reason: Exposed in the CLI (`coin popular`) but no MCP tool is named for it.
+  - operationId: importSubscribers
+    reason: Bulk import — exposed in the CLI (`subscriber import`) but no MCP tool is named.
+  - operationId: analyticsQuery
+    reason: >-
+      No named MCP tool, though the provider lists "analytics" among the server's categories —
+      a likely member of the 3 unnamed tools.
+  - operationId: analyticsSchema
+    reason: Same as analyticsQuery — likely one of the 3 unnamed tools.
+  - operationId: createAuthSession
+    reason: >-
+      Agent registration flow (see scopes/paragraph-scopes.yml). Deliberately not a tool — an
+      agent calls it over plain HTTP to obtain a credential BEFORE it can use the MCP server.
+  - operationId: getAuthSession
+    reason: Part of the agent registration/claim flow, not a publication capability.
+  - operationId: deleteAuthSession
+    reason: Part of the agent registration/claim flow, not a publication capability.
+coverage:
+  rest_operations: 45
+  mcp_tools_named: 20
+  mcp_tools_provider_stated: 23
+  mcp_tools_unnamed: 3
+  bound_tools: 20
+  bound_rest_operations: 20
+  rest_only: 25
+  mcp_only: 0
+  rest_coverage_by_mcp: '44% (20 of 45 operations reachable via a named MCP tool)'
+  binding_confidence:
+    high: 13
+    medium: 7
+    low: 0
+findings:
+  - >-
+    The two surfaces are NOT equivalent projections. Every named MCP tool has a backing REST
+    operation (mcp_only is empty), but 25 of 45 REST operations have no named tool — the whole
+    coin trading surface (buy/sell argument builders, quotes, popular coins), bulk subscriber
+    import, tag browsing, and every by-slug / by-contract / by-wallet lookup variant.
+  - >-
+    The REST API and the MCP server authenticate against DIFFERENT authorization servers.
+    paragraph.com advertises api.read + api.write for the REST resource; mcp.paragraph.com
+    advertises no scopes at all. An agent granted MCP access therefore holds a coarser grant than
+    one granted REST access, even though the MCP surface is the smaller one.
+cross_ref:
+  - mcp/paragraph-mcp.yml
+  - scopes/paragraph-scopes.yml
+  - agentic-access/paragraph-agentic-access.yml

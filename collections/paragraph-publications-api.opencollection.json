@@ -1,0 +1,121 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Paragraph analytics publications API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "publications",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get publication by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://public.api.paragraph.com/api/v1/publications/:publicationId",
+            "params": [
+              {
+                "name": "publicationId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the publication"
+              }
+            ]
+          },
+          "docs": "Retrieve detailed information about a specific publication"
+        },
+        {
+          "info": {
+            "name": "Update publication settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://public.api.paragraph.com/api/v1/publications/:publicationId",
+            "params": [
+              {
+                "name": "publicationId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the publication to update"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Update settings for a publication. The publication is identified by the API key provided in the Authorization header, and the path `:publicationId` must match the publication that owns the API key.\n\n**Behavior:**\n- Only provided fields are updated; omitted fields remain unchanged\n- Set `featuredPost` to `\"latest\"`, `\"popular\"`, `\"disabled\"`, or a specific post ID. The post must belong to this publication.\n- `pinnedPostIds` replaces the existing pinned list. Pinned posts are hidden from the regul"
+        },
+        {
+          "info": {
+            "name": "Get publication by slug",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://public.api.paragraph.com/api/v1/publications/slug/:slug",
+            "params": [
+              {
+                "name": "slug",
+                "value": "",
+                "type": "path",
+                "description": "URL-friendly identifier of the publication"
+              }
+            ]
+          },
+          "docs": "Retrieve publication details using its URL-friendly slug. Optionally include an @ before the slug."
+        },
+        {
+          "info": {
+            "name": "Get publication by custom domain",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://public.api.paragraph.com/api/v1/publications/domain/:domain",
+            "params": [
+              {
+                "name": "domain",
+                "value": "",
+                "type": "path",
+                "description": "Custom domain of the publication"
+              }
+            ]
+          },
+          "docs": "Retrieve publication details using its custom domain"
+        },
+        {
+          "info": {
+            "name": "Get subscriber count",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://public.api.paragraph.com/api/v1/publications/:publicationId/subscribers/count",
+            "params": [
+              {
+                "name": "publicationId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the publication"
+              }
+            ]
+          },
+          "docs": "Retrieve the total number of subscribers for a publication"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,85 @@
+generated: '2026-08-13'
+method: searched
+source: https://docs.paragraph.com/account/plans-and-credits
+pricing_page: https://paragraph.com/pricing
+plan_count: 5
+currency: USD
+billing_periods: [monthly, annual]
+model: freemium subscription with a monthly agent-credit allowance
+annual_discount: 20% off every paid plan when billed annually
+unit: credits
+unit_definition: >-
+  Credits are consumed by agent work only — drafting and editing posts, research, recurring tasks
+  (weekly digests, social sharing) and image generation. Writing and publishing yourself consumes
+  no credits.
+plans:
+  - name: Free
+    price_monthly: 0
+    price_annual: 0
+    credits_per_month: 500
+    api_access: limited
+    includes:
+      - Hosted website for your writing
+      - Subscriber capture
+      - 500 agent credits per month
+      - Limited API and MCP access
+    note: Permanent — no time limit; site, posts and subscriber list stay on Free.
+  - name: Starter
+    price_monthly: 20
+    price_annual_per_month: 16
+    price_annual_total: 192
+    credits_per_month: 1500
+    includes:
+      - Everything in Free
+      - Full agent access
+      - Custom domain
+      - Posting to X and LinkedIn
+      - Image and video generation
+      - MCP tool connections
+      - Recurring workflows (scheduled tasks)
+      - Email support
+  - name: Growth
+    price_monthly: 100
+    price_annual_per_month: 80
+    price_annual_total: 960
+    credits_per_month: 8500
+    includes:
+      - Everything in Starter
+      - Advanced models for agent work
+      - Bigger job headroom for larger and longer-running tasks
+      - Priority support
+  - name: Scale
+    price_monthly: 200
+    price_annual_per_month: 160
+    price_annual_total: 1920
+    credits_per_month: 17500
+    includes:
+      - Everything in Growth
+      - Advanced analytics
+      - Optional credit top-ups
+  - name: Enterprise
+    price_monthly: null
+    price_annual: null
+    credits_per_month: null
+    pricing: custom
+    contact: hello@paragraph.com
+    includes:
+      - Everything in Scale
+      - Onboarding and deployed engineering support
+      - Migration help
+      - Private Slack channel
+    note: No self-serve checkout; quoted on publishing volume, team and support needs.
+overage:
+  model: credit top-ups
+  availability: Scale plan only
+  price: not published
+  note: >-
+    On plans below Scale credits simply refresh monthly; Paragraph's guidance is to move up a plan
+    rather than buy more. No top-up unit price is published.
+api_limits_by_plan:
+  note: >-
+    The only plan-linked API statement Paragraph publishes is that the Free plan has "Limited API
+    and MCP access". No numeric per-plan API quota, request allowance or rate limit is documented
+    on the pricing page or in the developer docs. See rate-limits/paragraph-rate-limits.yml.
+cross_ref:
+  - rate-limits/paragraph-rate-limits.yml

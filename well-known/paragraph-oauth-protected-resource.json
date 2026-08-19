@@ -1,0 +1,1 @@
+{"resource":"https://public.api.paragraph.com/api","resource_name":"Paragraph","authorization_servers":["https://paragraph.com"],"scopes_supported":["api.read","api.write"],"bearer_methods_supported":["header"]}

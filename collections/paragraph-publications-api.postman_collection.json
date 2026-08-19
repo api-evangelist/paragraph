@@ -1,0 +1,1203 @@
+{
+  "item": [
+    {
+      "id": "e9eec4e9-9855-4a6a-a438-086e4e9da03c",
+      "name": "publications",
+      "description": {
+        "content": "Operations related to publications",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "670fc804-bf53-43a0-a69d-e67017d98111",
+          "name": "Get publication by ID",
+          "request": {
+            "name": "Get publication by ID",
+            "description": {
+              "content": "Retrieve detailed information about a specific publication",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "publications",
+                ":publicationId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "publicationId",
+                  "description": "(Required) Unique identifier of the publication"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "894d6ad9-d1aa-44d8-ae67-a90559a591d5",
+              "name": "Publication details retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "publications",
+                    ":publicationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "publicationId",
+                      "description": "(Required) Unique identifier of the publication"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"ownerUserId\": \"string\",\n  \"slug\": \"string\",\n  \"customDomain\": \"https://ivRXIRVeUozSNnpcNHmlK.qemX7nABl11wHFOtsjq.r9JeCFWoxb65e7\",\n  \"summary\": \"string\",\n  \"logoUrl\": \"http://CAEPj.zccyH,U9-zIoTGv1-oCQR88toYYXsURlBmdgxp1cQEfQ\",\n  \"postListType\": \"grid\",\n  \"themeColor\": \"sky-600\",\n  \"headerFont\": \"mono\",\n  \"bodyFont\": \"serif\",\n  \"showMostPopular\": true,\n  \"hideStats\": false,\n  \"featuredPost\": \"string\",\n  \"disableComments\": false,\n  \"disableHighlights\": true,\n  \"enableTableOfContents\": true,\n  \"enableSubscribePopup\": false,\n  \"enableSubscribeScroll\": false,\n  \"pinnedPostIds\": [\n    \"string\",\n    \"string\"\n  ],\n  \"emailNotifications\": {\n    \"newComment\": false,\n    \"newSubscriber\": true,\n    \"newPaidSubscriber\": false,\n    \"newContentCollected\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "980a6d5c-032f-47dd-bb60-864ce902c2de",
+              "name": "Publication not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "publications",
+                    ":publicationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "publicationId",
+                      "description": "(Required) Unique identifier of the publication"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"msg\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "139985d4-b6c5-49e4-834a-333357f6d567",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "publications",
+                    ":publicationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "publicationId",
+                      "description": "(Required) Unique identifier of the publication"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"msg\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7d7199ca-e074-472d-8b89-9fefff0c8937",
+          "name": "Update publication settings",
+          "request": {
+            "name": "Update publication settings",
+            "description": {
+              "content": "Update settings for a publication. The publication is identified by the API key provided in the Authorization header, and the path `:publicationId` must match the publication that owns the API key.\n\n**Behavior:**\n- Only provided fields are updated; omitted fields remain unchanged\n- Set `featuredPost` to `\"latest\"`, `\"popular\"`, `\"disabled\"`, or a specific post ID. The post must belong to this publication.\n- `pinnedPostIds` replaces the existing pinned list. Pinned posts are hidden from the regular feed (they show in their own section), and unpinned posts return to the feed.\n- `emailNotifications` is merged onto the current settings; only the toggles you send are changed.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "publications",
+                ":publicationId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "publicationId",
+                  "description": "(Required) Unique identifier of the publication to update"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"summary\": \"<string>\",\n  \"postListType\": \"<string>\",\n  \"themeColor\": \"<string>\",\n  \"headerFont\": \"<string>\",\n  \"bodyFont\": \"<string>\",\n  \"showMostPopular\": \"<boolean>\",\n  \"hideStats\": \"<boolean>\",\n  \"featuredPost\": \"<string>\",\n  \"disableComments\": \"<boolean>\",\n  \"disableHighlights\": \"<boolean>\",\n  \"enableTableOfContents\": \"<boolean>\",\n  \"enableSubscribePopup\": \"<boolean>\",\n  \"enableSubscribeScroll\": \"<boolean>\",\n  \"pinnedPostIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"emailNotifications\": {\n    \"newComment\": \"<boolean>\",\n    \"newSubscriber\": \"<boolean>\",\n    \"newPaidSubscriber\": \"<boolean>\",\n    \"newContentCollected\": \"<boolean>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b7dfb11e-7782-44b3-9244-f25dea52d225",
+              "name": "Publication updated successfully — returns the updated publication",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "publications",
+                    ":publicationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "publicationId",
+                      "description": "(Required) Unique identifier of the publication to update"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"summary\": \"<string>\",\n  \"postListType\": \"<string>\",\n  \"themeColor\": \"<string>\",\n  \"headerFont\": \"<string>\",\n  \"bodyFont\": \"<string>\",\n  \"showMostPopular\": \"<boolean>\",\n  \"hideStats\": \"<boolean>\",\n  \"featuredPost\": \"<string>\",\n  \"disableComments\": \"<boolean>\",\n  \"disableHighlights\": \"<boolean>\",\n  \"enableTableOfContents\": \"<boolean>\",\n  \"enableSubscribePopup\": \"<boolean>\",\n  \"enableSubscribeScroll\": \"<boolean>\",\n  \"pinnedPostIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"emailNotifications\": {\n    \"newComment\": \"<boolean>\",\n    \"newSubscriber\": \"<boolean>\",\n    \"newPaidSubscriber\": \"<boolean>\",\n    \"newContentCollected\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"ownerUserId\": \"string\",\n  \"slug\": \"string\",\n  \"customDomain\": \"https://ivRXIRVeUozSNnpcNHmlK.qemX7nABl11wHFOtsjq.r9JeCFWoxb65e7\",\n  \"summary\": \"string\",\n  \"logoUrl\": \"http://CAEPj.zccyH,U9-zIoTGv1-oCQR88toYYXsURlBmdgxp1cQEfQ\",\n  \"postListType\": \"grid\",\n  \"themeColor\": \"sky-600\",\n  \"headerFont\": \"mono\",\n  \"bodyFont\": \"serif\",\n  \"showMostPopular\": true,\n  \"hideStats\": false,\n  \"featuredPost\": \"string\",\n  \"disableComments\": false,\n  \"disableHighlights\": true,\n  \"enableTableOfContents\": true,\n  \"enableSubscribePopup\": false,\n  \"enableSubscribeScroll\": false,\n  \"pinnedPostIds\": [\n    \"string\",\n    \"string\"\n  ],\n  \"emailNotifications\": {\n    \"newComment\": false,\n    \"newSubscriber\": true,\n    \"newPaidSubscriber\": false,\n    \"newContentCollected\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "17adf377-df51-48c5-b309-4ca8e04f4f82",
+              "name": "Invalid request — check field values",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "publications",
+                    ":publicationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "publicationId",
+                      "description": "(Required) Unique identifier of the publication to update"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"summary\": \"<string>\",\n  \"postListType\": \"<string>\",\n  \"themeColor\": \"<string>\",\n  \"headerFont\": \"<string>\",\n  \"bodyFont\": \"<string>\",\n  \"showMostPopular\": \"<boolean>\",\n  \"hideStats\": \"<boolean>\",\n  \"featuredPost\": \"<string>\",\n  \"disableComments\": \"<boolean>\",\n  \"disableHighlights\": \"<boolean>\",\n  \"enableTableOfContents\": \"<boolean>\",\n  \"enableSubscribePopup\": \"<boolean>\",\n  \"enableSubscribeScroll\": \"<boolean>\",\n  \"pinnedPostIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"emailNotifications\": {\n    \"newComment\": \"<boolean>\",\n    \"newSubscriber\": \"<boolean>\",\n    \"newPaidSubscriber\": \"<boolean>\",\n    \"newContentCollected\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"msg\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ac40fe2b-1118-413d-ac90-7e9008648edf",
+              "name": "Invalid or missing API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "publications",
+                    ":publicationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "publicationId",
+                      "description": "(Required) Unique identifier of the publication to update"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"summary\": \"<string>\",\n  \"postListType\": \"<string>\",\n  \"themeColor\": \"<string>\",\n  \"headerFont\": \"<string>\",\n  \"bodyFont\": \"<string>\",\n  \"showMostPopular\": \"<boolean>\",\n  \"hideStats\": \"<boolean>\",\n  \"featuredPost\": \"<string>\",\n  \"disableComments\": \"<boolean>\",\n  \"disableHighlights\": \"<boolean>\",\n  \"enableTableOfContents\": \"<boolean>\",\n  \"enableSubscribePopup\": \"<boolean>\",\n  \"enableSubscribeScroll\": \"<boolean>\",\n  \"pinnedPostIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"emailNotifications\": {\n    \"newComment\": \"<boolean>\",\n    \"newSubscriber\": \"<boolean>\",\n    \"newPaidSubscriber\": \"<boolean>\",\n    \"newContentCollected\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"msg\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "253802a5-c327-43e6-afd3-49a722d8daf3",
+              "name": "API key does not have access to this publication",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "publications",
+                    ":publicationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "publicationId",
+                      "description": "(Required) Unique identifier of the publication to update"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"summary\": \"<string>\",\n  \"postListType\": \"<string>\",\n  \"themeColor\": \"<string>\",\n  \"headerFont\": \"<string>\",\n  \"bodyFont\": \"<string>\",\n  \"showMostPopular\": \"<boolean>\",\n  \"hideStats\": \"<boolean>\",\n  \"featuredPost\": \"<string>\",\n  \"disableComments\": \"<boolean>\",\n  \"disableHighlights\": \"<boolean>\",\n  \"enableTableOfContents\": \"<boolean>\",\n  \"enableSubscribePopup\": \"<boolean>\",\n  \"enableSubscribeScroll\": \"<boolean>\",\n  \"pinnedPostIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"emailNotifications\": {\n    \"newComment\": \"<boolean>\",\n    \"newSubscriber\": \"<boolean>\",\n    \"newPaidSubscriber\": \"<boolean>\",\n    \"newContentCollected\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"msg\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3dda25f6-7567-4388-805d-002794ef0721",
+              "name": "Publication not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "publications",
+                    ":publicationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "publicationId",
+                      "description": "(Required) Unique identifier of the publication to update"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"summary\": \"<string>\",\n  \"postListType\": \"<string>\",\n  \"themeColor\": \"<string>\",\n  \"headerFont\": \"<string>\",\n  \"bodyFont\": \"<string>\",\n  \"showMostPopular\": \"<boolean>\",\n  \"hideStats\": \"<boolean>\",\n  \"featuredPost\": \"<string>\",\n  \"disableComments\": \"<boolean>\",\n  \"disableHighlights\": \"<boolean>\",\n  \"enableTableOfContents\": \"<boolean>\",\n  \"enableSubscribePopup\": \"<boolean>\",\n  \"enableSubscribeScroll\": \"<boolean>\",\n  \"pinnedPostIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"emailNotifications\": {\n    \"newComment\": \"<boolean>\",\n    \"newSubscriber\": \"<boolean>\",\n    \"newPaidSubscriber\": \"<boolean>\",\n    \"newContentCollected\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"msg\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "797e9b74-05d0-4b43-921f-80f48ac26ed7",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "publications",
+                    ":publicationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "publicationId",
+                      "description": "(Required) Unique identifier of the publication to update"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"summary\": \"<string>\",\n  \"postListType\": \"<string>\",\n  \"themeColor\": \"<string>\",\n  \"headerFont\": \"<string>\",\n  \"bodyFont\": \"<string>\",\n  \"showMostPopular\": \"<boolean>\",\n  \"hideStats\": \"<boolean>\",\n  \"featuredPost\": \"<string>\",\n  \"disableComments\": \"<boolean>\",\n  \"disableHighlights\": \"<boolean>\",\n  \"enableTableOfContents\": \"<boolean>\",\n  \"enableSubscribePopup\": \"<boolean>\",\n  \"enableSubscribeScroll\": \"<boolean>\",\n  \"pinnedPostIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"emailNotifications\": {\n    \"newComment\": \"<boolean>\",\n    \"newSubscriber\": \"<boolean>\",\n    \"newPaidSubscriber\": \"<boolean>\",\n    \"newContentCollected\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"msg\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "31556c4d-5b3c-4a0d-85cd-560ed0115563",
+          "name": "Get publication by slug",
+          "request": {
+            "name": "Get publication by slug",
+            "description": {
+              "content": "Retrieve publication details using its URL-friendly slug. Optionally include an @ before the slug.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "publications",
+                "slug",
+                ":slug"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "slug",
+                  "description": "(Required) URL-friendly identifier of the publication"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3984e4e0-9e30-4673-be4b-1916be5ff6d5",
+              "name": "Publication details retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "publications",
+                    "slug",
+                    ":slug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "slug",
+                      "description": "(Required) URL-friendly identifier of the publication"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"ownerUserId\": \"string\",\n  \"slug\": \"string\",\n  \"customDomain\": \"https://ivRXIRVeUozSNnpcNHmlK.qemX7nABl11wHFOtsjq.r9JeCFWoxb65e7\",\n  \"summary\": \"string\",\n  \"logoUrl\": \"http://CAEPj.zccyH,U9-zIoTGv1-oCQR88toYYXsURlBmdgxp1cQEfQ\",\n  \"postListType\": \"grid\",\n  \"themeColor\": \"sky-600\",\n  \"headerFont\": \"mono\",\n  \"bodyFont\": \"serif\",\n  \"showMostPopular\": true,\n  \"hideStats\": false,\n  \"featuredPost\": \"string\",\n  \"disableComments\": false,\n  \"disableHighlights\": true,\n  \"enableTableOfContents\": true,\n  \"enableSubscribePopup\": false,\n  \"enableSubscribeScroll\": false,\n  \"pinnedPostIds\": [\n    \"string\",\n    \"string\"\n  ],\n  \"emailNotifications\": {\n    \"newComment\": false,\n    \"newSubscriber\": true,\n    \"newPaidSubscriber\": false,\n    \"newContentCollected\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a9368e91-1212-4491-9cdf-a5e9f9c6930d",
+              "name": "Publication not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "publications",
+                    "slug",
+                    ":slug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "slug",
+                      "description": "(Required) URL-friendly identifier of the publication"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"msg\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cf19d90b-29c3-401a-a425-3bee5486a638",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "publications",
+                    "slug",
+                    ":slug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "slug",
+                      "description": "(Required) URL-friendly identifier of the publication"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"msg\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d9470d31-5fd0-4669-b881-eac2dab55b28",
+          "name": "Get publication by custom domain",
+          "request": {
+            "name": "Get publication by custom domain",
+            "description": {
+              "content": "Retrieve publication details using its custom domain",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "publications",
+                "domain",
+                ":domain"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "domain",
+                  "description": "(Required) Custom domain of the publication"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b1c41aae-9755-4c01-9a90-194fca265ad1",
+              "name": "Publication details retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "publications",
+                    "domain",
+                    ":domain"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "domain",
+                      "description": "(Required) Custom domain of the publication"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"ownerUserId\": \"string\",\n  \"slug\": \"string\",\n  \"customDomain\": \"https://ivRXIRVeUozSNnpcNHmlK.qemX7nABl11wHFOtsjq.r9JeCFWoxb65e7\",\n  \"summary\": \"string\",\n  \"logoUrl\": \"http://CAEPj.zccyH,U9-zIoTGv1-oCQR88toYYXsURlBmdgxp1cQEfQ\",\n  \"postListType\": \"grid\",\n  \"themeColor\": \"sky-600\",\n  \"headerFont\": \"mono\",\n  \"bodyFont\": \"serif\",\n  \"showMostPopular\": true,\n  \"hideStats\": false,\n  \"featuredPost\": \"string\",\n  \"disableComments\": false,\n  \"disableHighlights\": true,\n  \"enableTableOfContents\": true,\n  \"enableSubscribePopup\": false,\n  \"enableSubscribeScroll\": false,\n  \"pinnedPostIds\": [\n    \"string\",\n    \"string\"\n  ],\n  \"emailNotifications\": {\n    \"newComment\": false,\n    \"newSubscriber\": true,\n    \"newPaidSubscriber\": false,\n    \"newContentCollected\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c472f1d6-f6f1-4384-946b-992b30068847",
+              "name": "Publication not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "publications",
+                    "domain",
+                    ":domain"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "domain",
+                      "description": "(Required) Custom domain of the publication"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"msg\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0d6c1c53-04db-4640-ae2a-abfd9ce3f7f2",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "publications",
+                    "domain",
+                    ":domain"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "domain",
+                      "description": "(Required) Custom domain of the publication"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"msg\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dd77ec9e-a298-4eb0-96bb-47afeb438949",
+          "name": "Get subscriber count",
+          "request": {
+            "name": "Get subscriber count",
+            "description": {
+              "content": "Retrieve the total number of subscribers for a publication",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "publications",
+                ":publicationId",
+                "subscribers",
+                "count"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "publicationId",
+                  "description": "(Required) Unique identifier of the publication"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "873b46df-7f91-4d36-95a3-15cd98f9115f",
+              "name": "Subscriber count retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "publications",
+                    ":publicationId",
+                    "subscribers",
+                    "count"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "publicationId",
+                      "description": "(Required) Unique identifier of the publication"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 5527.424199683885\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9c57abc9-e736-4645-b535-58d46d6125ea",
+              "name": "Publication not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "publications",
+                    ":publicationId",
+                    "subscribers",
+                    "count"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "publicationId",
+                      "description": "(Required) Unique identifier of the publication"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"msg\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "17b450ee-2bcf-41df-8cb7-65c4a242e22d",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "publications",
+                    ":publicationId",
+                    "subscribers",
+                    "count"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "publicationId",
+                      "description": "(Required) Unique identifier of the publication"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"msg\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://public.api.paragraph.com/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "noauth"
+  },
+  "info": {
+    "_postman_id": "5d4c3617-816e-475f-aef3-30499cb0d863",
+    "name": "Paragraph analytics publications API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Public API for interacting with Paragraph publications, posts, users, and coined writing.\n\n## Rate Limiting\nAPI requests are rate-limited to ensure fair usage. Contact support@paragraph.com for higher limits.\n\n## Pagination\nList endpoints support cursor-based pagination using `cursor` and `limit` parameters.\n\nContact Support:\n Name: Paragraph Support\n Email: support@paragraph.com",
+      "type": "text/plain"
+    }
+  }
+}

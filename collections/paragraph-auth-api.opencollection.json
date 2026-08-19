@@ -1,0 +1,71 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Paragraph analytics auth API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "auth",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create an API auth session",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://public.api.paragraph.com/api/v1/api/auth/sessions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new browser-based auth session for CLI or other API clients. The returned verification URL should be opened in the user's browser to complete authentication."
+        },
+        {
+          "info": {
+            "name": "Poll an API auth session",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://public.api.paragraph.com/api/v1/api/auth/sessions/:sessionId",
+            "params": [
+              {
+                "name": "sessionId",
+                "value": "",
+                "type": "path",
+                "description": "Session ID returned from create"
+              }
+            ]
+          },
+          "docs": "Poll the status of an auth session. Returns the API key once the session has been approved in the browser."
+        },
+        {
+          "info": {
+            "name": "Deny an API auth session",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://public.api.paragraph.com/api/v1/api/auth/sessions/:sessionId",
+            "params": [
+              {
+                "name": "sessionId",
+                "value": "",
+                "type": "path",
+                "description": "Session ID to deny"
+              }
+            ]
+          },
+          "docs": "Cancels a pending auth session. Only pending sessions can be denied."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

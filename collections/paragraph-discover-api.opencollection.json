@@ -1,0 +1,81 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Paragraph analytics discover API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "discover",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search posts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://public.api.paragraph.com/api/v1/discover/search",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Search query string"
+              },
+              {
+                "name": "blogId",
+                "value": "",
+                "type": "query",
+                "description": "Optional publication ID to restrict search to a specific publication"
+              }
+            ]
+          },
+          "docs": "Search for posts across all publications. Returns results ranked by relevance, popularity, and recency."
+        },
+        {
+          "info": {
+            "name": "Search publications",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://public.api.paragraph.com/api/v1/discover/blogs/search",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Search query string"
+              }
+            ]
+          },
+          "docs": "Search for publications by name, slug, or description. Returns results ranked by relevance and subscriber count."
+        },
+        {
+          "info": {
+            "name": "Search coins",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://public.api.paragraph.com/api/v1/discover/coins/search",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Search query string"
+              }
+            ]
+          },
+          "docs": "Search for writer coins by ticker, contract address, or publication name. Returns results ranked by relevance and subscriber count."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

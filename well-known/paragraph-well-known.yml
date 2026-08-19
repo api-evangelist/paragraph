@@ -1,26 +1,106 @@
-generated: '2026-07-20'
-method: searched
+generated: '2026-08-13'
+method: probed
+source: live GET probes of every apis.yml + OpenAPI servers[] host
 hosts:
   - host: https://paragraph.com
     documents:
       - path: /.well-known/agent-skills/index.json   # Agent Skills Discovery RFC 0.2.0
         status: 200
+        content_type: application/json
         file: paragraph-agent-skills-index.json
-      - path: /.well-known/security.txt              # RFC 9116
-        status: 500
-      - path: /.well-known/openid-configuration       # OIDC discovery
+      - path: /.well-known/oauth-authorization-server # RFC 8414
+        status: 200
+        content_type: application/json
+        file: paragraph-oauth-authorization-server.json
+        note: >-
+          Declares issuer https://paragraph.com, resource https://public.api.paragraph.com/api,
+          scopes api.read + api.write, and a non-standard agent_auth block pointing at
+          https://paragraph.com/auth.md with an anonymous api_key registration flow.
+      - path: /.well-known/oauth-protected-resource   # RFC 9728
+        status: 200
+        content_type: application/json
+        file: paragraph-oauth-protected-resource.json
+      - path: /robots.txt                             # not a /.well-known path; captured for the Content-Signal header
+        status: 200
+        content_type: text/plain
+        file: paragraph-robots.txt
+        note: >-
+          Carries a contentsignals.org declaration — "Content-Signal: search=yes, ai-input=yes,
+          ai-train=no" — applied to * plus GPTBot, OAI-SearchBot, ChatGPT-User, ClaudeBot,
+          Claude-Web, anthropic-ai, PerplexityBot, meta-externalagent, Amazonbot, cohere-ai, YouBot.
+      - path: /.well-known/security.txt               # RFC 9116
         status: 404
-      - path: /.well-known/api-catalog                 # RFC 9727
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/api-catalog                # RFC 9727
         status: 404
       - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /.well-known/agent-card.json            # A2A
+        status: 404
+      - path: /.well-known/agent.json                 # A2A legacy
+        status: 404
+  - host: https://mcp.paragraph.com
+    documents:
+      - path: /.well-known/oauth-authorization-server
+        status: 200
+        content_type: application/json
+        file: paragraph-mcp-oauth-authorization-server.json
+        note: >-
+          Full OAuth 2.1 authorization server for the hosted MCP endpoint — authorize/token/register
+          endpoints, PKCE S256, authorization_code + refresh_token, and RFC 7591 dynamic client
+          registration.
+      - path: /.well-known/oauth-protected-resource
+        status: 200
+        content_type: application/json
+        file: paragraph-mcp-oauth-protected-resource.json
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
         status: 404
   - host: https://public.api.paragraph.com
     documents:
       - path: /.well-known/security.txt
         status: 404
-      - path: /.well-known/oauth-authorization-server  # RFC 8414
+      - path: /.well-known/oauth-authorization-server
         status: 404
+      - path: /.well-known/oauth-protected-resource
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+  - host: https://docs.paragraph.com
+    documents:
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+  - host: https://app.paragraph.com
+    documents:
+      - path: /.well-known/agent-card.json
+        status: 200
+        content_type: text/html
+        rejected: true
+        note: >-
+          NOT a document. The Next.js app answers 200 with the same HTML shell for every
+          /.well-known/* path; the body is an SPA, not an AgentCard. Recorded as a miss.
+      - path: /.well-known/agent.json
+        status: 200
+        content_type: text/html
+        rejected: true
+        note: Same SPA catch-all shell as above.
 notes: >-
-  Paragraph publishes an Agent Skills Discovery document at
-  https://paragraph.com/.well-known/agent-skills/index.json (agentskills.io schema 0.2.0)
-  advertising the paragraph-cli skill-md. No security.txt, OIDC, or api-catalog documents are served.
+  Since the 2026-07-20 round Paragraph has begun serving OAuth 2.0 discovery metadata on two
+  hosts: RFC 8414 + RFC 9728 documents at paragraph.com for the REST API resource, and a full
+  authorization server (with dynamic client registration) at mcp.paragraph.com for the hosted
+  MCP endpoint. Neither existed on the previous probe. No security.txt, OIDC discovery,
+  api-catalog, ai-plugin.json, or A2A agent card is served on any host.

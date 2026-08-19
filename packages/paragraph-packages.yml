@@ -1,31 +1,56 @@
-generated: '2026-07-20'
+generated: '2026-08-13'
 method: searched
 source: https://docs.paragraph.com/developers
+registry_checked: '2026-08-13'
 packages:
   - language: javascript
     registry: npm
     name: "@paragraph-com/sdk"
     url: https://www.npmjs.com/package/@paragraph-com/sdk
+    repository: https://github.com/paragraph-xyz/paragraph-sdk-js
     install: npm install @paragraph-com/sdk
     official: true
     kind: sdk
+    version: 2.2.1
+    published: '2026-05-08'
+    first_published: '2025-12-16'
+    release_count: 16
     description: Official TypeScript SDK for the Paragraph REST API — query publications, posts, coins, and user profiles with full type safety.
+    note: >-
+      Read from registry.npmjs.org on 2026-08-13. This repository also hosts the canonical
+      published OpenAPI (openapi.json) that the developer docs link to.
   - language: javascript
     registry: npm
     name: "@paragraph-com/cli"
     url: https://www.npmjs.com/package/@paragraph-com/cli
+    repository: https://github.com/paragraph-xyz/paragraph-cli
     install: npm install -g @paragraph-com/cli
     official: true
     kind: cli
+    version: 0.3.1
+    published: '2026-05-08'
+    first_published: '2026-03-26'
+    release_count: 9
+    license: MIT
     description: Official Paragraph command-line interface — manage posts, publications, subscribers, and coins. Built for humans, agents, and CI.
+    note: Read from registry.npmjs.org on 2026-08-13. Still pre-1.0.
   - language: javascript
     registry: npm
     name: "@paragraph-com/mcp"
     url: https://www.npmjs.com/package/@paragraph-com/mcp
+    repository: https://github.com/paragraph-xyz/paragraph-mcp
     install: npx @paragraph-com/mcp
     official: true
     kind: mcp-server
+    version: 1.5.3
+    published: '2026-07-08'
+    first_published: '2026-03-27'
+    release_count: 17
+    license: MIT
     description: Official Paragraph Model Context Protocol server (stdio / optional HTTP) — connects AI agents to the Paragraph API.
+    note: >-
+      Read from registry.npmjs.org on 2026-08-13. The most recently released of the three
+      first-party packages — the MCP surface is the one Paragraph is actively moving.
   - language: shell
     registry: homebrew
     name: paragraph
@@ -33,4 +58,15 @@ packages:
     install: brew tap paragraph-xyz/tap && brew install paragraph
     official: true
     kind: cli
-    description: Homebrew distribution of the Paragraph CLI (no Node.js required).
+    version: null
+    published: null
+    note: >-
+      Checked 2026-08-13 — a Homebrew tap has no registry metadata endpoint to query, and the tap
+      repository publishes no releases. The formula tracks the npm CLI package, whose current
+      version is 0.3.1 (2026-05-08); the tap repo itself was last pushed 2026-05-08. Recorded as
+      null rather than guessed.
+currency_read: >-
+  All three npm packages were last published within a three-month window (2026-05-08 to
+  2026-07-08) against an API whose spec is version 1.0.0 and self-described as alpha. Nothing here
+  shows abandonment: the SDK and CLI moved together on 2026-05-08 and the MCP server shipped a
+  feature release on 2026-07-08, after both.
