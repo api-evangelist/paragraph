@@ -45,6 +45,14 @@ tags:
 - Content
 - Blogging
 - Creator Economy
+tags_raw:
+- Company
+- Publishing
+- Newsletters
+- Web3
+- Content
+- Blogging
+- Creator Economy
 - API
 maintainers:
 - FN: Kin Lane
@@ -58,6 +66,8 @@ apis:
   humanURL: https://docs.paragraph.com/developers
   baseURL: https://public.api.paragraph.com/api
   tags:
+  - Analytics
+  tags_raw:
   - analytics
   properties:
   - type: OpenAPI
@@ -72,6 +82,8 @@ apis:
   humanURL: https://docs.paragraph.com/developers
   baseURL: https://public.api.paragraph.com/api
   tags:
+  - Authentication
+  tags_raw:
   - auth
   properties:
   - type: OpenAPI
@@ -86,6 +98,8 @@ apis:
   humanURL: https://docs.paragraph.com/developers
   baseURL: https://public.api.paragraph.com/api
   tags:
+  - Coins
+  tags_raw:
   - coins
   properties:
   - type: OpenAPI
@@ -100,6 +114,8 @@ apis:
   humanURL: https://docs.paragraph.com/developers
   baseURL: https://public.api.paragraph.com/api
   tags:
+  - Discover
+  tags_raw:
   - discover
   properties:
   - type: OpenAPI
@@ -114,6 +130,8 @@ apis:
   humanURL: https://docs.paragraph.com/developers
   baseURL: https://public.api.paragraph.com/api
   tags:
+  - Emails
+  tags_raw:
   - emails
   properties:
   - type: OpenAPI
@@ -128,6 +146,8 @@ apis:
   humanURL: https://docs.paragraph.com/developers
   baseURL: https://public.api.paragraph.com/api
   tags:
+  - Me
+  tags_raw:
   - me
   properties:
   - type: OpenAPI
@@ -142,6 +162,8 @@ apis:
   humanURL: https://docs.paragraph.com/developers
   baseURL: https://public.api.paragraph.com/api
   tags:
+  - Posts
+  tags_raw:
   - posts
   properties:
   - type: OpenAPI
@@ -156,6 +178,8 @@ apis:
   humanURL: https://docs.paragraph.com/developers
   baseURL: https://public.api.paragraph.com/api
   tags:
+  - Publications
+  tags_raw:
   - publications
   properties:
   - type: OpenAPI
@@ -170,6 +194,8 @@ apis:
   humanURL: https://docs.paragraph.com/developers
   baseURL: https://public.api.paragraph.com/api
   tags:
+  - Subscribers
+  tags_raw:
   - subscribers
   properties:
   - type: OpenAPI
@@ -184,6 +210,8 @@ apis:
   humanURL: https://docs.paragraph.com/developers
   baseURL: https://public.api.paragraph.com/api
   tags:
+  - User
+  tags_raw:
   - users
   properties:
   - type: OpenAPI
