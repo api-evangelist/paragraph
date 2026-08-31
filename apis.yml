@@ -110,7 +110,7 @@ apis:
   humanURL: https://docs.paragraph.com/developers
   baseURL: https://public.api.paragraph.com/api
   tags:
-  - Coins
+  - coins
   tags_raw:
   - coins
   properties:
