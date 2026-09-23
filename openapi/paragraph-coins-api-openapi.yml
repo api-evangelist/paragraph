@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Paragraph analytics coins API
+  title: Paragraph Coins API
   version: 1.0.0
   description: 'Public API for interacting with Paragraph publications, posts, users, and coined writing.
 
@@ -26,7 +26,7 @@ servers:
 security:
 - {}
 tags:
-- name: coins
+- name: Coins
   description: Operations related to tokenized content
 paths:
   /v1/coins/{id}:
@@ -34,7 +34,7 @@ paths:
       description: Retrieve information about a tokenized post using its unique ID
       summary: Get coin by ID
       tags:
-      - coins
+      - Coins
       parameters:
       - name: id
         in: path
@@ -216,7 +216,7 @@ paths:
       description: Retrieve information about a tokenized post using its contract address
       summary: Get coin by contract address
       tags:
-      - coins
+      - Coins
       parameters:
       - name: contractAddress
         in: path
@@ -399,7 +399,7 @@ paths:
       description: Retrieve a paginated list of holders for a coined post
       summary: List coin holders by ID
       tags:
-      - coins
+      - Coins
       parameters:
       - name: id
         in: path
@@ -525,7 +525,7 @@ paths:
       description: Retrieve a paginated list of holders for a tokenized post
       summary: List coin holders by contract address
       tags:
-      - coins
+      - Coins
       parameters:
       - name: contractAddress
         in: path
@@ -652,7 +652,7 @@ paths:
       description: Retrieve the args needed to buy a coin using a wallet
       summary: Get coin's buy args by ID
       tags:
-      - coins
+      - Coins
       parameters:
       - name: id
         in: path
@@ -742,7 +742,7 @@ paths:
       description: Retrieve the args needed to buy a coin using a wallet
       summary: Get coin's buy args by contract address
       tags:
-      - coins
+      - Coins
       parameters:
       - name: contractAddress
         in: path
@@ -833,7 +833,7 @@ paths:
       description: Retrieve the args needed to sell a coin using a wallet that has it
       summary: Get coin's sell args by ID
       tags:
-      - coins
+      - Coins
       parameters:
       - name: id
         in: path
@@ -923,7 +923,7 @@ paths:
       description: Retrieve the args needed to sell a coin using a wallet that has it
       summary: Get coin's sell args by contract address
       tags:
-      - coins
+      - Coins
       parameters:
       - name: contractAddress
         in: path
@@ -1014,7 +1014,7 @@ paths:
       description: Retrieve a quote for the amount of coin in exchange of ETH
       summary: Get coin quote by ID
       tags:
-      - coins
+      - Coins
       parameters:
       - name: id
         in: path
@@ -1098,7 +1098,7 @@ paths:
       description: Retrieve a quote for the amount of the coin in exchange of ETH
       summary: Get coin quote by contract address
       tags:
-      - coins
+      - Coins
       parameters:
       - name: contractAddress
         in: path
@@ -1182,7 +1182,7 @@ paths:
       description: Retrieve popular coins
       summary: Get popular coins
       tags:
-      - coins
+      - Coins
       parameters: []
       responses:
         '200':

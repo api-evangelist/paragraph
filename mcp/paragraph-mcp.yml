@@ -75,56 +75,30 @@ tools:
 - name: send-custom-email
   category: emails
   source_operation: openapi/paragraph-openapi-original.json#sendCustomEmail
-  note: >-
-    Named in the provider's own paragraph-cli Agent Skill — "markdown email blast to a recipient
-    list — requires publication approval".
+  note: Named in the provider's own paragraph-cli Agent Skill — "markdown email blast to a recipient list
+    — requires publication approval".
 - name: update-publication
   category: publications
   source_operation: openapi/paragraph-openapi-original.json#updatePublication
-  note: >-
-    Named in the provider's own paragraph-cli Agent Skill — "settings, featured post, pinned
-    posts, email-notification toggles".
+  note: Named in the provider's own paragraph-cli Agent Skill — "settings, featured post, pinned posts,
+    email-notification toggles".
 tool_count_named: 20
 tool_count_provider_stated: 23
-tool_count_note: >-
-  Paragraph's published paragraph-cli Agent Skill states "The MCP server exposes 23 tools (posts,
-  publications, subscribers, coins, search, feed, users, me, analytics, emails)". Twenty are named
-  above from the docs and that skill; three remain unnamed because the live tools/list manifest is
-  auth-gated. The analytics category in the provider's list has no named tool here, so the
-  unnamed three most likely include analytics-query / analytics-schema. Counted honestly rather
-  than invented.
-tool_list_provenance: >-
-  Derived by name from the provider's docs and published Agent Skill, then bound to OpenAPI
-  operations. The live tools/list manifest is auth-gated (see probe below), so per-tool
-  inputSchema has NOT been read from the server and is not asserted here.
+tool_count_note: Paragraph's published paragraph-cli Agent Skill states "The MCP server exposes 23 tools
+  (posts, publications, subscribers, coins, search, feed, users, me, analytics, emails)". Twenty are named
+  above from the docs and that skill; three remain unnamed because the live tools/list manifest is auth-gated.
+  The analytics category in the provider's list has no named tool here, so the unnamed three most likely
+  include analytics-query / analytics-schema. Counted honestly rather than invented.
+tool_list_provenance: Derived by name from the provider's docs and published Agent Skill, then bound to
+  OpenAPI operations. The live tools/list manifest is auth-gated (see probe below), so per-tool inputSchema
+  has NOT been read from the server and is not asserted here.
 deployment:
-  mode: both
+  mode: remote
   endpoint: https://mcp.paragraph.com/mcp
-  install: npx @paragraph-com/mcp
-  package: https://www.npmjs.com/package/@paragraph-com/mcp
-  auth: oauth
   verified: probed
-  checked: '2026-08-13'
-  note: >-
-    Paragraph ships BOTH agent surfaces: a hosted remote endpoint an MCP client can POST to today
-    (https://mcp.paragraph.com/mcp, OAuth), and a local stdio server a human installs
-    (npx @paragraph-com/mcp, PARAGRAPH_API_KEY). Both are documented verbatim at
-    https://docs.paragraph.com/developers/mcp. Corrected from mode:remote on 2026-08-13 — the
-    earlier census recorded only the endpoint.
-  probe:
-    url: https://mcp.paragraph.com/mcp
-    method: 'POST tools/list (jsonrpc 2.0, anonymous)'
-    http_status: 401
-    result: gated
-    www_authenticate: >-
-      Bearer realm="OAuth",
-      resource_metadata="https://mcp.paragraph.com/.well-known/oauth-protected-resource",
-      error="invalid_token"
-    body: '{"error":"invalid_token","error_description":"Missing or invalid access token"}'
-    note: >-
-      A correct RFC 9728 challenge — the server names its protected-resource metadata document in
-      the WWW-Authenticate header, so an agent can discover how to authenticate. `initialize`
-      returns the same 401, so even capability negotiation requires a token.
+  probe: gated
+  checked: '2026-08-12'
+  source: catalog MCP census
 authorization_server:
   issuer: https://mcp.paragraph.com
   metadata: well-known/paragraph-mcp-oauth-authorization-server.json
@@ -132,12 +106,14 @@ authorization_server:
   token_endpoint: https://mcp.paragraph.com/token
   registration_endpoint: https://mcp.paragraph.com/register
   dynamic_client_registration: true
-  grant_types_supported: [authorization_code, refresh_token]
-  code_challenge_methods_supported: [plain, S256]
+  grant_types_supported:
+  - authorization_code
+  - refresh_token
+  code_challenge_methods_supported:
+  - plain
+  - S256
   scopes_supported: []
-  note: >-
-    RFC 7591 dynamic client registration is open, so an agent can register itself without a
-    human pre-provisioning a client. No scopes are advertised on this server — MCP authorization
-    is all-or-nothing for the connected account, unlike the api.read/api.write pair the REST
-    resource advertises at paragraph.com.
+  note: RFC 7591 dynamic client registration is open, so an agent can register itself without a human
+    pre-provisioning a client. No scopes are advertised on this server — MCP authorization is all-or-nothing
+    for the connected account, unlike the api.read/api.write pair the REST resource advertises at paragraph.com.
 crosswalk: mcp/paragraph-tool-crosswalk.yml

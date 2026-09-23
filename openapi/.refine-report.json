@@ -1,16 +1,7 @@
 {
   "provider": "paragraph",
   "sources": [
-    "paragraph-analytics-api-openapi.yml",
-    "paragraph-auth-api-openapi.yml",
-    "paragraph-coins-api-openapi.yml",
-    "paragraph-discover-api-openapi.yml",
-    "paragraph-emails-api-openapi.yml",
-    "paragraph-me-api-openapi.yml",
-    "paragraph-posts-api-openapi.yml",
-    "paragraph-publications-api-openapi.yml",
-    "paragraph-subscribers-api-openapi.yml",
-    "paragraph-users-api-openapi.yml"
+    "_original/paragraph-openapi-original.json"
   ],
   "outputs": [
     "paragraph-analytics-api-openapi.yml",
@@ -27,6 +18,26 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "paragraph-openapi-original.json: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "paragraph-openapi-original.json: declared missing tag: analytics",
+    "paragraph-openapi-original.json: declared missing tag: auth",
+    "paragraph-openapi-original.json: declared missing tag: discover",
+    "paragraph-openapi-original.json: declared missing tag: emails",
+    "paragraph-openapi-original.json: declared missing tag: me",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "paragraph-analytics-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "paragraph-auth-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "paragraph-coins-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "paragraph-discover-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "paragraph-emails-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "paragraph-me-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "paragraph-posts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "paragraph-publications-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "paragraph-subscribers-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "paragraph-users-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

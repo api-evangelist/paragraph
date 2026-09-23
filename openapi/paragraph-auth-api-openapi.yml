@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Paragraph analytics auth API
+  title: Paragraph Auth API
   version: 1.0.0
   description: 'Public API for interacting with Paragraph publications, posts, users, and coined writing.
 
@@ -26,14 +26,14 @@ servers:
 security:
 - {}
 tags:
-- name: auth
+- name: Auth
 paths:
   /v1/api/auth/sessions:
     post:
       description: Creates a new browser-based auth session for CLI or other API clients. The returned verification URL should be opened in the user's browser to complete authentication.
       summary: Create an API auth session
       tags:
-      - auth
+      - Auth
       parameters: []
       requestBody:
         description: Body
@@ -96,7 +96,7 @@ paths:
       description: Poll the status of an auth session. Returns the API key once the session has been approved in the browser.
       summary: Poll an API auth session
       tags:
-      - auth
+      - Auth
       parameters:
       - name: sessionId
         in: path
@@ -177,7 +177,7 @@ paths:
       description: Cancels a pending auth session. Only pending sessions can be denied.
       summary: Deny an API auth session
       tags:
-      - auth
+      - Auth
       parameters:
       - name: sessionId
         in: path

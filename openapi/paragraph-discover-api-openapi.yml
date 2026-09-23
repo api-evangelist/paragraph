@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Paragraph analytics discover API
+  title: Paragraph Discover API
   version: 1.0.0
   description: 'Public API for interacting with Paragraph publications, posts, users, and coined writing.
 
@@ -26,14 +26,14 @@ servers:
 security:
 - {}
 tags:
-- name: discover
+- name: Discover
 paths:
   /v1/discover/search:
     get:
       description: Search for posts across all publications. Returns results ranked by relevance, popularity, and recency.
       summary: Search posts
       tags:
-      - discover
+      - Discover
       parameters:
       - name: q
         in: query
@@ -242,7 +242,7 @@ paths:
       description: Search for publications by name, slug, or description. Returns results ranked by relevance and subscriber count.
       summary: Search publications
       tags:
-      - discover
+      - Discover
       parameters:
       - name: q
         in: query
@@ -390,7 +390,7 @@ paths:
       description: Search for writer coins by ticker, contract address, or publication name. Returns results ranked by relevance and subscriber count.
       summary: Search coins
       tags:
-      - discover
+      - Discover
       parameters:
       - name: q
         in: query

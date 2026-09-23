@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Paragraph analytics subscribers API
+  title: Paragraph Subscribers API
   version: 1.0.0
   description: 'Public API for interacting with Paragraph publications, posts, users, and coined writing.
 
@@ -26,7 +26,7 @@ servers:
 security:
 - {}
 tags:
-- name: subscribers
+- name: Subscribers
   description: Operations related to subscriber management (requires API key)
 paths:
   /v1/subscribers/import:
@@ -53,7 +53,7 @@ paths:
         At least one of email or wallet_address must be present for each row. Rows with neither valid email nor valid wallet address will be skipped.'
       summary: Import subscribers from CSV
       tags:
-      - subscribers
+      - Subscribers
       parameters: []
       requestBody:
         description: Body
@@ -188,7 +188,7 @@ paths:
         - If the subscriber already exists (by email or wallet), they will not be duplicated'
       summary: Add a new subscriber
       tags:
-      - subscribers
+      - Subscribers
       parameters: []
       requestBody:
         description: Body
@@ -339,7 +339,7 @@ paths:
         - The subscription is hard-deleted, mirroring the dashboard''s "remove subscriber" action'
       summary: Remove a subscriber
       tags:
-      - subscribers
+      - Subscribers
       parameters: []
       requestBody:
         description: Body
@@ -476,7 +476,7 @@ paths:
         - Results are ordered by subscription date (newest first)'
       summary: List subscribers
       tags:
-      - subscribers
+      - Subscribers
       parameters:
       - name: cursor
         in: query

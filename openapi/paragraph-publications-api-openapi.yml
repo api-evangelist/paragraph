@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Paragraph analytics publications API
+  title: Paragraph Publications API
   version: 1.0.0
   description: 'Public API for interacting with Paragraph publications, posts, users, and coined writing.
 
@@ -26,7 +26,7 @@ servers:
 security:
 - {}
 tags:
-- name: publications
+- name: Publications
   description: Operations related to publications
 paths:
   /v1/publications/{publicationId}:
@@ -34,7 +34,7 @@ paths:
       description: Retrieve detailed information about a specific publication
       summary: Get publication by ID
       tags:
-      - publications
+      - Publications
       parameters:
       - name: publicationId
         in: path
@@ -246,7 +246,7 @@ paths:
         - `emailNotifications` is merged onto the current settings; only the toggles you send are changed.'
       summary: Update publication settings
       tags:
-      - publications
+      - Publications
       parameters:
       - name: publicationId
         in: path
@@ -623,7 +623,7 @@ paths:
       description: Retrieve publication details using its URL-friendly slug. Optionally include an @ before the slug.
       summary: Get publication by slug
       tags:
-      - publications
+      - Publications
       parameters:
       - name: slug
         in: path
@@ -827,7 +827,7 @@ paths:
       description: Retrieve publication details using its custom domain
       summary: Get publication by custom domain
       tags:
-      - publications
+      - Publications
       parameters:
       - name: domain
         in: path
@@ -1029,7 +1029,7 @@ paths:
       description: Retrieve the total number of subscribers for a publication
       summary: Get subscriber count
       tags:
-      - publications
+      - Publications
       parameters:
       - name: publicationId
         in: path

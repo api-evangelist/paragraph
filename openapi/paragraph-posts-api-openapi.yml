@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Paragraph analytics posts API
+  title: Paragraph Posts API
   version: 1.0.0
   description: 'Public API for interacting with Paragraph publications, posts, users, and coined writing.
 
@@ -26,7 +26,7 @@ servers:
 security:
 - {}
 tags:
-- name: posts
+- name: Posts
   description: Operations related to posts and content
 paths:
   /v1/posts/feed:
@@ -34,7 +34,7 @@ paths:
       description: Retrieve a curated, paginated list of posts.
       summary: Get posts feed
       tags:
-      - posts
+      - Posts
       parameters:
       - name: cursor
         in: query
@@ -440,7 +440,7 @@ paths:
       description: Retrieve a paginated list of posts with a specific tag, sorted by publish date (newest first)
       summary: Get posts by tag
       tags:
-      - posts
+      - Posts
       parameters:
       - name: tag
         in: path
@@ -666,7 +666,7 @@ paths:
       description: Retrieve a paginated list of published posts from a publication
       summary: Get posts in a publication
       tags:
-      - posts
+      - Posts
       parameters:
       - name: publicationId
         in: path
@@ -891,7 +891,7 @@ paths:
       description: Retrieve detailed information about a specific post
       summary: Get post by ID
       tags:
-      - posts
+      - Posts
       parameters:
       - name: postId
         in: path
@@ -1094,7 +1094,7 @@ paths:
         - Set `imageUrl` to update the post''s cover/hero image; the URL is fetched, re-hosted, and a placeholder is generated. Pass `clearImage: true` to remove the existing cover.'
       summary: Update a post by ID
       tags:
-      - posts
+      - Posts
       parameters:
       - name: postId
         in: path
@@ -1307,7 +1307,7 @@ paths:
         **Warning:** This action is irreversible. The post and all related data (comments, notifications, drafts) will be permanently deleted.'
       summary: Delete a post
       tags:
-      - posts
+      - Posts
       parameters:
       - name: postId
         in: path
@@ -1416,7 +1416,7 @@ paths:
       description: Retrieve a post using its publication ID and its URL-friendly slug
       summary: Get post by publication ID and post slug
       tags:
-      - posts
+      - Posts
       parameters:
       - name: publicationId
         in: path
@@ -1608,7 +1608,7 @@ paths:
       description: Retrieve a post using its publication's slug and the post's slug. This is useful for building user-facing URLs.
       summary: Get post by publication slug and post slug
       tags:
-      - posts
+      - Posts
       parameters:
       - name: publicationSlug
         in: path
@@ -1818,7 +1818,7 @@ paths:
         - Set `scheduledAt` (Unix timestamp in milliseconds) to schedule first-publish for a future time. Must be in the future and at most 30 days out. Scheduling cannot be combined with `status: "draft"`. When scheduled, the response `status` is `"scheduled"` and the post publishes (plus sends newsletter, if requested) at the scheduled time.'
       summary: Create a new post
       tags:
-      - posts
+      - Posts
       parameters: []
       requestBody:
         description: Body
@@ -2004,7 +2004,7 @@ paths:
         Use the `status` parameter to filter by post status (published, draft, scheduled, or archived). Defaults to published.'
       summary: List your posts
       tags:
-      - posts
+      - Posts
       parameters:
       - name: cursor
         in: query
@@ -2253,7 +2253,7 @@ paths:
         - Set `imageUrl` to update the post''s cover/hero image; the URL is fetched, re-hosted, and a placeholder is generated. Pass `clearImage: true` to remove the existing cover.'
       summary: Update a post by slug
       tags:
-      - posts
+      - Posts
       parameters:
       - name: slug
         in: path
@@ -2459,7 +2459,7 @@ paths:
         **Warning:** This action is irreversible. The post and all related data (comments, notifications, drafts) will be permanently deleted.'
       summary: Delete a post by slug
       tags:
-      - posts
+      - Posts
       parameters:
       - name: slug
         in: path
@@ -2567,7 +2567,7 @@ paths:
       description: Sends a test newsletter email for the specified draft post to the publication owner's email address. Useful for previewing how a post will look as a newsletter before publishing. Only works for draft posts.
       summary: Send a test newsletter email
       tags:
-      - posts
+      - Posts
       parameters:
       - name: postId
         in: path
