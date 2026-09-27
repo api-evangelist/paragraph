@@ -73,7 +73,7 @@ maintainers:
   email: info@apis.io
 apis:
 - aid: paragraph:paragraph-analytics-api
-  name: Paragraph analytics API
+  name: Paragraph Analytics API
   description: The analytics API from Paragraph — 2 operation(s) for analytics.
   humanURL: https://docs.paragraph.com/developers
   baseURL: https://public.api.paragraph.com/api
@@ -89,7 +89,7 @@ apis:
   - type: Documentation
     url: https://docs.paragraph.com
 - aid: paragraph:paragraph-auth-api
-  name: Paragraph auth API
+  name: Paragraph Auth API
   description: The auth API from Paragraph — 2 operation(s) for auth.
   humanURL: https://docs.paragraph.com/developers
   baseURL: https://public.api.paragraph.com/api
@@ -105,7 +105,7 @@ apis:
   - type: Documentation
     url: https://docs.paragraph.com
 - aid: paragraph:paragraph-coins-api
-  name: Paragraph coins API
+  name: Paragraph Coins API
   description: Operations related to tokenized content
   humanURL: https://docs.paragraph.com/developers
   baseURL: https://public.api.paragraph.com/api
@@ -121,7 +121,7 @@ apis:
   - type: Documentation
     url: https://docs.paragraph.com
 - aid: paragraph:paragraph-discover-api
-  name: Paragraph discover API
+  name: Paragraph Discover API
   description: The discover API from Paragraph — 3 operation(s) for discover.
   humanURL: https://docs.paragraph.com/developers
   baseURL: https://public.api.paragraph.com/api
@@ -137,7 +137,7 @@ apis:
   - type: Documentation
     url: https://docs.paragraph.com
 - aid: paragraph:paragraph-emails-api
-  name: Paragraph emails API
+  name: Paragraph Emails API
   description: The emails API from Paragraph — 1 operation(s) for emails.
   humanURL: https://docs.paragraph.com/developers
   baseURL: https://public.api.paragraph.com/api
@@ -153,7 +153,7 @@ apis:
   - type: Documentation
     url: https://docs.paragraph.com
 - aid: paragraph:paragraph-me-api
-  name: Paragraph me API
+  name: Paragraph Me API
   description: The me API from Paragraph — 1 operation(s) for me.
   humanURL: https://docs.paragraph.com/developers
   baseURL: https://public.api.paragraph.com/api
@@ -169,7 +169,7 @@ apis:
   - type: Documentation
     url: https://docs.paragraph.com
 - aid: paragraph:paragraph-posts-api
-  name: Paragraph posts API
+  name: Paragraph Posts API
   description: Operations related to posts and content
   humanURL: https://docs.paragraph.com/developers
   baseURL: https://public.api.paragraph.com/api
@@ -185,7 +185,7 @@ apis:
   - type: Documentation
     url: https://docs.paragraph.com
 - aid: paragraph:paragraph-publications-api
-  name: Paragraph publications API
+  name: Paragraph Publications API
   description: Operations related to publications
   humanURL: https://docs.paragraph.com/developers
   baseURL: https://public.api.paragraph.com/api
@@ -201,7 +201,7 @@ apis:
   - type: Documentation
     url: https://docs.paragraph.com
 - aid: paragraph:paragraph-subscribers-api
-  name: Paragraph subscribers API
+  name: Paragraph Subscribers API
   description: Operations related to subscriber management (requires API key)
   humanURL: https://docs.paragraph.com/developers
   baseURL: https://public.api.paragraph.com/api
@@ -217,7 +217,7 @@ apis:
   - type: Documentation
     url: https://docs.paragraph.com
 - aid: paragraph:paragraph-users-api
-  name: Paragraph users API
+  name: Paragraph Users API
   description: Operations related to users and authors
   humanURL: https://docs.paragraph.com/developers
   baseURL: https://public.api.paragraph.com/api
