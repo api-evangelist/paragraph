@@ -117,3 +117,16 @@ authorization_server:
     pre-provisioning a client. No scopes are advertised on this server — MCP authorization is all-or-nothing
     for the connected account, unlike the api.read/api.write pair the REST resource advertises at paragraph.com.
 crosswalk: mcp/paragraph-tool-crosswalk.yml
+rfc9728:
+  endpoint: https://mcp.paragraph.com/mcp
+  metadata_url: https://mcp.paragraph.com/.well-known/oauth-protected-resource
+  discovered_via: WWW-Authenticate resource_metadata on an anonymous POST initialize
+  fetched: '2026-09-25'
+  http_status: 200
+  content_type: application/json
+  document:
+    resource: https://mcp.paragraph.com
+    authorization_servers:
+    - https://mcp.paragraph.com
+    bearer_methods_supported:
+    - header
