@@ -64,6 +64,156 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Paragraph is a company surfaced as a portfolio company of union-square-ventures and added to the API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+Paragraph is a web3-native publishing and newsletter platform where writers get a website, a newsletter, an owned subscriber list, and an AI agent that drafts, distributes, and maintains their publication. It supports custom domains, Substack import, subscriber management, and onchain monetization through writer coins and post coins. Paragraph ships a full public REST API (public.api.paragraph.com), an official TypeScript SDK, a CLI, a hosted Model Context Protocol server, and published Agent Skills so developers and AI agents can manage posts, publications, subscribers, and coins programmatically. Backed by Union Square Ventures.
 
-Backed by: union-square-ventures — https://paragraph.xyz
+**Areas:** Company · Publishing · Newsletters · Web3 · Content · Blogging · Creator Economy
+
+## Paragraph on APIs.io
+
+Everything profiled for Paragraph is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/paragraph/](https://apis.io/providers/paragraph/)** — or go straight to one of the APIs or properties below.
+
+### APIs (10)
+
+- [Paragraph Analytics API](https://apis.io/apis/paragraph/paragraph-analytics-api/) — The analytics API from Paragraph — 2 operation(s) for analytics.
+- [Paragraph Auth API](https://apis.io/apis/paragraph/paragraph-auth-api/) — The auth API from Paragraph — 2 operation(s) for auth.
+- [Paragraph Coins API](https://apis.io/apis/paragraph/paragraph-coins-api/) — Operations related to tokenized content
+- [Paragraph Discover API](https://apis.io/apis/paragraph/paragraph-discover-api/) — The discover API from Paragraph — 3 operation(s) for discover.
+- [Paragraph Emails API](https://apis.io/apis/paragraph/paragraph-emails-api/) — The emails API from Paragraph — 1 operation(s) for emails.
+- [Paragraph Me API](https://apis.io/apis/paragraph/paragraph-me-api/) — The me API from Paragraph — 1 operation(s) for me.
+- [Paragraph Posts API](https://apis.io/apis/paragraph/paragraph-posts-api/) — Operations related to posts and content
+- [Paragraph Publications API](https://apis.io/apis/paragraph/paragraph-publications-api/) — Operations related to publications
+- [Paragraph Subscribers API](https://apis.io/apis/paragraph/paragraph-subscribers-api/) — Operations related to subscriber management (requires API key)
+- [Paragraph Users API](https://apis.io/apis/paragraph/paragraph-users-api/) — Operations related to users and authors
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [paragraph](https://apis.io/servers/paragraph/paragraph/)
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Paragraph Agentic Access](https://apis.io/agentic-access/paragraph/paragraph-agentic-access/)
+
+#### Collections (10)
+
+Postman and Open Collection request collections.
+
+- [Paragraph analytics API](https://apis.io/collections/paragraph/open-paragraph-analytics-api/)
+- [Paragraph analytics auth API](https://apis.io/collections/paragraph/open-paragraph-auth-api/)
+- [Paragraph analytics coins API](https://apis.io/collections/paragraph/open-paragraph-coins-api/)
+- [Paragraph analytics discover API](https://apis.io/collections/paragraph/open-paragraph-discover-api/)
+- [Paragraph analytics emails API](https://apis.io/collections/paragraph/open-paragraph-emails-api/)
+- [Paragraph analytics me API](https://apis.io/collections/paragraph/open-paragraph-me-api/)
+- [Paragraph analytics posts API](https://apis.io/collections/paragraph/open-paragraph-posts-api/)
+- [Paragraph analytics publications API](https://apis.io/collections/paragraph/open-paragraph-publications-api/)
+- [Paragraph analytics subscribers API](https://apis.io/collections/paragraph/open-paragraph-subscribers-api/)
+- [Paragraph analytics users API](https://apis.io/collections/paragraph/open-paragraph-users-api/)
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Paragraph Openapi Overlay](https://apis.io/overlays/paragraph/paragraph-openapi-overlay/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Paragraph Authentication](https://apis.io/security/paragraph/paragraph-authentication/)
+- [Paragraph Domain Security](https://apis.io/security/paragraph/paragraph-domain-security/)
+
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [Paragraph Scopes](https://apis.io/scopes/paragraph/paragraph-scopes/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Paragraph Plans Pricing](https://apis.io/plans/paragraph/paragraph-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Paragraph Rate Limits](https://apis.io/rate-limits/paragraph/paragraph-rate-limits/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://paragraph.com)
+- [Documentation](https://docs.paragraph.com)
+- [Getting started](https://docs.paragraph.com/getting-started/quickstart)
+- [API reference](https://docs.paragraph.com/api-reference)
+- [Pricing](https://paragraph.com/pricing)
+- [Sign up](https://app.paragraph.com)
+- [Support](https://docs.paragraph.com/developers)
+- [Blog](https://paragraph.com/@blog)
+- [Terms of service](https://paragraph.com/terms-of-use)
+- [Privacy policy](https://paragraph.com/privacy)
+- [GitHub](https://github.com/paragraph-xyz)
+
+## API Evangelist rating
+
+**Kin Score 58.4** — strong · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 75.0 |
+| Contract quality | 52.7 |
+| Contract governance | 18.2 |
+| Operational transparency | 18.4 |
+| Developer ergonomics | 78.6 |
+| Access clarity | 76.3 |
+
+**Agent readiness 46.6** — agent-ready (gated down from agent-native)
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | verified |
+| Auth Clarity | served (partial credit) |
+| Idempotency | — |
+| Error Semantics | derived (partial credit) |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | yes |
+| Well Known Catalog | — |
+| Consent Identity | yes |
+| Agent Card | — |
+| Dry Run Mode | yes |
+| Delegated Identity | — |
+| Protected Resource Metadata | verified |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | partial |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 34.3** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/paragraph/](https://apis.io/providers/paragraph/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Paragraph: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/paragraph/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
